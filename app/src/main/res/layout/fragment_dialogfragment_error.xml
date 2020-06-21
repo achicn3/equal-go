@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minWidth="300dp"
+    android:minHeight="80dp"
+    android:orientation="horizontal"
+    android:padding="20dp">
+
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="45dp"
+        android:layout_weight="1"
+        android:tint="@android:color/holo_red_dark"
+        android:src="@drawable/ic_error" />
+
+    <TextView
+        android:layout_marginTop="15dp"
+        android:id="@+id/tv_error_message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="錯誤!"
+        />
+</LinearLayout>

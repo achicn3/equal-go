@@ -49,8 +49,8 @@ class RegisterViewModel(
     private var errorCount: Int = 0
     private var isRegistered: Boolean? = false
     private val firebaseCallback = object : FirebaseCallback() {
-        override fun isUserRegistered(phoneNumber: String?,response: Boolean?) {
-            super.isUserRegistered(null,response)
+        override fun isPhoneExisted(phoneNumber: String?, response: Boolean?) {
+            super.isPhoneExisted(null,response)
             isRegistered = response
             if (phoneNumber == null){
                 Event.OnPhoneExisted().send()
@@ -90,7 +90,7 @@ class RegisterViewModel(
                             ?.addOnCompleteListener{ task ->
                                 if(task.isSuccessful){
                                     Event.OnRegisterSuc().send()
-                                    LoginManager.instance.loadData(firebaseUser)
+                                    LoginManager.instance.loadData(context,firebaseUser)
                                 }
                                 else{
                                     Event.OnRegisterFail().send()
@@ -160,7 +160,7 @@ class RegisterViewModel(
 
 
     private fun checkPhoneExisted(phoneNumber: String) {
-        FirebaseUtil.isUserRegister(phoneNumber, firebaseCallback)
+        FirebaseUtil.isPhoneExisted(phoneNumber, firebaseCallback)
     }
 
     fun onClickSendSmsMessage(phoneNumber: String) {

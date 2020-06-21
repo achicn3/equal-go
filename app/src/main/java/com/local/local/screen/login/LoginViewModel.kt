@@ -11,6 +11,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.kdanmobile.cloud.event.EventBroadcaster
 import com.kdanmobile.cloud.event.EventManager
+import com.local.local.body.UserInfo
 import com.local.local.callback.FirebaseCallback
 import com.local.local.manager.LoginManager
 import com.local.local.util.FirebaseUtil
@@ -63,7 +64,7 @@ class LoginViewModel(
     }
 
     private var verificationID: String? = null
-
+    private var userData: UserInfo? = null
     private val smsCallback = object : PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
         //GOOGLE PLAY Service或許會自動攔截，若有攔截到可以直接登入
         override fun onVerificationCompleted(credential: PhoneAuthCredential) {
@@ -84,8 +85,8 @@ class LoginViewModel(
     }
 
     private val loginCallback = object : FirebaseCallback() {
-        override fun isUserRegistered(phoneNumber: String?, response: Boolean?) {
-            super.isUserRegistered(phoneNumber, response)
+        override fun isPhoneExisted(phoneNumber: String?, response: Boolean?) {
+            super.isPhoneExisted(phoneNumber, response)
             when (response) {
                 true -> {
                     phoneNumber ?: return
@@ -106,6 +107,11 @@ class LoginViewModel(
                 }
             }
         }
+
+        override fun getUserInfoByPhone(userInfo: com.local.local.body.UserInfo?) {
+            super.getUserInfoByPhone(userInfo)
+            userData = userInfo
+        }
     }
 
     private fun signInWithPhoneAuthCredential(credential: PhoneAuthCredential) {
@@ -114,7 +120,8 @@ class LoginViewModel(
             .addOnCompleteListener(activity) { task ->
                 if (task.isSuccessful) {
                     firebaseUser = task.result?.user
-                    LoginManager.instance.loadData(firebaseUser)
+                    FirebaseUtil.getUserInfoByPhone(firebaseUser?.phoneNumber, loginCallback)
+                    LoginManager.instance.loadData(context, firebaseUser)
                     Event.OnLoginSuc().send()
                 } else {
                     task.exception?.printStackTrace()
@@ -125,6 +132,8 @@ class LoginViewModel(
 
     fun onClickLogin(code: String){
         Event.OnLoginStart().send()
+        if (verificationID == null)
+            Event.OnLoginFail().send()
         verificationID?.run{
             PhoneAuthProvider.getCredential(this,code)
         }?.let {
@@ -133,6 +142,6 @@ class LoginViewModel(
     }
 
     fun onClickSendSms(phoneNumber: String) {
-        FirebaseUtil.isUserRegister(phoneNumber, loginCallback)
+        FirebaseUtil.isPhoneExisted(phoneNumber, loginCallback)
     }
 }

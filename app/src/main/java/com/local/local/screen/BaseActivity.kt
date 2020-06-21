@@ -2,8 +2,8 @@ package com.local.local.screen
 
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
-import com.local.local.screen.fragment.DoneFragment
-import com.local.local.screen.fragment.LoadingFragment
+import com.local.local.screen.fragment.dialog.DoneFragment
+import com.local.local.screen.fragment.dialog.LoadingFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -17,7 +17,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun showLoadingMsg(){
         supportFragmentManager.findFragmentByTag(LOADING_TAG) ?: run{
-            LoadingFragment().showNow(supportFragmentManager, LOADING_TAG)
+            LoadingFragment()
+                .showNow(supportFragmentManager, LOADING_TAG)
         }
     }
 
@@ -39,7 +40,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun showDoneMsg(){
         supportFragmentManager.findFragmentByTag(DONE_TAG) ?: run{
-            DoneFragment().showNow(supportFragmentManager, DONE_TAG)
+            DoneFragment()
+                .showNow(supportFragmentManager, DONE_TAG)
         }
         GlobalScope.launch(Dispatchers.Main) {
             delay(1250L)

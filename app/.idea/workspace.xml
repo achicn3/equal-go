@@ -1,7 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="efe79870-7c81-4f4b-8ca0-077e7050aa48" name="Default Changelist" comment="" />
+    <list default="true" id="efe79870-7c81-4f4b-8ca0-077e7050aa48" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/dialog/BaseDialogFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/dialog/ErrorFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/AddFriendFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/AddFriendViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/FriendListFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_add_friends.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_error.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_friends_list.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_qrcode.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_search.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_corner_radius.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_edge_color.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_round_corner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/font/aladin.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/font/londrina_solid.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_add_friends.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_dialogfragment_error.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_friends.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/values/font_certs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/values/preloaded_fonts.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/manager/LoginManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/manager/LoginManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/BaseActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/BaseActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/DoneFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/dialog/DoneFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/LoadingFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/dialog/LoadingFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/gallery/GalleryFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/FriendFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/gallery/GalleryViewModel.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/register/RegisterActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/register/RegisterActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/register/RegisterViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/register/RegisterViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_gallery.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/menu/activity_main2_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/menu/activity_main2_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +70,11 @@
       </state>
     </system>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
   <component name="ProjectId" id="1dUeMzkzKFx47bY3qE5xDSDT07R" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -111,5 +164,16 @@
       <updated>1592484054707</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

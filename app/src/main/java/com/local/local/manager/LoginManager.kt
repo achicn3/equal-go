@@ -1,9 +1,13 @@
 package com.local.local.manager
 
 import android.content.Context
+import android.service.autofill.UserData
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.local.local.body.UserInfo
+import com.local.local.callback.FirebaseCallback
+import com.local.local.util.FirebaseUtil
 
 class LoginManager private constructor() {
     companion object {
@@ -16,9 +20,17 @@ class LoginManager private constructor() {
         val INSTANCE = LoginManager()
     }
 
-    var user: FirebaseUser? = null
+    var firebaseUser: FirebaseUser? = null
+    var userData : UserInfo? = null
     private val listeners = HashSet<LoginListener?>()
 
+    private val firebaseCallback = object : FirebaseCallback(){
+        override fun getUserInfoByPhone(userInfo: UserInfo?) {
+            super.getUserInfoByPhone(userInfo)
+            userData = userInfo
+        }
+
+    }
     interface LoginListener {
         fun onLogStateChange()
         fun onUserInfoChange()
@@ -60,19 +72,16 @@ class LoginManager private constructor() {
 
     fun isLogin(): Boolean = Firebase.auth.currentUser == null
 
-    fun loadData(context: Context, firebaseUser: FirebaseUser?) {
-        user = firebaseUser ?: return
-        setLoginExpireTime(context, 6 * 60 * 60 + System.currentTimeMillis())
-    }
-
     private fun logout(context: Context) {
-        user = null
+        firebaseUser = null
         dispatchLogStateChanged()
         dispatchUserInfoChanged()
     }
 
-    fun loadData(firebaseUser: FirebaseUser?){
-        user = firebaseUser
+    fun loadData(context: Context,firebaseUser: FirebaseUser?){
+        this.firebaseUser = firebaseUser ?: return
+        FirebaseUtil.getUserInfoByPhone(firebaseUser.phoneNumber,firebaseCallback)
+        setLoginExpireTime(context, 6 * 60 * 60 + System.currentTimeMillis())
         dispatchUserInfoChanged()
         dispatchLogStateChanged()
     }

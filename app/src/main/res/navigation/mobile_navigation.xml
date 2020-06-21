@@ -12,28 +12,29 @@
         tools:layout="@layout/fragment_home"/>
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.local.local.screen.fragment.ui.gallery.GalleryFragment"
+        android:id="@+id/nav_friends"
+        android:name="com.local.local.screen.fragment.ui.firends.FriendFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" >
+        tools:layout="@layout/fragment_friends" >
         <action
-            android:id="@+id/action_nav_gallery_to_loginActivity"
-            app:destination="@id/loginActivity" />
+            android:id="@+id/action_nav_friends_to_nav_home"
+            app:destination="@id/nav_home" />
+        <action
+            android:id="@+id/action_nav_friends_to_addFriendFragment"
+            app:destination="@id/addFriendFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popUpTo="@id/nav_friends" />
     </fragment>
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.local.local.screen.fragment.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" >
-        <action
-            android:id="@+id/action_nav_slideshow_to_loginActivity3"
-            app:destination="@id/loginActivity" />
-    </fragment>
-    <activity
-        android:id="@+id/loginActivity"
-        android:name="com.local.local.screen.login.LoginActivity"
-        android:label="LoginActivity"
-        tools:layout="@layout/activity_login"
-        />
+        tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/addFriendFragment"
+        android:name="com.local.local.screen.fragment.ui.firends.AddFriendFragment"
+        android:label="AddFriendFragment" />
 </navigation>

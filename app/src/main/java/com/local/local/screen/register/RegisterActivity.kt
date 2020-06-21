@@ -126,7 +126,6 @@ class RegisterActivity : BaseActivity() {
             }.let { isValid ->
                 when (isValid) {
                     true -> {
-                        Log.d("phone number","phone number: ${phoneNumber.toUniversalPhoneNumber()}")
                         viewModel.onClickSendSmsMessage(phoneNumber.toUniversalPhoneNumber())
                         it.isClickable = false
                         it.isEnabled = false

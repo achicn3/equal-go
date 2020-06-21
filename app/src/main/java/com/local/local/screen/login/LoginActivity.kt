@@ -37,6 +37,7 @@ class LoginActivity : BaseActivity() {
                     finish()
                 }
                 is LoginViewModel.Event.OnLoginFail ->{
+                    dismissLoadingMsg()
                     Toast.makeText(this,getString(R.string.error_login_failed),Toast.LENGTH_SHORT).show()
                 }
                 is LoginViewModel.Event.OnSmsSendStart -> {

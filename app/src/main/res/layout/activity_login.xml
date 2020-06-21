@@ -21,6 +21,8 @@
         app:helperText="請輸入手機號碼"
         app:layout_constraintBottom_toTopOf="@+id/textInputLayout2"
         app:layout_constraintEnd_toEndOf="parent"
+        app:boxStrokeColor="@color/colorGreen"
+        app:hintTextColor="@color/colorGreen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView">
 
@@ -28,6 +30,7 @@
             android:id="@+id/et_login_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textCursorDrawable="@color/colorGreen"
             android:hint="@string/hint_cellphone_number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -48,6 +51,8 @@
         android:layout_height="64dp"
         android:layout_marginStart="32dp"
         android:layout_marginTop="32dp"
+        app:boxStrokeColor="@color/colorGreen"
+        app:hintTextColor="@color/colorGreen"
         app:layout_constraintEnd_toStartOf="@+id/btn_login_sendCode"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/viewGroup_login_phone">
@@ -56,6 +61,7 @@
             android:id="@+id/et_login_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textCursorDrawable="@color/colorGreen"
             android:hint="@string/please_enter_code" />
     </com.google.android.material.textfield.TextInputLayout>
 
