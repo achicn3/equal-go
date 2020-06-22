@@ -1,9 +1,11 @@
 package com.local.local.screen.fragment.ui.firends
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.transition.TransitionInflater
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -30,13 +32,24 @@ class AddFriendFragment : BaseDialogFragment() {
         super.onActivityResult(requestCode, resultCode, data)
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+        }
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_add_friends, container, false)
-        val context = context ?: return view
+        return inflater.inflate(R.layout.fragment_add_friends, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val context = context ?: return super.onViewCreated(view, savedInstanceState)
         val etPhone = view.findViewById<TextInputEditText>(R.id.et_addFriend_phone)
         val btnSearch = view.findViewById<ImageView>(R.id.iv_addFriend_search)
         val btnScan = view.findViewById<Button>(R.id.btn_addFriend_scanQRcode)
@@ -151,7 +164,5 @@ class AddFriendFragment : BaseDialogFragment() {
             }
 
         })
-
-        return view
     }
 }

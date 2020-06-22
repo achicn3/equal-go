@@ -108,7 +108,7 @@ class LoginViewModel(
             }
         }
 
-        override fun getUserInfoByPhone(userInfo: com.local.local.body.UserInfo?) {
+        override fun getUserInfoByPhone(userInfo: UserInfo?) {
             super.getUserInfoByPhone(userInfo)
             userData = userInfo
         }

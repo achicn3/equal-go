@@ -76,7 +76,7 @@ class RegisterViewModel(
             }
         }
 
-        override fun registerResponse(userInfo: UserInfo?,response: Boolean?) {
+        override fun registerResponse(userInfo: UserInfo?, response: Boolean?) {
             super.registerResponse(userInfo,response)
             Event.OnLRegisterFinish().send()
             when(response){

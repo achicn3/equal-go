@@ -40,7 +40,7 @@ class FirebaseUtil {
             })
         }
 
-        fun checkFriendsAlreadyAdd(userInfo: UserInfo?,callback: FirebaseCallback){
+        fun checkFriendsAlreadyAdd(userInfo: UserInfo?, callback: FirebaseCallback){
             val userKey = LoginManager.instance.userData?.userKey
             userKey?.let {
                 run{
@@ -111,7 +111,7 @@ class FirebaseUtil {
             })
         }
 
-        fun sendUserToServer(userInfo: UserInfo,callback: FirebaseCallback){
+        fun sendUserToServer(userInfo: UserInfo, callback: FirebaseCallback){
             run {
                 db.child("user").push().key
             }?.also { key ->
