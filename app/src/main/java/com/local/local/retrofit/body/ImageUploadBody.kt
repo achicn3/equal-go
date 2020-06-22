@@ -1,15 +1,18 @@
 package com.local.local.retrofit.body
 
-import com.google.gson.annotations.SerializedName
+import retrofit2.http.Query
 import java.io.File
 
 data class ImageUploadBody(
-    @SerializedName("image") val image: String,
-    @SerializedName("video") val video: File? = null,
-    @SerializedName("album") val albumHash: String = "tNFVkUY",
-    @SerializedName("type") val type: String = "base64",
-    @SerializedName("name") val name: String,
-    @SerializedName("title") val title: String,
-    @SerializedName("description") val description: String,
-    @SerializedName("disable_audio") val disableAudio: Boolean = true
+    //BASE 64 image
+    //If base 64 is invalid try this :
+    //https://github.com/Killmax/imgur-upload-retrofit-2/blob/master/app/src/main/java/xyz/maxime_brgt/testretrofit/ImgurService.java
+    @Query("image") val image: String,
+    @Query("video") val video: File? = null,
+    @Query("album") val albumHash: String = "tNFVkUY",
+    @Query("type") val type: String = "base64",
+    @Query("name") val name: String,
+    @Query("title") val title: String,
+    @Query("description") val description: String,
+    @Query("disable_audio") val disableAudio: Boolean = true
 )
