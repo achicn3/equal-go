@@ -1,4 +1,4 @@
-package com.local.local.screen.fragment.ui.firends
+package com.local.local.screen.fragment.ui.firends.addfriend
 
 import androidx.lifecycle.ViewModel
 import com.kdanmobile.cloud.event.EventBroadcaster
@@ -32,16 +32,19 @@ class AddFriendViewModel(
         firebaseCallback = object : FirebaseCallback() {
             override fun isPhoneExisted(phoneNumber: String?, response: Boolean?) {
                 super.isPhoneExisted(phoneNumber, response)
-                Event.OnSearchFinish().send()
+                Event.OnSearchFinish()
+                    .send()
                 when (response) {
                     true -> {
                         getUserInfoByPhone(phoneNumber)
                     }
                     false -> {
-                        Event.OnSearchFail().send()
+                        Event.OnSearchFail()
+                            .send()
                     }
                     else -> {
-                        Event.OnSearchError().send()
+                        Event.OnSearchError()
+                            .send()
                     }
                 }
             }
@@ -49,9 +52,11 @@ class AddFriendViewModel(
             override fun getUserInfoByPhone(userInfo: UserInfo?) {
                 super.getUserInfoByPhone(userInfo)
                 if (userInfo == null) {
-                    Event.OnSearchError().send()
+                    Event.OnSearchError()
+                        .send()
                 } else {
-                    Event.OnSearchSuc().send()
+                    Event.OnSearchSuc()
+                        .send()
                     searchedUserInfo = userInfo
                 }
 
@@ -59,16 +64,19 @@ class AddFriendViewModel(
 
             override fun isKeyExisted(userKey: String?, response: Boolean?) {
                 super.isKeyExisted(userKey, response)
-                Event.OnSearchFinish().send()
+                Event.OnSearchFinish()
+                    .send()
                 when (response) {
                     true -> {
                         getUserInfoByKey(userKey)
                     }
                     false -> {
-                        Event.OnSearchFail().send()
+                        Event.OnSearchFail()
+                            .send()
                     }
                     else -> {
-                        Event.OnSearchError().send()
+                        Event.OnSearchError()
+                            .send()
                     }
                 }
             }
@@ -76,33 +84,41 @@ class AddFriendViewModel(
             override fun getUserInfoByKey(userInfo: UserInfo?) {
                 super.getUserInfoByKey(userInfo)
                 if (userInfo == null) {
-                    Event.OnSearchError().send()
+                    Event.OnSearchError()
+                        .send()
                 } else {
-                    Event.OnSearchSuc().send()
+                    Event.OnSearchSuc()
+                        .send()
                     searchedUserInfo = userInfo
                 }
             }
 
             override fun addFriendResponse(response: Boolean?) {
                 super.addFriendResponse(response)
-                Event.OnAddFinish().send()
-                response ?: Event.OnAddError().send()
+                Event.OnAddFinish()
+                    .send()
+                response ?: Event.OnAddError()
+                    .send()
                 when (response) {
                     true -> {
-                        Event.OnAddSuc().send()
+                        Event.OnAddSuc()
+                            .send()
                     }
                     false -> {
-                        Event.OnAddFail().send()
+                        Event.OnAddFail()
+                            .send()
                     }
                 }
             }
 
             override fun isFriendsAdded(response: Boolean?) {
                 super.isFriendsAdded(response)
-                response ?: Event.OnAddError().send()
+                response ?: Event.OnAddError()
+                    .send()
                 when (response) {
                     true -> {
-                        Event.OnFriendsAlreadyAdded().send()
+                        Event.OnFriendsAlreadyAdded()
+                            .send()
                     }
                     false -> {
                         FirebaseUtil.addFriends(searchedUserInfo, this)
@@ -128,23 +144,28 @@ class AddFriendViewModel(
 
     fun searchByPhoneNumber(phoneNumber: String) {
         searchedUserInfo = null
-        Event.OnSearchStart().send()
+        Event.OnSearchStart()
+            .send()
         FirebaseUtil.isPhoneExisted(phoneNumber, firebaseCallback)
     }
 
     fun searchByQRCode(userKey: String?) {
         searchedUserInfo = null
-        Event.OnSearchStart().send()
+        Event.OnSearchStart()
+            .send()
         FirebaseUtil.isKeyExisted(userKey, firebaseCallback)
     }
 
     fun onClickAdd() {
-        Event.OnAddStart().send()
+        Event.OnAddStart()
+            .send()
         if (searchedUserInfo != null) {
             FirebaseUtil.checkFriendsAlreadyAdd(searchedUserInfo,firebaseCallback)
         } else {
-            Event.OnAddFinish().send()
-            Event.OnAddError().send()
+            Event.OnAddFinish()
+                .send()
+            Event.OnAddError()
+                .send()
         }
     }
 

@@ -7,5 +7,7 @@ data class UserInfo(
     var age: Int? = null,
     var freq : Int? = 0,
     var userKey : String? = null,
-    var avatarUrl : String = "https://i.imgur.com/WUq3xlF.png"
+    var avatarUrl : String = "https://i.imgur.com/WUq3xlF.png",
+    var latitude : Double? = null,
+    var longitude : Double? = null
 )

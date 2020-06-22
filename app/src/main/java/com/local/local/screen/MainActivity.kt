@@ -1,7 +1,12 @@
 package com.local.local.screen
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.View
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
@@ -13,11 +18,18 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.local.local.R
+import com.local.local.manager.LoginManager
+import com.local.local.screen.login.LoginActivity
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
+    private fun toLocalPhone(phoneNumber: String?): String
+        = "0${phoneNumber?.substring(4)}"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,8 +52,39 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_friends, R.id.nav_slideshow
             ), drawerLayout
         )
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        navView.findViewById<Button>(R.id.btn_drawer_logout).setOnClickListener {
+            LoginManager.instance.logout()
+            startActivity(Intent(this,LoginActivity::class.java))
+        }
+        val drawerAccountView : View by lazy { navView.getHeaderView(0)}
+        val ivDrawerAvatar = drawerAccountView.findViewById<ImageView>(R.id.iv_drawer_avatar)
+        val tvDrawerName = drawerAccountView.findViewById<TextView>(R.id.tv_drawer_name)
+        val tvDrawerPhone = drawerAccountView.findViewById<TextView>(R.id.tv_drawer_cellphone)
+        val loginListener = object : LoginManager.LoginListener{
+            override fun onLogStateChange() {
+
+            }
+
+            override fun onUserInfoChange() {
+                val cp = CircularProgressDrawable(this@MainActivity)
+                cp.strokeWidth = 5f
+                cp.centerRadius = 30f
+                cp.setColorSchemeColors(R.color.colorGreen)
+                cp.start()
+                Glide
+                    .with(this@MainActivity)
+                    .load(LoginManager.instance.userData?.avatarUrl)
+                    .apply(RequestOptions().circleCrop())
+                    .placeholder(cp)
+                    .into(ivDrawerAvatar)
+                tvDrawerName.text = LoginManager.instance.userData?.name
+                tvDrawerPhone.text = toLocalPhone(LoginManager.instance.userData?.phone)
+            }
+        }
+        LoginManager.instance.addListener(loginListener)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

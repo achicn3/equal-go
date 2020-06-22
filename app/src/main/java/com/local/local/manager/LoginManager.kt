@@ -27,6 +27,8 @@ class LoginManager private constructor() {
         override fun getUserInfoByPhone(userInfo: UserInfo?) {
             super.getUserInfoByPhone(userInfo)
             userData = userInfo
+            dispatchUserInfoChanged()
+            dispatchLogStateChanged()
         }
 
     }
@@ -71,8 +73,10 @@ class LoginManager private constructor() {
 
     fun isLogin(): Boolean = Firebase.auth.currentUser == null
 
-    private fun logout(context: Context) {
+    fun logout() {
         firebaseUser = null
+        Firebase.auth.signOut()
+        userData = null
         dispatchLogStateChanged()
         dispatchUserInfoChanged()
     }
@@ -81,13 +85,16 @@ class LoginManager private constructor() {
         this.firebaseUser = firebaseUser ?: return
         FirebaseUtil.getUserInfoByPhone(firebaseUser.phoneNumber,firebaseCallback)
         setLoginExpireTime(context, 6 * 60 * 60 + System.currentTimeMillis())
-        dispatchUserInfoChanged()
-        dispatchLogStateChanged()
     }
 
-    /*fun logout(context: Context, callback: AccountCallback) {
+    fun addListener(l : LoginListener){
+        listeners.add(l)
+    }
 
-    }*/
+    fun removeListener(l: LoginListener){
+        listeners.remove(l)
+    }
+
 
 
 }

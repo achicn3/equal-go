@@ -1,15 +1,22 @@
 package com.local.local.screen.login
 
 import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
-import android.text.TextUtils
+import android.transition.Explode
+import android.util.TypedValue
+import android.view.View
+import android.view.Window
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.local.local.R
 import com.local.local.screen.BaseActivity
+import com.local.local.screen.FirstActivity
 import com.local.local.screen.MainActivity
 import com.local.local.screen.register.RegisterActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -18,11 +25,32 @@ class LoginActivity : BaseActivity() {
         parametersOf(this)
     }
 
+    private fun View.addRipple() = with(TypedValue()) {
+        context.theme.resolveAttribute(android.R.attr.selectableItemBackground, this, true)
+        setBackgroundResource(resourceId)
+    }
+
+    private fun initSendCodeBtn() {
+        btn_login_sendCode.addRipple()
+        btn_login_sendCode.text = getString(R.string.send_code)
+        btn_login_sendCode.isClickable = true
+        btn_login_sendCode.isEnabled = true
+    }
+
+    private var job: Job? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        with(window) {
+            // set an exit transition
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                requestFeature(Window.FEATURE_CONTENT_TRANSITIONS)
+                exitTransition = Explode()
+            }
+        }
         setContentView(R.layout.activity_login)
         et_login_phone.setText(viewModel.phoneNumber)
-
+        cb_login_rememberMe.isChecked = viewModel.isRemember
         viewModel.eventLiveData.observe(this, Observer { event ->
             event ?: return@Observer
             when (event) {
@@ -60,16 +88,38 @@ class LoginActivity : BaseActivity() {
 
         btn_login_sendCode.setOnClickListener {
             val phoneNumber = et_login_phone.text.toString()
-            if(isPhoneValid(phoneNumber)){
-                viewModel.onClickSendSms(phoneNumber.toUniversalPhoneNumber())
-            }else{
-                viewGroup_login_phone.error = getString(R.string.error_invalid_phone_number)
+            run {
+                isPhoneValid(phoneNumber)
+            }.let { isValid ->
+                when (isValid) {
+                    true -> {
+                        viewModel.onClickSendSms(phoneNumber.toUniversalPhoneNumber())
+                        it.isClickable = false
+                        it.isEnabled = false
+                        it.setBackgroundColor(Color.GRAY)
+                        viewGroup_login_phone.error = null
+                        job = GlobalScope.launch(Dispatchers.Main) {
+                            for (count in 60 downTo 0) {
+                                btn_login_sendCode.text =
+                                    getString(R.string.countdown_resend, count)
+                                delay(1000)
+                            }
+                            initSendCodeBtn()
+                        }
+                    }
+                    false -> {
+                        viewGroup_login_phone.error =
+                            getString(R.string.error_invalid_phone_number)
+                    }
+                }
             }
         }
 
         btn_login_submit.setOnClickListener {
             val code = et_login_code.text.toString()
-            viewModel.onClickLogin(code)
+            val phoneNumber = et_login_phone.text.toString()
+            val isRemember = cb_login_rememberMe.isChecked
+            viewModel.onClickLogin(code, phoneNumber, isRemember)
         }
 
         btn_login_register.setOnClickListener {
@@ -79,6 +129,9 @@ class LoginActivity : BaseActivity() {
                 startActivity(this)
             }
         }
+    }
 
+    override fun onBackPressed() {
+        startActivity(Intent(this,FirstActivity::class.java))
     }
 }

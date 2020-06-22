@@ -43,4 +43,6 @@
     <string name="or">或</string>
     <string name="add">加入</string>
     <string name="my_qrcode">我的條碼</string>
+    <string name="distance">距離: %d 公里</string>
+    <string name="logout">登出</string>
 </resources>

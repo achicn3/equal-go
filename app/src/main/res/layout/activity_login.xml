@@ -75,26 +75,16 @@
         android:background="@drawable/style_commonn_btn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+        app:layout_constraintTop_toBottomOf="@+id/cb_login_rememberMe" />
 
     <CheckBox
-        android:id="@+id/checkBox"
+        android:id="@+id/cb_login_rememberMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="@string/login_remember_me"
         app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
-
-    <android.widget.Button
-        android:id="@+id/button4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:background="?selectableItemBackground"
-        android:text="@string/login_forget_pwd"
-        app:layout_constraintEnd_toEndOf="@+id/btn_login_sendCode"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login_sendCode" />
 
     <android.widget.Button
         android:id="@+id/btn_login_sendCode"

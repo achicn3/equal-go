@@ -8,9 +8,12 @@ import android.widget.LinearLayout
 import androidx.navigation.fragment.findNavController
 import com.local.local.R
 import com.local.local.screen.fragment.dialog.BaseDialogFragment
+import com.local.local.screen.fragment.ui.firends.showqrcode.ShowQrCodeFragment
 
 class FriendFragment : BaseDialogFragment() {
-
+    companion object{
+        private const val ShowQRcodeTAG = "showQrCodeTag"
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -25,7 +28,14 @@ class FriendFragment : BaseDialogFragment() {
             findNavController().navigate(R.id.action_nav_friends_to_addFriendFragment)
         }
         view.findViewById<LinearLayout>(R.id.viewGroup_friends_friendList).setOnClickListener {
-
+            findNavController().navigate(R.id.action_nav_friends_to_friendListFragment)
+        }
+        view.findViewById<LinearLayout>(R.id.viewGroup_friends_myQrCode).setOnClickListener {
+            activity?.supportFragmentManager?.also{ fragment ->
+                fragment.findFragmentByTag(ShowQRcodeTAG) ?: run{
+                    ShowQrCodeFragment().showNow(fragment, ShowQRcodeTAG)
+                }
+            }
         }
     }
 }

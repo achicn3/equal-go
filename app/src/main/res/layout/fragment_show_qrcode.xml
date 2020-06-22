@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center">
+
+    <ImageView
+        android:id="@+id/iv_showQrCode_close"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="top"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="16dp"
+        android:background="?selectableItemBackground"
+        android:src="@drawable/ic_close"
+        android:gravity="center" />
+
+    <ImageView
+        android:id="@+id/iv_showQrCode_code"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp" />
+</LinearLayout>

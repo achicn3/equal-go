@@ -23,8 +23,10 @@
             android:id="@+id/action_nav_friends_to_addFriendFragment"
             app:destination="@id/addFriendFragment"
             app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
             app:popUpTo="@id/nav_friends" />
+        <action
+            android:id="@+id/action_nav_friends_to_friendListFragment"
+            app:destination="@id/friendListFragment" />
     </fragment>
 
     <fragment
@@ -35,6 +37,15 @@
 
     <fragment
         android:id="@+id/addFriendFragment"
-        android:name="com.local.local.screen.fragment.ui.firends.AddFriendFragment"
-        android:label="AddFriendFragment" />
+        android:name="com.local.local.screen.fragment.ui.firends.addfriend.AddFriendFragment"
+        android:label="AddFriendFragment"
+        tools:layout="@layout/fragment_add_friends"
+        />
+
+    <fragment
+        android:id="@+id/friendListFragment"
+        android:name="com.local.local.screen.fragment.ui.firends.friendlsit.FriendListFragment"
+        android:label="FriendListFragment"
+        tools:layout="@layout/fragment_friend_friendlist"
+        />
 </navigation>

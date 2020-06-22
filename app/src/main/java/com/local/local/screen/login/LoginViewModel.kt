@@ -24,8 +24,9 @@ class LoginViewModel(
 ) :
     ViewModel(), EventBroadcaster<LoginViewModel.Event> by eventManager {
     companion object {
-        private val USER_SHARE_PREFERENCE = "UserSharePreference.pref"
-        private val USER_PHONE_TAG = "userCellphone"
+        private const val USER_SHARE_PREFERENCE = "UserSharePreference.pref"
+        private const val USER_PHONE_TAG = "userCellphone"
+        private const val USER_REMEMBER_TAG = "userRemember"
     }
 
     private fun getSharePreference() =
@@ -38,6 +39,17 @@ class LoginViewModel(
         set(value) {
             getSharePreference().edit().run {
                 putString(USER_PHONE_TAG, value)
+                commit()
+            }
+        }
+
+    var isRemember: Boolean
+        get() {
+            return getSharePreference().getBoolean(USER_SHARE_PREFERENCE, false)
+        }
+        set(value) {
+            getSharePreference().edit().run {
+                putBoolean(USER_REMEMBER_TAG, value)
                 commit()
             }
         }
@@ -130,11 +142,15 @@ class LoginViewModel(
             }
     }
 
-    fun onClickLogin(code: String){
+    fun onClickLogin(code: String,phoneNumber: String,isRemember: Boolean){
         Event.OnLoginStart().send()
         if (verificationID == null)
             Event.OnLoginFail().send()
         verificationID?.run{
+            if(isRemember){
+                this@LoginViewModel.phoneNumber = phoneNumber
+                this@LoginViewModel.isRemember = isRemember
+            }
             PhoneAuthProvider.getCredential(this,code)
         }?.let {
             signInWithPhoneAuthCredential(it)

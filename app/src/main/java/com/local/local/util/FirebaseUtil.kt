@@ -19,6 +19,27 @@ class FirebaseUtil {
         private fun toUniversalPhoneNumber(phoneNumber: String?): String =
             "+886${phoneNumber?.substring(1)}"
 
+        fun retrieveFriendList(firebaseCallback: FirebaseCallback){
+            val key = LoginManager.instance.userData?.userKey ?: return
+            db.child("user").child(key).child("friends").addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    firebaseCallback.retrieveFriendList(null)
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val friendList = mutableListOf<UserInfo>()
+                    for(data in p0.children){
+                        val friendInfo = data.getValue(UserInfo::class.java) ?: continue
+                        Log.d("fetch userInfo","here fetch friend~~ $friendInfo")
+                        friendList.add(friendInfo)
+                    }
+                    firebaseCallback.retrieveFriendList(friendList.toList())
+                }
+
+            })
+        }
+
         fun getUserInfoByKey(userKey: String?, callback: FirebaseCallback) {
             val query = db.child("user").orderByChild("userKey").equalTo(userKey).ref
             query.addListenerForSingleValueEvent(object : ValueEventListener {

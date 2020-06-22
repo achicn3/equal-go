@@ -1,4 +1,4 @@
-package com.local.local.screen.fragment.ui.firends
+package com.local.local.screen.fragment.ui.firends.addfriend
 
 import android.content.Intent
 import android.os.Build

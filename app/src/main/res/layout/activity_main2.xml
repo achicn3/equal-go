@@ -20,6 +20,19 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main2_drawer" />
+        app:menu="@menu/activity_main2_drawer" >
+
+        <android.widget.Button
+            android:id="@+id/btn_drawer_logout"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="16dp"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:foreground="@drawable/style_logout_button"
+            android:background="?selectableItemBackground"
+            android:text="@string/logout" />
+    </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
