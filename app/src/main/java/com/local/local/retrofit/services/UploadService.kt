@@ -7,13 +7,12 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Header
 import retrofit2.http.POST
-import java.util.*
 
 
 interface UploadService {
     @POST("3/upload")
-    fun uploadImage(
+    fun uploadImageAsync(
         @Header("Authorization") authorization: String = "Client-ID 507d938c85f2ab1",
         @Body body: ImageUploadBody
-    ):Deferred<Response<ResponseBody>>
+    ): Deferred<Response<ResponseBody>>
 }

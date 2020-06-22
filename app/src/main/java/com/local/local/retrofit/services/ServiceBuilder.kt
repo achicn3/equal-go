@@ -1,7 +1,6 @@
-package com.local.local.retrofit
+package com.local.local.retrofit.services
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
-import com.local.local.retrofit.services.UploadService
 import okhttp3.CipherSuite
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
@@ -50,7 +49,9 @@ class ServiceBuilder {
 
 
         fun buildUploadService(okHttpClient: OkHttpClient): UploadService
-                = getRetrofit(okHttpClient).create(UploadService::class.java)
+                = getRetrofit(
+            okHttpClient
+        ).create(UploadService::class.java)
     }
 
 }
