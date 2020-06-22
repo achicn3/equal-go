@@ -17,39 +17,40 @@ class ServiceBuilder {
         const val DEFAULT_CONNECT_TIMEOUT_IN_SECOND = 30L
         const val DEFAULT_WRITE_TIMEOUT_IN_SECOND = 30L
         const val DEFAULT_READ_TIMEOUT_IN_SECOND = 30L
-    }
-    @JvmOverloads
-    fun buildOkHttpClient(
-        connectTimeout: Long = DEFAULT_CONNECT_TIMEOUT_IN_SECOND,
-        writeTimeout: Long = DEFAULT_WRITE_TIMEOUT_IN_SECOND,
-        readTimeout: Long = DEFAULT_READ_TIMEOUT_IN_SECOND
-    ): OkHttpClient {
-        val specBuilder = ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).also {
-            it.tlsVersions(TlsVersion.TLS_1_2)
-            it.cipherSuites(
-                CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
-                CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
-                CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
-            )
+
+        @JvmOverloads
+        fun buildOkHttpClient(
+            connectTimeout: Long = DEFAULT_CONNECT_TIMEOUT_IN_SECOND,
+            writeTimeout: Long = DEFAULT_WRITE_TIMEOUT_IN_SECOND,
+            readTimeout: Long = DEFAULT_READ_TIMEOUT_IN_SECOND
+        ): OkHttpClient {
+            val specBuilder = ConnectionSpec.Builder(ConnectionSpec.MODERN_TLS).also {
+                it.tlsVersions(TlsVersion.TLS_1_2)
+                it.cipherSuites(
+                    CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,
+                    CipherSuite.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,
+                    CipherSuite.TLS_DHE_RSA_WITH_AES_128_GCM_SHA256
+                )
+            }
+            return OkHttpClient.Builder()
+                .connectionSpecs(listOf(specBuilder.build(), ConnectionSpec.CLEARTEXT))
+                .connectTimeout(connectTimeout, TimeUnit.SECONDS)
+                .writeTimeout(writeTimeout, TimeUnit.SECONDS)
+                .readTimeout(readTimeout, TimeUnit.SECONDS)
+                .build()
         }
-        return OkHttpClient.Builder()
-            .connectionSpecs(listOf(specBuilder.build(), ConnectionSpec.CLEARTEXT))
-            .connectTimeout(connectTimeout, TimeUnit.SECONDS)
-            .writeTimeout(writeTimeout, TimeUnit.SECONDS)
-            .readTimeout(readTimeout, TimeUnit.SECONDS)
-            .build()
+
+        private fun getRetrofit(okHttpClient: OkHttpClient): Retrofit =
+            Retrofit.Builder()
+                .baseUrl(imgurUploadUrl)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
+                .client(okHttpClient)
+                .build()
+
+
+        fun buildUploadService(okHttpClient: OkHttpClient): UploadService
+                = getRetrofit(okHttpClient).create(UploadService::class.java)
     }
-
-    private fun getRetrofit(okHttpClient: OkHttpClient): Retrofit =
-        Retrofit.Builder()
-            .baseUrl(imgurUploadUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(CoroutineCallAdapterFactory())
-            .client(okHttpClient)
-            .build()
-
-
-    fun buildUploadService(okHttpClient: OkHttpClient): UploadService
-        = getRetrofit(okHttpClient).create(UploadService::class.java)
 
 }

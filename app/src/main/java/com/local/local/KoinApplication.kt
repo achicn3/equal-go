@@ -2,6 +2,7 @@ package com.local.local
 
 import android.app.Activity
 import androidx.multidex.MultiDexApplication
+import com.local.local.retrofit.ServiceBuilder
 import com.local.local.screen.fragment.ui.firends.AddFriendViewModel
 import com.local.local.screen.login.LoginViewModel
 import com.local.local.screen.register.RegisterViewModel
@@ -16,6 +17,8 @@ class KoinApplication : MultiDexApplication() {
         viewModel { (activity: Activity) -> LoginViewModel(this@KoinApplication,activity) }
         viewModel { (activity: Activity) -> RegisterViewModel(get(), activity) }
         viewModel { AddFriendViewModel() }
+        single { ServiceBuilder.buildOkHttpClient() }
+        single { ServiceBuilder.buildUploadService(get()) }
     }
 
     override fun onCreate() {
