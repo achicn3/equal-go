@@ -1,18 +1,24 @@
 package com.local.local.retrofit.services
 
-import com.local.local.retrofit.body.ImageUploadBody
 import com.local.local.retrofit.body.ResponseBody
 import kotlinx.coroutines.Deferred
+import okhttp3.MultipartBody
 import retrofit2.Response
-import retrofit2.http.Body
-import retrofit2.http.Header
-import retrofit2.http.POST
+import retrofit2.http.*
+import java.io.File
 
 
 interface UploadService {
     @POST("3/upload")
     fun uploadImageAsync(
         @Header("Authorization") authorization: String = "Client-ID 507d938c85f2ab1",
-        @Body body: ImageUploadBody
+        @Part image: MultipartBody.Part,
+        @Query("video")  video: File? = null,
+        @Query("album")  albumHash: String? = null,
+        @Query("type")  type: String = "file",
+        @Query("name")  name: String,
+        @Query("title")  title: String,
+        @Query("description")  description: String,
+        @Query("disable_audio")  disableAudio: Boolean = true
     ): Deferred<Response<ResponseBody>>
 }
