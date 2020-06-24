@@ -15,12 +15,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.local.local.R
+import com.local.local.extensions.Extensions.loadCircleImage
 import com.local.local.manager.LoginManager
 import com.local.local.screen.fragment.dialog.BaseDialogFragment
 import kotlinx.android.synthetic.main.fragment_add_friends.*
@@ -57,11 +57,6 @@ class AddFriendFragment : BaseDialogFragment() {
         val ivFriendAvatar = view.findViewById<ImageView>(R.id.iv_addFriend_friendAvatar)
         val tvFriendName = view.findViewById<TextView>(R.id.tv_addFriend_friendName)
         val viewGroupPhone = view.findViewById<TextInputLayout>(R.id.viewGroup_addFriend_phone)
-        val cp = CircularProgressDrawable(context)
-        cp.strokeWidth = 5f
-        cp.centerRadius = 30f
-        cp.setColorSchemeColors(R.color.colorGreen)
-        cp.start()
         etPhone.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 viewGroupPhone.error = null
@@ -132,12 +127,10 @@ class AddFriendFragment : BaseDialogFragment() {
                     ivFriendAvatar.visibility = View.VISIBLE
                     tvFriendName.visibility = View.VISIBLE
                     btnAddFriend.visibility = View.VISIBLE
-                    Glide
-                        .with(this)
-                        .load(viewModel.searchedUserInfo?.avatarUrl)
-                        .apply(RequestOptions().circleCrop())
-                        .placeholder(cp)
-                        .into(iv_addFriend_friendAvatar)
+                    iv_addFriend_friendAvatar.loadCircleImage(
+                        context,
+                        viewModel.searchedUserInfo?.avatarUrl
+                    )
                     tv_addFriend_friendName.text = viewModel.searchedUserInfo?.name
                 }
                 is AddFriendViewModel.Event.OnSearchFail -> {
@@ -151,12 +144,10 @@ class AddFriendFragment : BaseDialogFragment() {
                     ).show()
                 }
                 is AddFriendViewModel.Event.OnFriendsAlreadyAdded -> {
-                    Glide
-                        .with(this)
-                        .load(viewModel.searchedUserInfo?.avatarUrl)
-                        .apply(RequestOptions().circleCrop())
-                        .placeholder(cp)
-                        .into(iv_addFriend_friendAvatar)
+                    iv_addFriend_friendAvatar.loadCircleImage(
+                        context,
+                        viewModel.searchedUserInfo?.avatarUrl
+                    )
                     tv_addFriend_friendName.text = viewModel.searchedUserInfo?.name
                 }
             }.also {

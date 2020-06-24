@@ -22,6 +22,7 @@ import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.local.local.R
+import com.local.local.extensions.Extensions.loadCircleImage
 import com.local.local.manager.LoginManager
 import com.local.local.screen.login.LoginActivity
 
@@ -69,17 +70,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onUserInfoChange() {
-                val cp = CircularProgressDrawable(this@MainActivity)
-                cp.strokeWidth = 5f
-                cp.centerRadius = 30f
-                cp.setColorSchemeColors(R.color.colorGreen)
-                cp.start()
-                Glide
-                    .with(this@MainActivity)
-                    .load(LoginManager.instance.userData?.avatarUrl)
-                    .apply(RequestOptions().circleCrop())
-                    .placeholder(cp)
-                    .into(ivDrawerAvatar)
+                ivDrawerAvatar.loadCircleImage(this@MainActivity,LoginManager.instance.userData?.avatarUrl)
                 tvDrawerName.text = LoginManager.instance.userData?.name
                 tvDrawerPhone.text = toLocalPhone(LoginManager.instance.userData?.phone)
             }

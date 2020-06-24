@@ -11,6 +11,7 @@ import android.view.Window
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.local.local.R
+import com.local.local.extensions.Extensions.listenTextAndClearError
 import com.local.local.screen.BaseActivity
 import com.local.local.screen.FirstActivity
 import com.local.local.screen.MainActivity
@@ -49,8 +50,11 @@ class LoginActivity : BaseActivity() {
             }
         }
         setContentView(R.layout.activity_login)
+
         et_login_phone.setText(viewModel.phoneNumber)
+        et_login_phone.listenTextAndClearError(viewGroup_login_phone)
         cb_login_rememberMe.isChecked = viewModel.isRemember
+
         viewModel.eventLiveData.observe(this, Observer { event ->
             event ?: return@Observer
             when (event) {

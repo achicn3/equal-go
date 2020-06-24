@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.local.local.R
 import com.local.local.body.UserInfo
+import com.local.local.extensions.Extensions.loadCircleImage
 
 class FriendListAdapter(private val context: Context, private val friendList: List<UserInfo>) : RecyclerView.Adapter<FriendListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendListViewHolder {
@@ -23,21 +24,9 @@ class FriendListAdapter(private val context: Context, private val friendList: Li
 
     override fun onBindViewHolder(holder: FriendListViewHolder, position: Int) {
         with(friendList[position]){
-            val cp = CircularProgressDrawable(context)
-            cp.strokeWidth = 5f
-            cp.centerRadius = 30f
-            cp.setColorSchemeColors(R.color.colorGreen)
-            cp.start()
-            Glide
-                .with(context)
-                .load(avatarUrl)
-                .apply(RequestOptions().circleCrop())
-                .placeholder(cp)
-                .into(holder.ivFriendsAvatar)
-
+            holder.ivFriendsAvatar.loadCircleImage(context,friendList[position].avatarUrl)
             holder.tvFriendsName.text = name
             holder.tvFriendsDistance.text = context.getString(R.string.distance,2)
-
         }
     }
 }

@@ -3,6 +3,7 @@ package com.local.local.screen.register
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import android.text.TextUtils
 import android.util.Log
 import android.util.TypedValue
 import android.view.View
@@ -11,6 +12,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.local.local.R
 import com.local.local.body.UserInfo
+import com.local.local.extensions.Extensions.listenTextAndClearError
 import com.local.local.screen.BaseActivity
 import com.local.local.screen.MainActivity
 import kotlinx.android.synthetic.main.activity_register.*
@@ -46,6 +48,9 @@ class RegisterActivity : BaseActivity() {
             setSelection(0)
         }
 
+        et_register_phone.listenTextAndClearError(viewGroup_register_phone)
+        et_register_age.listenTextAndClearError(viewGroup_register_age)
+        et_register_name.listenTextAndClearError(viewGroup_register_name)
     }
 
     private fun showView() {
@@ -84,17 +89,25 @@ class RegisterActivity : BaseActivity() {
         initView()
 
         btn_register_send.setOnClickListener {
+            val name = et_register_name.text.toString()
+            val ageStr = et_register_age.text.toString()
+            if(TextUtils.isEmpty(name)){
+                viewGroup_register_name.error = "請輸入姓名"
+                return@setOnClickListener
+            }
+            if(TextUtils.isEmpty(ageStr)){
+                viewGroup_register_age.error = "請輸入年紀"
+                return@setOnClickListener
+            }
             run {
-                val age = et_register_age.text.toString().toInt()
+                val age = ageStr.toInt()
                 val phoneNumber = et_register_phone.text.toString().toUniversalPhoneNumber()
-                Log.d("phone Number","phone number: $phoneNumber")
                 val validAge = isAgeValid(age)
                 if(!validAge) {
                     viewGroup_register_age.error = "請輸入正確年紀!"
                     return@setOnClickListener
                 }
 
-                val name = et_register_name.text.toString()
                 val sex = when(spinner_register_sex.selectedItemPosition){
                     0 ->{
                         getString(R.string.sex_male)
