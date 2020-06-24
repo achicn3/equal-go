@@ -9,7 +9,11 @@
         android:id="@+id/nav_home"
         android:name="com.local.local.screen.fragment.ui.home.HomeFragment"
         android:label="@string/menu_friends"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_nav_home_to_profileInfoFragment"
+            app:destination="@id/profileInfoFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_friends"
@@ -48,4 +52,8 @@
         android:label="FriendListFragment"
         tools:layout="@layout/fragment_friend_friendlist"
         />
+    <fragment
+        android:id="@+id/profileInfoFragment"
+        android:name="com.local.local.screen.fragment.ui.profile.ProfileInfoFragment"
+        android:label="ProfileInfoFragment" />
 </navigation>

@@ -61,6 +61,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this,LoginActivity::class.java))
         }
         val drawerAccountView : View by lazy { navView.getHeaderView(0)}
+        drawerAccountView.setOnClickListener {
+            navController.navigate(R.id.action_nav_home_to_profileInfoFragment)
+        }
         val ivDrawerAvatar = drawerAccountView.findViewById<ImageView>(R.id.iv_drawer_avatar)
         val tvDrawerName = drawerAccountView.findViewById<TextView>(R.id.tv_drawer_name)
         val tvDrawerPhone = drawerAccountView.findViewById<TextView>(R.id.tv_drawer_cellphone)

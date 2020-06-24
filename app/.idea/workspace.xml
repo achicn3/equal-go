@@ -1,58 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="efe79870-7c81-4f4b-8ca0-077e7050aa48" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_exifinterface_exifinterface_1_0_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_annotations_4_11_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_disklrucache_4_11_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_11_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_11_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_code_gson_gson_2_8_5_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_google_zxing_core_3_3_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_retrofit_retrofit2_kotlin_coroutines_adapter_0_9_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_journeyapps_zxing_android_embedded_4_1_0_aar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okhttp3_okhttp_4_7_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_2_6_0_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_converter_gson_2_6_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_retrofit2_retrofit_2_6_2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/friendlsit/FriendListAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/friendlsit/FriendListFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/friendlsit/FriendListViewHolder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/friendlsit/FriendListViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/showqrcode/ShowQrCodeFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/anim/bottom_in.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/anim/item_animator.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_close.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_picture_preview_back.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_picture_preview_done.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_logout_button.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/cardview_friends.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_friend_friendlist.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_show_qrcode.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.name" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_2_0_alpha03_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_selection_1_1_0_rc01_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/IconClickListener.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileViewHolder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/SpaceItemDecoration.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_camera.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_cloud_upload.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_profile_default_avatar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_thin_border.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_profileinfo.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/view_bottomsheet_editprofile.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/view_profileinfo_avatar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_squareup_okio_okio_1_17_4_jar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_2_0_aar.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_recyclerview_recyclerview_1_1_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__androidx_core_core_1_3_0_alpha02_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/manager/LoginManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/manager/LoginManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/extensions/Extensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/extensions/Extensions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/AddFriendFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/addfriend/AddFriendFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/AddFriendViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/addfriend/AddFriendViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/FriendFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/FriendFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/FriendListFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/friendlsit/FriendListViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/friendlsit/FriendListViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoFragment.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_add_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_add_friends.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/nav_header_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/nav_header_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,12 +60,22 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
+        <option value="resourceFile" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="ProjectId" id="1dUeMzkzKFx47bY3qE5xDSDT07R" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
@@ -104,7 +100,7 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App">
+    <configuration name="app" type="AndroidRunConfigurationType" factoryName="Android App" activateToolWindowBeforeRun="false">
       <module name="app" />
       <option name="DEPLOY" value="true" />
       <option name="DEPLOY_APK_FROM_BUNDLE" value="false" />

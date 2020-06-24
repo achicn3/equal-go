@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:id="@+id/layout_profileInfo_parentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    tools:ignore="RtlHardcoded,ContentDescription,RtlCompat,VectorDrawableCompat">
+
+    <!--最上方顯示Profile Info bar-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layout_accountInfoBar"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/style_thin_border"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/btn_profileInfo_back"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:scaleType="centerInside"
+            android:background="?android:selectableItemBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.120000005"
+            app:srcCompat="@drawable/ic_close" />
+
+        <TextView
+            android:id="@+id/tv_profileInfo_profileInfo"
+            android:layout_width="371dp"
+            android:layout_height="56dp"
+            android:layout_marginLeft="72dp"
+            android:layout_marginRight="84dp"
+            android:layout_marginBottom="12dp"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center|left"
+            android:text="@string/profile_info_tab"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="24sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            tools:targetApi="jelly_bean"
+            tools:ignore="RtlHardcoded" />
+
+        <android.widget.Button
+            android:id="@+id/btn_profileInfo_save"
+            android:layout_width="81dp"
+            android:layout_height="32dp"
+            android:layout_marginRight="8dp"
+            android:background="?android:selectableItemBackground"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/save"
+            android:textColor="@color/colorDarkBlue"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            android:textStyle="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:targetApi="lollipop" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_profileInfo_userAvatar"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            android:tint="@color/colorGreen"
+            android:src="@drawable/ic_profile_default_avatar"
+            tools:ignore="RtlCompat"
+            tools:layout_editor_absoluteX="196dp"
+            tools:layout_editor_absoluteY="101dp" />
+
+        <ImageView
+            android:id="@+id/iv_profileInfo_editProfileAvatar"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="44dp"
+            android:layout_marginBottom="24dp"
+            android:background="?android:selectableItemBackground"
+            app:srcCompat="@drawable/ic_edit"
+            tools:ignore="ContentDescription,RtlCompat,VectorDrawableCompat"
+            tools:layout_editor_absoluteX="248dp"
+            tools:layout_editor_absoluteY="141dp"
+            tools:targetApi="lollipop" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        tools:layout_editor_absoluteY="189dp">
+
+    </View>
+
+    <TextView
+        android:id="@+id/tv_profileInfo_profileTitle"
+        android:layout_width="328dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:fontFamily="sans-serif"
+        android:gravity="start|center_vertical"
+        android:text="@string/default_avatar"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="189dp"
+        tools:targetApi="jelly_bean" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_profileInfo_defaultIcon"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:clipToPadding="false"
+        android:gravity="start|center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        tools:layout_editor_absoluteY="237dp" />
+
+    <TextView
+        android:id="@+id/tv_profileInfo_displayNameTitle"
+        android:layout_width="328dp"
+        android:layout_height="48dp"
+        android:layout_marginLeft="16dp"
+        android:fontFamily="sans-serif"
+        android:gravity="start|center_vertical"
+        android:text="@string/username"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="297dp"
+        tools:targetApi="jelly_bean" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layout_profileInfo_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="328dp"
+        android:layout_marginLeft="16dp"
+        android:layout_height="wrap_content"
+        app:boxCornerRadiusBottomEnd="6dp"
+        app:boxCornerRadiusBottomStart="6dp"
+        app:boxCornerRadiusTopEnd="6dp"
+        app:boxCornerRadiusTopStart="6dp"
+        app:boxStrokeColor="@color/colorGreen"
+        app:boxStrokeWidth="2dp"
+        tools:layout_editor_absoluteX="16dp"
+        tools:layout_editor_absoluteY="345dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_profileInfo_displayName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="@string/username"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            tools:ignore="RtlHardcoded"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="356dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+</LinearLayout>

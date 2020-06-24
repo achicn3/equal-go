@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:background="@drawable/style_corner_radius"
+    android:clickable="true"
+    android:focusable="true">
+
+    <TextView
+        android:id="@+id/tv_profileInfo_popupWindow_title"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:fontFamily="sans-serif"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="24dp"
+
+        android:text="@string/edit_avatar"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="20sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="RtlHardcoded,RtlSymmetry"
+        tools:targetApi="jelly_bean" />
+
+    <android.widget.Button
+        android:id="@+id/btn_sheet_takePhoto"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="24dp"
+        android:background="?android:selectableItemBackground"
+        android:drawableLeft="@drawable/ic_camera"
+        android:drawablePadding="28dp"
+        android:fontFamily="sans-serif"
+        android:gravity="start|center_vertical"
+        android:paddingStart="8dp"
+        android:text="@string/take_pic_or_record"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_profileInfo_popupWindow_title"
+        tools:ignore="RtlCompat,RtlHardcoded,RtlSymmetry"
+        tools:targetApi="jelly_bean" />
+
+    <android.widget.Button
+        android:id="@+id/btn_sheet_uploadPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?selectableItemBackground"
+        android:drawableLeft="@drawable/ic_cloud_upload"
+        android:drawablePadding="28dp"
+        android:fontFamily="sans-serif"
+        android:gravity="left|center_vertical"
+        android:paddingLeft="8dp"
+        android:text="@string/upload_image_or_video"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="16sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sheet_takePhoto"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="RtlHardcoded,RtlSymmetry"
+        tools:targetApi="jelly_bean" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

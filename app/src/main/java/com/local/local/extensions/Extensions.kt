@@ -4,6 +4,7 @@ import android.content.Context
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.ImageView
+import androidx.lifecycle.MutableLiveData
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
@@ -19,14 +20,16 @@ object Extensions {
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                TODO("Not yet implemented")
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                TODO("Not yet implemented")
             }
 
         })
+    }
+
+    fun <T> MutableLiveData<T>.notifyObserver(){
+        this.value = this.value
     }
 
     fun ImageView.loadCircleImage(context: Context,url: String?){

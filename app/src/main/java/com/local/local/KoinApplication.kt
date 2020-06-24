@@ -6,6 +6,7 @@ import com.local.local.retrofit.ImageUploadServiceHolder
 import com.local.local.retrofit.services.ServiceBuilder
 import com.local.local.screen.fragment.ui.firends.addfriend.AddFriendViewModel
 import com.local.local.screen.fragment.ui.firends.friendlsit.FriendListViewModel
+import com.local.local.screen.fragment.ui.profile.ProfileInfoViewModel
 import com.local.local.screen.login.LoginViewModel
 import com.local.local.screen.register.RegisterViewModel
 import org.koin.android.ext.koin.androidContext
@@ -20,6 +21,7 @@ class KoinApplication : MultiDexApplication() {
         viewModel { (activity: Activity) -> RegisterViewModel(get(), activity) }
         viewModel { AddFriendViewModel() }
         viewModel { FriendListViewModel(get()) }
+        viewModel { ProfileInfoViewModel() }
         single { ServiceBuilder.buildOkHttpClient() }
         single { ImageUploadServiceHolder(get()) }
     }

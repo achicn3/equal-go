@@ -11,4 +11,5 @@ open class FirebaseCallback {
     open fun addFriendResponse(response: Boolean?){}//true ->增加好友成功 false失敗
     open fun isFriendsAdded(response: Boolean?){} // true->已經加過好友了 false 還沒加過
     open fun retrieveFriendList(friendList: List<UserInfo>?){}
+    open fun retrieveDefaultAvatar(avatarList: List<String?>){}
 }

@@ -19,6 +19,25 @@ class FirebaseUtil {
         private fun toUniversalPhoneNumber(phoneNumber: String?): String =
             "+886${phoneNumber?.substring(1)}"
 
+        fun retrieveDefaultAvatar(firebaseCallback: FirebaseCallback){
+            db.child("avatar").child("default").addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    firebaseCallback.retrieveDefaultAvatar(listOf<String>())
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val list = mutableListOf<String>()
+                    for(data in p0.children){
+                        val url = data?.value?.toString() ?: continue
+                        list.add(url)
+                    }
+                    firebaseCallback.retrieveDefaultAvatar(list.toList())
+                }
+
+            })
+        }
+
         fun retrieveFriendList(firebaseCallback: FirebaseCallback){
             val key = LoginManager.instance.userData?.userKey ?: return
             db.child("user").child(key).child("friends").addListenerForSingleValueEvent(object : ValueEventListener{
