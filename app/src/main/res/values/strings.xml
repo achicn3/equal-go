@@ -52,4 +52,9 @@
     <string name="edit_avatar">編輯頭像</string>
     <string name="upload_image_or_video">上傳照片/影片</string>
     <string name="take_pic_or_record">拍攝/錄影</string>
+    <string name="exit">離開</string>
+    <string name="permission_title">請允許權限</string>
+    <string name="permission_description1">為了程式能夠正常運作，請允許活動偵測權限</string>
+    <string name="permission_description2"><![CDATA[請至設定>APP 打開權限，或是按下方允許按鈕]]></string>
+    <string name="permission_ok">允許</string>
 </resources>

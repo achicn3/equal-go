@@ -5,4 +5,85 @@
     <dimen name="nav_header_vertical_spacing">8dp</dimen>
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+
+    <dimen name="tv_noteledge_message_size">12sp</dimen>
+    <dimen name="tv_noteledge_title_size">20sp</dimen>
+    <dimen name="tv_noteledge_title_h">40dp</dimen>
+    <dimen name="tv_noteledge_h">150dp</dimen>
+    <dimen name="iv_goto_google_w">160dp</dimen>
+    <dimen name="tv_noteledge_w">300dp</dimen>
+    <dimen name="iv_goto_google_margin">32dp</dimen>
+    <dimen name="rl_noteledge_h">350dp</dimen>
+
+    <dimen name="btn_iab_subscribe_size">14sp</dimen>
+    <dimen name="btn_iab_subscribe_width">320dp</dimen>
+    <dimen name="btn_iab_subscribe_height">35dp</dimen>
+    <dimen name="iv_iab_icon_w">176dp</dimen>
+    <dimen name="iv_iab_margin">24dp</dimen>
+    <dimen name="iab_left_margin">24dp</dimen>
+    <dimen name="iab_text_margin">25dp</dimen>
+
+    <!-- Float Button -->
+    <dimen name="fab_size_normal">56dp</dimen>
+    <dimen name="fab_size_mini">40dp</dimen>
+    <dimen name="fab_shadow_size">12dp</dimen>
+    <dimen name="appbar_shadow_size">4dp</dimen>
+
+    <dimen name="fab_scroll_threshold">4dp</dimen>
+    <dimen name="fab_elevation_lollipop">8dp</dimen>
+    <dimen name="fab_press_translation_z">6dp</dimen>
+
+    <!-- General -->
+    <dimen name="s_space">8dp</dimen>
+    <dimen name="m_space">16dp</dimen>
+    <dimen name="l_space">24dp</dimen>
+    <dimen name="ss_text">12sp</dimen>
+    <dimen name="s_text">14sp</dimen>
+    <dimen name="m_text">16sp</dimen>
+    <dimen name="l_text">20sp</dimen>
+    <dimen name="folder_size_bottom_margin">28dp</dimen>
+    <dimen name="card_elevation">3dp</dimen>
+
+    <!-- Cloud intro page -->
+    <dimen name="cloud_intro_title">26sp</dimen>
+    <dimen name="cloud_intro_subtitle">18sp</dimen>
+    <dimen name="cloud_intro_list_title">14sp</dimen>
+    <dimen name="cloud_intro_list_desc">12sp</dimen>
+    <dimen name="cloud_intro_item">13sp</dimen>
+    <dimen name="cloud_intro_image_width">240dp</dimen>
+    <dimen name="cloud_intro_image_heigh">160dp</dimen>
+    <dimen name="cloud_intro_item_height">32dp</dimen>
+
+    <!-- File Manager -->
+
+    <!-- material design textsize -->
+    <dimen name="material_title">20sp</dimen>
+    <dimen name="material_body">14sp</dimen>
+    <dimen name="material_button">14sp</dimen>
+
+    <!-- material design dialog -->
+    <dimen name="material_dialog_body_padding">24dp</dimen>
+    <dimen name="material_dialog_title_body">20dp</dimen>
+    <dimen name="material_dialog_button_height">52dp</dimen>
+    <dimen name="material_dialog_buttion_paddingleft">24dp</dimen>
+    <dimen name="material_dialog_buttion_paddingright">8dp</dimen>
+    <dimen name="material_dialog_buttion_paddingtop">8dp</dimen>
+    <dimen name="material_dialog_buttion_paddingbottom">8dp</dimen>
+
+    <dimen name="dialog_zipfile_wight">300dp</dimen>
+    <dimen name="dialog_tip_wight">300dp</dimen>
+    <dimen name="dialog_rename_wight">300dp</dimen>
+    <dimen name="dialog_addbookmard_wight">300dp</dimen>
+    <dimen name="dialog_logout_wight">300dp</dimen>
+    <dimen name="dialog_pwd_wight">300dp</dimen>
+    <dimen name="dialog_confirmed_widght">300dp</dimen>
+    <dimen name="dialog_delete_widght">300dp</dimen>
+    <dimen name="dialog_receipt_widght">300dp</dimen>
+    <dimen name="dialog_subscribe_account_widght">300dp</dimen>
+    <dimen name="permissioin_image_size">200dp</dimen>
+
+    <!-- cloud info -->
+    <dimen name="cloud_info_width">360dp</dimen>
+    <dimen name="password_width">260dp</dimen>
+
 </resources>

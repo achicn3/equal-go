@@ -5,26 +5,21 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.local.local.R
 import com.local.local.screen.login.LoginActivity
+import com.local.local.util.PermissionRationalActivity
+import com.local.local.util.PermissionUtil
 import kotlinx.android.synthetic.main.activity_welcom.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+
 
 class FirstActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcom)
         first.playAnimation()
-        GlobalScope.launch(Dispatchers.Main) {
-            delay(1300)
-            Intent(this@FirstActivity, LoginActivity::class.java).also {
-                it.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                startActivity(it)
-                finish()
-            }
-        }
 
+        if (!PermissionUtil.hasGrantedReadWriteExternalStorage(this) or !PermissionUtil.hasGrantedActivity(this) or !PermissionUtil.hasGrantedLocation(this)) {
+            startActivity(Intent(this, PermissionRationalActivity::class.java))
+        }
+        if (PermissionUtil.hasGrantedLocation(this) && PermissionUtil.hasGrantedCamera(this) && PermissionUtil.hasGrantedReadWriteExternalStorage(this))
+            startActivity(Intent(this, LoginActivity::class.java))
     }
 }

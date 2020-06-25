@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#0888D1"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_above="@id/buttons"
+        android:gravity="center"
+        android:orientation="vertical"
+        >
+
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="@dimen/permissioin_image_size"
+            android:layout_height="@dimen/permissioin_image_size"
+            android:src="@drawable/permission_img" />
+
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingRight="@dimen/l_space"
+                android:paddingLeft="@dimen/l_space"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/l_space"
+                    android:fontFamily="sans-serif-medium"
+                    android:text="@string/permission_title"
+                    android:textSize="24sp"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="#fff" />
+
+                <TextView
+                    android:id="@+id/tv_permission_text1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:maxWidth="280dp"
+                    android:fontFamily="sans-serif"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="#fff"
+                    android:text="@string/permission_description1" />
+
+                <TextView
+                    android:id="@+id/tv_permission_text2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:maxWidth="280dp"
+                    android:fontFamily="sans-serif"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    android:textColor="#fff"
+                    android:text="@string/permission_description2" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#fff">
+
+        <Button
+            android:id="@+id/btn_permission_exit"
+            style="@style/ripplebutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/exit"
+            android:textColor="#606060" />
+
+        <Button
+            android:id="@+id/btn_permission_ok"
+            style="@style/ripplebutton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/permission_ok"
+            android:textColor="#0888D1" />
+    </LinearLayout>
+</RelativeLayout>

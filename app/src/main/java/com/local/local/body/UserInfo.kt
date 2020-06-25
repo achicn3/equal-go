@@ -1,5 +1,7 @@
 package com.local.local.body
 
+import android.location.Location
+
 data class UserInfo(
     var phone: String? = null,
     var name: String? = null,
@@ -8,6 +10,16 @@ data class UserInfo(
     var freq : Int? = 0,
     var userKey : String? = null,
     var avatarUrl : String = "https://i.imgur.com/WUq3xlF.png",
+    var points : Int = 0,
     var latitude : Double? = null,
     var longitude : Double? = null
-)
+){
+    fun updatePoints(value: Int){
+        points += value
+    }
+
+    fun updateLocation(location: Location){
+        latitude = location.latitude
+        longitude = location.longitude
+    }
+}

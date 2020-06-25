@@ -19,6 +19,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 
 class ProfileInfoFragment : BaseDialogFragment() {
+    val viewModel : ProfileInfoViewModel by viewModel()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -26,6 +27,7 @@ class ProfileInfoFragment : BaseDialogFragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_profileinfo,container,false)
     }
+
 
 
     private lateinit var bottomSheetView : View
@@ -38,6 +40,10 @@ class ProfileInfoFragment : BaseDialogFragment() {
         }.show()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.uploadFile = null
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val context = context ?: return super.onViewCreated(view, savedInstanceState)
@@ -47,7 +53,6 @@ class ProfileInfoFragment : BaseDialogFragment() {
         var userClickIconPosition = -1
         var fileName: String? = null
         var uploadFile: File? = null
-        val viewModel : ProfileInfoViewModel by viewModel()
         viewModel.retrieveDefaultAvatar()
         val userAvatar = view.findViewById<ImageView>(R.id.iv_profileInfo_userAvatar)
         view.findViewById<RecyclerView>(R.id.rv_profileInfo_defaultIcon).apply {
