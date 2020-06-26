@@ -43,6 +43,12 @@ public class PermissionRationalActivity extends AppCompatActivity implements
     private static final int PERMISSION_REQUEST_LOCATION = 45;
     private static final int PERMISSION_REQUEST_READ_WRITE = 5566;
     private static final int PERMISSION_REQUEST_CAMERA = 5577;
+
+    @Override
+    public void onBackPressed() {
+
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,9 +67,7 @@ public class PermissionRationalActivity extends AppCompatActivity implements
 
             @Override
             public void onClick(View v) {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                     onClickApprovePermissionRequest(v);
-                }
             }
         });
 
@@ -120,39 +124,4 @@ public class PermissionRationalActivity extends AppCompatActivity implements
                 finish();
             }
     }
-    /*
-    *
-    *     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        var readWrite = false
-        var activityRecognition = false
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        when(requestCode){
-            0 -> {
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    readWrite = true
-                }else{
-                    PermissionUtil.requestReadWriteExternalStorage(this,0)
-                }
-            }
-            1 ->{
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    activityRecognition = true
-                }else{
-                    PermissionUtil.requestReadWriteExternalStorage(this,1)
-                }
-            }
-        }
-        if(readWrite && activityRecognition){
-            GlobalScope.launch(Dispatchers.Main) {
-                delay(1300)
-                Intent(this@FirstActivity, LoginActivity::class.java).also {
-                    it.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-                    it.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    startActivity(it)
-                    finish()
-                }
-            }
-        }
-    }
-    * */
 }

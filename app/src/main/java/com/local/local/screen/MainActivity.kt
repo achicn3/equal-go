@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private fun toLocalPhone(phoneNumber: String?): String
         = "0${phoneNumber?.substring(4)}"
-
+    private var client : FusedLocationProviderClient? = null
     var lastLocation : Location? = null
 
     //每15分鐘更新距離會觸發的callback
@@ -66,9 +66,10 @@ class MainActivity : AppCompatActivity() {
                 var moveDistance = distanceMap[date]?.plus(floatArray[0]) ?: floatArray[0]
                 distanceMap[date] = moveDistance
                 if(floatArray[0]>850f){
-                    LoginManager.instance.userData?.updatePoints(1)
+                    FirebaseUtil.updateRecord(date,floatArray[0],1)
+                }else{
+                    FirebaseUtil.updateRecord(date,floatArray[0],0)
                 }
-                FirebaseUtil.updateMoveDistance(moveDistance,date)
             }
             LoginManager.instance.userData?.updateLocation(newLocation)
             FirebaseUtil.updateUserInfo()
@@ -88,10 +89,10 @@ class MainActivity : AppCompatActivity() {
         LocationServices.getSettingsClient(this).apply {
             checkLocationSettings(locationSettingRequest)
         }
-        val client = LocationServices.getFusedLocationProviderClient(this)
+        client = LocationServices.getFusedLocationProviderClient(this)
         if(!PermissionUtil.hasGrantedLocation(this))
             return
-        client.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper())
+        client?.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper())
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -112,7 +113,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_friends, R.id.nav_slideshow
+                R.id.nav_home, R.id.nav_friends, R.id.nav_map
             ), drawerLayout
         )
 
@@ -120,11 +121,16 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navView.findViewById<Button>(R.id.btn_drawer_logout).setOnClickListener {
             LoginManager.instance.logout()
+            client?.removeLocationUpdates(locationCallback)
             startActivity(Intent(this,LoginActivity::class.java))
         }
+
         val drawerAccountView : View by lazy { navView.getHeaderView(0)}
         drawerAccountView.setOnClickListener {
-            navController.navigate(R.id.action_nav_home_to_profileInfoFragment)
+            if(navController.currentDestination?.id != R.id.profileInfoFragment) {
+                navController.navigate(R.id.action_nav_home_to_profileInfoFragment)
+                drawerLayout.closeDrawers()
+            }
         }
 
         val ivDrawerAvatar = drawerAccountView.findViewById<ImageView>(R.id.iv_drawer_avatar)

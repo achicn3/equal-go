@@ -7,14 +7,14 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_friends"
-            android:title="@string/menu_friends" />
+            android:title="@string/accumulation_points_title" />
         <item
             android:id="@+id/nav_friends"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_gallery" />
+            android:title="@string/friends_list_title" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="@string/menu_slideshow" />
+            android:id="@+id/nav_map"
+            android:icon="@drawable/ic_map"
+            android:title="@string/public_map_title" />
     </group>
 </menu>

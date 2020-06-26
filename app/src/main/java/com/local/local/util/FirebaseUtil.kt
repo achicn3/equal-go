@@ -5,46 +5,63 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.local.local.body.RecordInfo
 import com.local.local.body.UserInfo
 import com.local.local.callback.FirebaseCallback
 import com.local.local.manager.LoginManager
 
+@Suppress("NAME_SHADOWING")
 class FirebaseUtil {
     companion object{
         private val db = FirebaseDatabase.getInstance().reference
         private const val USER_NODE = "user"
         private const val DISTANCE_NODE = "distance"
+        private const val RECORD_NODE = "record"
+        private const val FRIENDS_NODE = "friends"
         private fun isUniversalPhoneNumber(phoneNumber: String?): Boolean =
-            phoneNumber?.substring(0, 4) == "+886"
+                phoneNumber?.substring(0, 4) == "+886"
 
         private fun toUniversalPhoneNumber(phoneNumber: String?): String =
-            "+886${phoneNumber?.substring(1)}"
+                "+886${phoneNumber?.substring(1)}"
 
-        data class DistanceDataClass(var moveDistance: Float = 0f)
-
-        fun updateMoveDistance(moveDistance: Float, date: String) {
-            val dateFormat = date.split("/")
+        fun retrieveRecord(date: String, firebaseCallback: FirebaseCallback) {
             val key = LoginManager.instance.userData?.userKey
-            var oldDistance: Float = 0f
+            val dateFormat = date.split("/")
+            Log.d("status","date format : $dateFormat key : $key")
             key?.run {
-                //先檢查有沒有先前的移動距離，有的話要取出加回。
-                db.child(USER_NODE).child(key).child(DISTANCE_NODE).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2])
-                        .addListenerForSingleValueEvent(object : ValueEventListener {
-                            override fun onCancelled(p0: DatabaseError) {
-                                p0.toException().printStackTrace()
-                            }
+                db.child(RECORD_NODE).child(this).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2]).addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        p0.toException().printStackTrace()
+                    }
 
-                            override fun onDataChange(p0: DataSnapshot) {
-                                val oldDistanceValue = p0.getValue(DistanceDataClass::class.java)
-                                Log.d("status","oldDistancevalue : $oldDistanceValue or value : ${p0.value}")
-                                oldDistance = oldDistanceValue?.moveDistance?.plus(moveDistance)
-                                        ?: moveDistance
-                                Log.d("value", "after update: $oldDistance")
-                                val updateDistance = DistanceDataClass(oldDistance)
-                                Log.d("status", "hhere rere $updateDistance")
-                                db.child(USER_NODE).child(key).child(DISTANCE_NODE).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2]).setValue(updateDistance)
-                            }
-                        })
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val value = p0.getValue(RecordInfo::class.java)
+                        Log.d("status","info $value")
+                        firebaseCallback.retrieveRecord(value)
+                    }
+
+                })
+            }
+        }
+
+        fun updateRecord(date: String, distance: Float, points: Int) {
+            val key = LoginManager.instance.userData?.userKey
+            val dateFormat = date.split("/")
+            key?.run {
+                db.child(RECORD_NODE).child(key).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2]).apply {
+                    addListenerForSingleValueEvent(object : ValueEventListener {
+                        override fun onCancelled(p0: DatabaseError) {
+                            p0.toException().printStackTrace()
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot) {
+                            val value = p0.getValue(RecordInfo::class.java) ?: RecordInfo(0f, 0)
+                            value.distance += distance
+                            value.points += points
+                            setValue(value)
+                        }
+                    })
+                }
             }
         }
 
@@ -53,7 +70,7 @@ class FirebaseUtil {
             key?.run {
                 db.child(USER_NODE).child(this).setValue(
                         LoginManager.instance.userData
-                ) { p0, p1 ->
+                ) { p0, _ ->
                     p0?.toException()?.printStackTrace()
                 }
             }
@@ -80,7 +97,7 @@ class FirebaseUtil {
 
         fun retrieveFriendList(firebaseCallback: FirebaseCallback){
             val key = LoginManager.instance.userData?.userKey ?: return
-            db.child(USER_NODE).child(key).child("friends").addListenerForSingleValueEvent(object : ValueEventListener {
+            db.child(FRIENDS_NODE).child(key).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
                     firebaseCallback.retrieveFriendList(null)
@@ -154,7 +171,7 @@ class FirebaseUtil {
         fun addFriends(userInfo: UserInfo?, callback: FirebaseCallback) {
             val userKey = LoginManager.instance.userData?.userKey
             userKey?.let {
-                db.child(USER_NODE).child(it).child("friends").push().setValue(userInfo) { p0, p1 ->
+                db.child(FRIENDS_NODE).child(it).push().setValue(userInfo) { p0, _ ->
                     if (p0 != null) {
                         callback.addFriendResponse(false)
                     } else {
@@ -196,8 +213,8 @@ class FirebaseUtil {
             }?.also { key ->
                 userInfo.userKey = key
                 db.child(USER_NODE).child(key).setValue(
-                    userInfo
-                ) { p0, p1 ->
+                        userInfo
+                ) { p0, _ ->
                     if (p0 != null) {
                         p0.toException().printStackTrace()
                         callback.registerResponse(null, false)
@@ -253,8 +270,8 @@ class FirebaseUtil {
                     var existed : Boolean? = false
                     for(data in p0.children) {
                         Log.d(
-                            "in searching",
-                            "search ... userPhone = $phoneNumber ${data.getValue(UserInfo::class.java)}"
+                                "in searching",
+                                "search ... userPhone = $phoneNumber ${data.getValue(UserInfo::class.java)}"
                         )
                         existed = data.getValue(UserInfo::class.java)?.run {
                             phone == phoneNumber

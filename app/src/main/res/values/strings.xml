@@ -57,4 +57,14 @@
     <string name="permission_description1">為了程式能夠正常運作，請允許活動偵測權限</string>
     <string name="permission_description2"><![CDATA[請至設定>APP 打開權限，或是按下方允許按鈕]]></string>
     <string name="permission_ok">允許</string>
+    <string name="toady_activity">今日活動</string>
+    <string name="move_distance">移動距離</string>
+    <string name="km">公里</string>
+    <string name="dot">點</string>
+    <string name="days_point">今日累計</string>
+    <string name="accumulation_points">今日已累計\n%d 點</string>
+    <string name="date_format">%d/%s/%s</string>
+    <string name="accumulation_points_title">累計點數</string>
+    <string name="friends_list_title">好友選單</string>
+    <string name="public_map_title">公共區域</string>
 </resources>

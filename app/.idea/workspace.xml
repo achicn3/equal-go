@@ -11,29 +11,39 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe79870-7c81-4f4b-8ca0-077e7050aa48" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/maps/DistanceService.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/PermissionRationalActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/color/dsb_ripple_color_list.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/permission_img.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_circle_progressbar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/activity_permission_rational.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/LocationInfo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/RecordInfo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/map/PublicMap.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_activity.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_arrow.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_explore_24px.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_map.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_todayevent.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_move_distance_drawable.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_progress_drawable.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_toady_event_drawable.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_main.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_map.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/FirstActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/FirstActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/release/app-release.apk" beforeDir="false" afterPath="$PROJECT_DIR$/release/app-release.apk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/extensions/Extensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/extensions/Extensions.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/profile/ProfileFragment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/HomeViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/util/PermissionUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/PermissionUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_profileinfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_profileinfo.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/util/PermissionRationalActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/PermissionRationalActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/style_circle_progressbar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/style_circle_progressbar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/menu/activity_main2_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/menu/activity_main2_drawer.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/values/colors.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/colors.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/dimens.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/dimens.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/google_maps_api.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/google_maps_api.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/styles.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,18 +60,49 @@
   <component name="ExternalProjectsManager">
     <system id="GRADLE">
       <state>
-        <projects_view />
+        <task path="$PROJECT_DIR$/..">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="local" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="local" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="local" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="android" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
       </state>
     </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="resourceFile" />
+        <option value="Class" />
+        <option value="Kotlin File" />
         <option value="layoutResourceFile" />
         <option value="Kotlin Class" />
-        <option value="resourceFile" />
       </list>
     </option>
+  </component>
+  <component name="GenerateSignedApkSettings">
+    <option name="KEY_STORE_PATH" value="C:\Users\achic\Desktop\重要檔案\equalgo.jks" />
+    <option name="KEY_ALIAS" value="equalgogo" />
+    <option name="BUILD_TARGET_KEY" value="apk" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -69,9 +110,15 @@
   <component name="ProjectId" id="1dUeMzkzKFx47bY3qE5xDSDT07R" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="ApkExportedModule" value="app" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="123" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-26T18:37:40.194Z" />
+    <property name="ExportApk.ApkPath" value="C:\Users\achic\local\app" />
+    <property name="ExportApk.BuildVariants" value="release" />
+    <property name="ExportApk.SignV2" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/activity/activity-recognition-transition-api-master" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/重要檔案/equalgo.jks" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
@@ -79,6 +126,7 @@
       <recent name="com.local.local.util" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\achic\local\app" />
       <recent name="C:\Users\achic\local\app\src\main\res\drawable" />
     </key>
   </component>
@@ -94,7 +142,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Android App.app">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
       <option name="TEST_OBJECT" value="class" />
       <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
@@ -153,6 +201,30 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="app::Users:achic:local [signingReport]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$/.." />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="signingReport" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>true</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Gradle.app::Users:achic:local [signingReport]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
