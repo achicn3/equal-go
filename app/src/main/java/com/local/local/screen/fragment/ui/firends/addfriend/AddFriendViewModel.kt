@@ -20,6 +20,7 @@ class AddFriendViewModel(
         class OnAddStart() : Event()
         class OnAddFinish() : Event()
         class OnFriendsAlreadyAdded : Event()
+        class OnFriendsNotAdded : Event()
         class OnAddSuc() : Event()
         class OnAddFail() : Event()
         class OnAddError() : Event()
@@ -58,6 +59,7 @@ class AddFriendViewModel(
                     Event.OnSearchSuc()
                         .send()
                     searchedUserInfo = userInfo
+                    FirebaseUtil.checkFriendsAlreadyAdd(searchedUserInfo, this)
                 }
 
             }
@@ -120,8 +122,9 @@ class AddFriendViewModel(
                         Event.OnFriendsAlreadyAdded()
                             .send()
                     }
-                    false -> {
-                        FirebaseUtil.addFriends(searchedUserInfo, this)
+                    else -> {
+                        Event.OnFriendsNotAdded()
+                            .send()
                     }
                 }
             }
@@ -144,8 +147,7 @@ class AddFriendViewModel(
 
     fun searchByPhoneNumber(phoneNumber: String) {
         searchedUserInfo = null
-        Event.OnSearchStart()
-            .send()
+        Event.OnSearchStart().send()
         FirebaseUtil.isPhoneExisted(phoneNumber, firebaseCallback)
     }
 
@@ -160,7 +162,7 @@ class AddFriendViewModel(
         Event.OnAddStart()
             .send()
         if (searchedUserInfo != null) {
-            FirebaseUtil.checkFriendsAlreadyAdd(searchedUserInfo,firebaseCallback)
+            FirebaseUtil.addFriends(searchedUserInfo,firebaseCallback)
         } else {
             Event.OnAddFinish()
                 .send()

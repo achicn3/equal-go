@@ -127,7 +127,7 @@ class MainActivity : AppCompatActivity() {
 
         val drawerAccountView : View by lazy { navView.getHeaderView(0)}
         drawerAccountView.setOnClickListener {
-            if(navController.currentDestination?.id != R.id.profileInfoFragment) {
+            if(navController.currentDestination?.id != R.id.profileInfoFragment && navController.currentDestination?.id == R.id.nav_home) {
                 navController.navigate(R.id.action_nav_home_to_profileInfoFragment)
                 drawerLayout.closeDrawers()
             }

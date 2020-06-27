@@ -20,22 +20,22 @@
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/viewGroup_addFriend_phone"
             android:layout_width="280dp"
-            android:layout_height="60dp"
+            android:layout_height="wrap_content"
             app:boxCornerRadiusBottomEnd="6dp"
             app:boxCornerRadiusBottomStart="6dp"
             app:boxCornerRadiusTopEnd="6dp"
             app:boxCornerRadiusTopStart="6dp"
             app:boxStrokeColor="@color/colorGreen"
             app:boxStrokeWidth="2dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:hintTextColor="@color/colorGreen">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/et_addFriend_phone"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/please_enter_friends_phone"
-                android:textSize="12sp" />
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <View

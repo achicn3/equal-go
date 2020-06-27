@@ -24,6 +24,32 @@ class FirebaseUtil {
         private fun toUniversalPhoneNumber(phoneNumber: String?): String =
                 "+886${phoneNumber?.substring(1)}"
 
+
+        fun retrieveStatics(year: Int,Month:Int,firebaseCallback: FirebaseCallback){
+            val key = LoginManager.instance.userData?.userKey
+            val monthStr = if(Month<10) "0$Month" else "$Month"
+            Log.d("status","month $monthStr, year $year")
+            key?.run {
+                db.child(RECORD_NODE).child(this).child(year.toString()).child(monthStr).addListenerForSingleValueEvent(object: ValueEventListener{
+                    override fun onCancelled(p0: DatabaseError) {
+                        p0.toException().printStackTrace()
+                        firebaseCallback.retrieveStatics(listOf())
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val list = mutableListOf<RecordInfo?>()
+                        for(data in p0.children){
+                            val value = data.getValue(RecordInfo::class.java)
+                            Log.d("status","statics value :$value")
+                            list.add(value)
+                        }
+                        firebaseCallback.retrieveStatics(list.toList())
+                    }
+
+                })
+            }
+        }
+
         fun retrieveRecord(date: String, firebaseCallback: FirebaseCallback) {
             val key = LoginManager.instance.userData?.userKey
             val dateFormat = date.split("/")
@@ -140,7 +166,7 @@ class FirebaseUtil {
             val userKey = LoginManager.instance.userData?.userKey
             userKey?.let {
                 run{
-                    db.child("user").child(it).child("friends").orderByChild("phone").equalTo(userInfo?.phone).ref
+                    db.child(FRIENDS_NODE).child(it).orderByChild("phone").equalTo(userInfo?.phone).ref
                 }.also {
                     it.addListenerForSingleValueEvent(object : ValueEventListener{
                         override fun onCancelled(p0: DatabaseError) {
@@ -152,8 +178,6 @@ class FirebaseUtil {
                             var existed : Boolean? = false
                             for(data in p0.children){
                                 val v = data.getValue(UserInfo::class.java)
-                                Log.d("stauts","in checking phone ${userInfo?.phone}")
-                                Log.d("status","in checking ${userInfo?.phone == v?.phone} $v")
                                 existed = data.getValue(UserInfo::class.java)?.run {
                                     phone == userInfo?.phone
                                 }

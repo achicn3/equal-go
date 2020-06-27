@@ -32,6 +32,7 @@
     <string name="hint_name">姓名</string>
     <string name="sms_code">驗證碼</string>
     <string name="confirm">確認</string>
+    <string name="cancel">取消</string>
     <string name="sex">性別</string>
     <string name="please_enter_code">請輸入驗證碼</string>
     <string name="send">送出</string>
@@ -64,7 +65,12 @@
     <string name="days_point">今日累計</string>
     <string name="accumulation_points">今日已累計\n%d 點</string>
     <string name="date_format">%d/%s/%s</string>
+    <string name="date_format_year_month">%d年/%s月</string>
     <string name="accumulation_points_title">累計點數</string>
     <string name="friends_list_title">好友選單</string>
     <string name="public_map_title">公共區域</string>
+    <string name="error_addFriend_input_self_phone">請勿輸入自己的手機號碼!</string>
+    <string name="home_today_statics">當日數據</string>
+    <string name="home_details_statics">詳細數據</string>
+    <string name="drawer_statics_title">數據查詢</string>
 </resources>

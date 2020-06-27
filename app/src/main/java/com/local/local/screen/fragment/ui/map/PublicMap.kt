@@ -1,5 +1,6 @@
 package com.local.local.screen.fragment.ui.map
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +15,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.local.local.R
 import com.local.local.extensions.Extensions.locationList
 import com.local.local.manager.LoginManager
+import com.local.local.util.PermissionRationalActivity
+import com.local.local.util.PermissionUtil
 
 class PublicMap : Fragment(), OnMapReadyCallback {
     private var mapView: MapView? = null
@@ -24,6 +27,9 @@ class PublicMap : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        if(!PermissionUtil.hasGrantedLocation(context)){
+            startActivity(Intent(context,PermissionRationalActivity::class.java))
+        }
         mapView = view.findViewById(R.id.map)
         mapView?.onCreate(savedInstanceState)
         mapView?.onResume()

@@ -14,4 +14,5 @@ open class FirebaseCallback {
     open fun retrieveFriendList(friendList: List<UserInfo>?){}//取得好友清單~
     open fun retrieveDefaultAvatar(avatarList: List<String?>){}//取得預設大頭貼
     open fun retrieveRecord(recordInfo: RecordInfo?){} //搜尋某天的紀錄
+    open fun retrieveStatics(recordInfoList : List<RecordInfo?>){}
 }

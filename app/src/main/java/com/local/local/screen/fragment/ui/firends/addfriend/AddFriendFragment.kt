@@ -72,11 +72,17 @@ class AddFriendFragment : BaseDialogFragment() {
         btnSearch.setOnClickListener {
             val phoneNumber = etPhone.text.toString()
             val validate =
-                isPhoneValid(phoneNumber) && phoneNumber.toUniversalPhoneNumber() != LoginManager.instance.userData?.phone
-            if (validate) {
-                viewModel.searchByPhoneNumber(phoneNumber)
-            } else {
-                viewGroupPhone.error = getString(R.string.error_invalid_phone_number)
+                isPhoneValid(phoneNumber)
+            when {
+                phoneNumber.toUniversalPhoneNumber() == LoginManager.instance.userData?.phone -> {
+                    viewGroupPhone.error = getString(R.string.error_addFriend_input_self_phone)
+                }
+                validate -> {
+                    viewModel.searchByPhoneNumber(phoneNumber)
+                }
+                else -> {
+                    viewGroupPhone.error = getString(R.string.error_invalid_phone_number)
+                }
             }
         }
 
@@ -104,6 +110,7 @@ class AddFriendFragment : BaseDialogFragment() {
                 }
                 is AddFriendViewModel.Event.OnAddSuc -> {
                     Log.d("got", "got here add succ..")
+                    btnAddFriend.visibility = View.GONE
                     showDoneMsg("加入好友成功!")
                 }
                 is AddFriendViewModel.Event.OnAddError -> {
@@ -126,7 +133,6 @@ class AddFriendFragment : BaseDialogFragment() {
                 is AddFriendViewModel.Event.OnSearchSuc -> {
                     ivFriendAvatar.visibility = View.VISIBLE
                     tvFriendName.visibility = View.VISIBLE
-                    btnAddFriend.visibility = View.VISIBLE
                     iv_addFriend_friendAvatar.loadCircleImage(
                         context,
                         viewModel.searchedUserInfo?.avatarUrl
@@ -150,6 +156,10 @@ class AddFriendFragment : BaseDialogFragment() {
                     )
                     tv_addFriend_friendName.text = viewModel.searchedUserInfo?.name
                 }
+                is AddFriendViewModel.Event.OnFriendsNotAdded ->{
+                    btnAddFriend.visibility = View.VISIBLE
+                }
+
             }.also {
                 viewModel.onEventConsumed(event)
             }
