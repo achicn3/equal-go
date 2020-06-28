@@ -4,7 +4,6 @@ import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
-import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Button
@@ -40,7 +39,7 @@ class MainActivity : AppCompatActivity() {
     private fun toLocalPhone(phoneNumber: String?): String
         = "0${phoneNumber?.substring(4)}"
     private var client : FusedLocationProviderClient? = null
-    var lastLocation : Location? = null
+    private var lastLocation : Location? = null
 
     //每15分鐘更新距離會觸發的callback
     private val locationCallback = object : LocationCallback(){
@@ -60,10 +59,9 @@ class MainActivity : AppCompatActivity() {
             lastLocation?.apply {
                 val floatArray = FloatArray(1)
                 Location.distanceBetween(latitude,longitude,newLocation.latitude,newLocation.longitude,floatArray)
-                Log.d("status","the move distance is : ${floatArray[0]}")
                 val time = Calendar.getInstance(Locale.TAIWAN).time
                 val date = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN).format(time)
-                var moveDistance = distanceMap[date]?.plus(floatArray[0]) ?: floatArray[0]
+                val moveDistance = distanceMap[date]?.plus(floatArray[0]) ?: floatArray[0]
                 distanceMap[date] = moveDistance
                 if(floatArray[0]>850f){
                     FirebaseUtil.updateRecord(date,floatArray[0],1)
@@ -113,7 +111,7 @@ class MainActivity : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_friends, R.id.nav_map
+                R.id.nav_home, R.id.nav_friends, R.id.nav_map,R.id.nav_profile
             ), drawerLayout
         )
 

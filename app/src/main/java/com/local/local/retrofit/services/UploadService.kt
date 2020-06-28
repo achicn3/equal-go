@@ -16,9 +16,8 @@ interface UploadService {
         @Query("video")  video: File? = null,
         @Query("album")  albumHash: String? = null,
         @Query("type")  type: String = "file",
-        @Query("name")  name: String,
-        @Query("title")  title: String,
-        @Query("description")  description: String,
+        @Query("title")  title: String = "avatar",
+        @Query("description")  description: String = "avatar",
         @Query("disable_audio")  disableAudio: Boolean = true
     ): Deferred<Response<ResponseBody>>
 }

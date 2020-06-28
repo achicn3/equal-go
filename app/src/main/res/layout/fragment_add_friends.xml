@@ -1,143 +1,156 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/style_corner_radius"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/viewGroup_addFriend_phone"
-            android:layout_width="280dp"
-            android:layout_height="wrap_content"
-            app:boxCornerRadiusBottomEnd="6dp"
-            app:boxCornerRadiusBottomStart="6dp"
-            app:boxCornerRadiusTopEnd="6dp"
-            app:boxCornerRadiusTopStart="6dp"
-            app:boxStrokeColor="@color/colorGreen"
-            app:boxStrokeWidth="2dp"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:hintTextColor="@color/colorGreen">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/et_addFriend_phone"
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="@string/please_enter_friends_phone"
-                android:textSize="18sp" />
-        </com.google.android.material.textfield.TextInputLayout>
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/viewGroup_addFriend_phone"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="280dp"
+                    android:layout_height="wrap_content"
+                    app:boxCornerRadiusBottomEnd="6dp"
+                    app:boxCornerRadiusBottomStart="6dp"
+                    app:boxCornerRadiusTopEnd="6dp"
+                    app:boxCornerRadiusTopStart="6dp"
+                    app:boxStrokeColor="@color/colorGreen"
+                    app:boxStrokeWidth="2dp"
+                    app:hintTextColor="@color/colorGreen">
 
-        <ImageView
-            android:id="@+id/iv_addFriend_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/ic_search"
-            tools:ignore="VectorDrawableCompat" />
-    </LinearLayout>
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/et_addFriend_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/please_enter_friends_phone"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
-        android:id="@+id/linearLayout2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="32dp"
-        android:background="@android:color/transparent"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp" />
 
-        <View
-            android:layout_width="180dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:background="#1e000000" />
+                <ImageView
+                    android:id="@+id/iv_addFriend_search"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/ic_search"
+                    tools:ignore="VectorDrawableCompat" />
+            </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_signup_or"
-            android:layout_width="16dp"
-            android:layout_height="20dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@string/or"
-            android:textColor="#42000000"
-            android:textSize="14sp" />
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:background="@android:color/transparent"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
-        <View
-            android:layout_width="180dp"
-            android:layout_height="1dp"
-            android:layout_gravity="center"
-            android:layout_marginRight="8dp"
-            android:background="#1e000000" />
+                <View
+                    android:layout_width="180dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="8dp"
+                    android:background="#1e000000" />
 
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_signup_or"
+                    android:layout_width="wrap_content"
+                    android:layout_height="20dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_weight="1"
+                    android:text="@string/or"
+                    android:textColor="#42000000"
+                    android:textSize="14sp" />
 
-    <android.widget.Button
-        android:id="@+id/btn_addFriend_scanQRcode"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:background="@color/colorGreen"
-        android:text="掃描QR Code"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
-        app:layout_constraintStart_toStartOf="@+id/linearLayout2"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+                <View
+                    android:layout_width="180dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:layout_marginRight="8dp"
+                    android:background="#1e000000" />
 
-    <ImageView
-        android:id="@+id/iv_addFriend_friendAvatar"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:layout_marginTop="32dp"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/btn_addFriend_scanQRcode"
-        app:layout_constraintStart_toStartOf="@+id/btn_addFriend_scanQRcode"
-        app:layout_constraintTop_toBottomOf="@+id/btn_addFriend_scanQRcode"
-        app:srcCompat="@drawable/ic_login_logo_equal" />
+            </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_addFriend_friendName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="TextView"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="@+id/iv_addFriend_friendAvatar"
-        app:layout_constraintStart_toStartOf="@+id/iv_addFriend_friendAvatar"
-        app:layout_constraintTop_toBottomOf="@+id/iv_addFriend_friendAvatar" />
+            <android.widget.Button
+                android:id="@+id/btn_addFriend_scanQRcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:background="@color/colorGreen"
+                android:text="掃描QR Code"
+                app:layout_constraintEnd_toEndOf="@+id/linearLayout2"
+                app:layout_constraintStart_toStartOf="@+id/linearLayout2"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
 
-    <android.widget.Button
-        android:id="@+id/btn_addFriend_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:layout_marginBottom="32dp"
-        android:background="@color/colorGreen"
-        android:visibility="gone"
-        android:text="@string/add"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/tv_addFriend_friendName"
-        app:layout_constraintStart_toStartOf="@+id/tv_addFriend_friendName"
-        app:layout_constraintTop_toBottomOf="@+id/tv_addFriend_friendName" />
+            <ImageView
+                android:id="@+id/iv_addFriend_friendAvatar"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginTop="32dp"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/btn_addFriend_scanQRcode"
+                app:layout_constraintStart_toStartOf="@+id/btn_addFriend_scanQRcode"
+                app:layout_constraintTop_toBottomOf="@+id/btn_addFriend_scanQRcode"
+                app:srcCompat="@drawable/ic_login_logo_equal" />
 
+            <TextView
+                android:id="@+id/tv_addFriend_friendName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="TextView"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/iv_addFriend_friendAvatar"
+                app:layout_constraintStart_toStartOf="@+id/iv_addFriend_friendAvatar"
+                app:layout_constraintTop_toBottomOf="@+id/iv_addFriend_friendAvatar" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <android.widget.Button
+                android:id="@+id/btn_addFriend_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:layout_marginBottom="32dp"
+                android:background="@color/colorGreen"
+                android:text="@string/add"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/tv_addFriend_friendName"
+                app:layout_constraintStart_toStartOf="@+id/tv_addFriend_friendName"
+                app:layout_constraintTop_toBottomOf="@+id/tv_addFriend_friendName" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

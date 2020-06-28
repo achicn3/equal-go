@@ -1,246 +1,256 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="198dp"
-        android:layout_height="139dp"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_avatar" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/viewGroup_register_phone"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        app:errorEnabled="true"
-        app:endIconMode="clear_text"
-        app:helperText="請輸入手機號碼"
-        app:boxCornerRadiusBottomEnd="6dp"
-        app:boxCornerRadiusBottomStart="6dp"
-        app:boxCornerRadiusTopEnd="6dp"
-        app:boxCornerRadiusTopStart="6dp"
-        app:boxStrokeColor="@color/colorGreen"
-        app:boxStrokeWidth="2dp"
-        app:layout_constraintEnd_toStartOf="@+id/btn_register_sendCode"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_register_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_cellphone_number"
-            android:singleLine="true" />
-
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/viewGroup_register_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:visibility="gone"
-        app:endIconMode="clear_text"
-        app:boxCornerRadiusBottomEnd="6dp"
-        app:boxCornerRadiusBottomStart="6dp"
-        app:boxCornerRadiusTopEnd="6dp"
-        app:boxCornerRadiusTopStart="6dp"
-        app:boxStrokeColor="@color/colorGreen"
-        app:boxStrokeWidth="2dp"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_register_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/hint_name"
-            android:singleLine="true" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <android.widget.Button
-        android:id="@+id/btn_register_sendCode"
-        android:layout_width="wrap_content"
-        android:layout_height="65dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginEnd="24dp"
-        android:layout_weight="1"
-        android:background="?selectableItemBackground"
-        android:singleLine="true"
-        android:text="@string/send_code"
-        android:textColor="@color/colorGreen"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/viewGroup_register_phone"
-        app:layout_constraintTop_toTopOf="@+id/viewGroup_register_phone" />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/viewGroup_register_age"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        app:boxCornerRadiusBottomEnd="6dp"
-        app:boxCornerRadiusBottomStart="6dp"
-        app:boxCornerRadiusTopEnd="6dp"
-        app:boxCornerRadiusTopStart="6dp"
-        app:boxStrokeColor="@color/colorGreen"
-        app:boxStrokeWidth="2dp"
-        android:visibility="gone"
-        app:errorEnabled="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_name">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_register_age"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:hint="@string/age" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/viewGroup_register_code"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
-        app:errorEnabled="true"
-        app:boxCornerRadiusBottomEnd="6dp"
-        app:boxCornerRadiusBottomStart="6dp"
-        app:boxCornerRadiusTopEnd="6dp"
-        app:boxCornerRadiusTopStart="6dp"
-        app:boxStrokeColor="@color/colorGreen"
-        app:boxStrokeWidth="2dp"
-        app:layout_constraintBottom_toTopOf="@+id/view2"
-        app:layout_constraintEnd_toStartOf="@+id/btn_register_confrim"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_phone">
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="198dp"
+                android:layout_height="139dp"
+                android:layout_marginTop="8dp"
+                android:scaleType="fitCenter"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_avatar" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_register_code"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/please_enter_code"
-            android:singleLine="true" />
-    </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/viewGroup_register_phone"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                app:boxCornerRadiusBottomEnd="6dp"
+                app:boxCornerRadiusBottomStart="6dp"
+                app:boxCornerRadiusTopEnd="6dp"
+                app:boxCornerRadiusTopStart="6dp"
+                app:boxStrokeColor="@color/colorGreen"
+                app:boxStrokeWidth="2dp"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:helperText="請輸入手機號碼"
+                app:layout_constraintEnd_toStartOf="@+id/btn_register_sendCode"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2">
 
-    <android.widget.Button
-        android:id="@+id/btn_register_confrim"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="4dp"
-        android:background="@color/colorGreen"
-        android:text="@string/confirm"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="@+id/btn_register_sendCode"
-        app:layout_constraintStart_toEndOf="@+id/viewGroup_register_code"
-        app:layout_constraintTop_toTopOf="@+id/viewGroup_register_code" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_register_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_cellphone_number"
+                    android:singleLine="true" />
 
-    <View
-        android:id="@+id/view2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_gravity="center"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:background="#1e000000"
-        app:layout_constraintBottom_toTopOf="@+id/viewGroup_register_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_code" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    <android.widget.Button
-        android:id="@+id/btn_register_send"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
-        android:background="?selectableItemBackground"
-        android:text="@string/send"
-        android:textColor="@color/colorGreen"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_age" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/viewGroup_register_name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="32dp"
+                android:visibility="gone"
+                app:boxCornerRadiusBottomEnd="6dp"
+                app:boxCornerRadiusBottomStart="6dp"
+                app:boxCornerRadiusTopEnd="6dp"
+                app:boxCornerRadiusTopStart="6dp"
+                app:boxStrokeColor="@color/colorGreen"
+                app:boxStrokeWidth="2dp"
+                app:endIconMode="clear_text"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view2">
 
-    <LinearLayout
-        android:id="@+id/viewGroup_register_sex"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:gravity="center|left"
-        android:visibility="gone"
-        android:orientation="horizontal"
-        app:layout_constraintStart_toStartOf="@+id/viewGroup_register_age"
-        app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_age"
-        tools:ignore="RtlHardcoded">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_register_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/hint_name"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_register_sex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/sex"
-            android:textSize="16sp"
-            android:visibility="visible" />
+            <android.widget.Button
+                android:id="@+id/btn_register_sendCode"
+                android:layout_width="wrap_content"
+                android:layout_height="65dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginEnd="24dp"
+                android:layout_weight="1"
+                android:background="?selectableItemBackground"
+                android:singleLine="true"
+                android:text="@string/send_code"
+                android:textColor="@color/colorGreen"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/viewGroup_register_phone"
+                app:layout_constraintTop_toTopOf="@+id/viewGroup_register_phone" />
 
-        <Spinner
-            android:id="@+id/spinner_register_sex"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:visibility="visible" />
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/viewGroup_register_age"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:visibility="gone"
+                app:boxCornerRadiusBottomEnd="6dp"
+                app:boxCornerRadiusBottomStart="6dp"
+                app:boxCornerRadiusTopEnd="6dp"
+                app:boxCornerRadiusTopStart="6dp"
+                app:boxStrokeColor="@color/colorGreen"
+                app:boxStrokeWidth="2dp"
+                app:errorEnabled="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_name">
 
-    <LinearLayout
-        android:id="@+id/viewGroup_register_freq"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="139dp"
-        android:layout_marginTop="16dp"
-        android:gravity="center"
-        android:visibility="gone"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="@+id/viewGroup_register_age"
-        app:layout_constraintStart_toEndOf="@+id/viewGroup_register_sex"
-        app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_age">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_register_age"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/age"
+                    android:inputType="number" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/tv_register_sport"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:text="@string/sport_freq"
-            android:textSize="16sp"
-            android:visibility="visible"
-            tools:ignore="RtlHardcoded" />
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/viewGroup_register_code"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
+                app:boxCornerRadiusBottomEnd="6dp"
+                app:boxCornerRadiusBottomStart="6dp"
+                app:boxCornerRadiusTopEnd="6dp"
+                app:boxCornerRadiusTopStart="6dp"
+                app:boxStrokeColor="@color/colorGreen"
+                app:boxStrokeWidth="2dp"
+                app:errorEnabled="true"
+                app:layout_constraintBottom_toTopOf="@+id/view2"
+                app:layout_constraintEnd_toStartOf="@+id/btn_register_confrim"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_phone">
 
-        <Spinner
-            android:id="@+id/spinner_register_freq"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="visible" />
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_register_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/please_enter_code"
+                    android:singleLine="true" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-    </LinearLayout>
+            <android.widget.Button
+                android:id="@+id/btn_register_confrim"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="4dp"
+                android:background="@color/colorGreen"
+                android:text="@string/confirm"
+                android:textColor="@android:color/white"
+                app:layout_constraintEnd_toEndOf="@+id/btn_register_sendCode"
+                app:layout_constraintStart_toEndOf="@+id/viewGroup_register_code"
+                app:layout_constraintTop_toTopOf="@+id/viewGroup_register_code" />
 
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_gravity="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="#1e000000"
+                app:layout_constraintBottom_toTopOf="@+id/viewGroup_register_name"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_code" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <android.widget.Button
+                android:id="@+id/btn_register_send"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="64dp"
+                android:background="?selectableItemBackground"
+                android:text="@string/send"
+                android:textColor="@color/colorGreen"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_age" />
+
+            <LinearLayout
+                android:id="@+id/viewGroup_register_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center|left"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="@+id/viewGroup_register_age"
+                app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_age"
+                tools:ignore="RtlHardcoded">
+
+                <TextView
+                    android:id="@+id/tv_register_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sex"
+                    android:textSize="16sp"
+                    android:visibility="visible" />
+
+                <Spinner
+                    android:id="@+id/spinner_register_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="8dp"
+                    android:visibility="visible" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/viewGroup_register_freq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="139dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="@+id/viewGroup_register_age"
+                app:layout_constraintStart_toEndOf="@+id/viewGroup_register_sex"
+                app:layout_constraintTop_toBottomOf="@+id/viewGroup_register_age">
+
+                <TextView
+                    android:id="@+id/tv_register_sport"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="8dp"
+                    android:text="@string/sport_freq"
+                    android:textSize="16sp"
+                    android:visibility="visible"
+                    tools:ignore="RtlHardcoded" />
+
+                <Spinner
+                    android:id="@+id/spinner_register_freq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>

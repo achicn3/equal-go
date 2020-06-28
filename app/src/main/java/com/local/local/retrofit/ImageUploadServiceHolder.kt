@@ -4,12 +4,14 @@ import com.local.local.retrofit.body.ResponseBody
 import com.local.local.retrofit.services.ServiceBuilder
 import com.local.local.retrofit.services.UploadService
 import kotlinx.coroutines.Deferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import java.io.File
 
-class ImageUploadServiceHolder(private val okHttpClient: OkHttpClient) : UploadService {
+class ImageUploadServiceHolder(okHttpClient: OkHttpClient) : UploadService {
     private val service: UploadService = ServiceBuilder.buildUploadService(okHttpClient)
 
     override fun uploadImageAsync(
@@ -18,13 +20,12 @@ class ImageUploadServiceHolder(private val okHttpClient: OkHttpClient) : UploadS
         video: File?,
         albumHash: String?,
         type: String,
-        name: String,
         title: String,
         description: String,
         disableAudio: Boolean
     ): Deferred<Response<ResponseBody>> =
         service.uploadImageAsync(
-            authorization, image, video, albumHash, type, name, title, description
+            authorization, image, video, albumHash, type, title, description
         )
 }
 /**

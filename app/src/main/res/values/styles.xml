@@ -5,7 +5,7 @@
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.NoActionBar">
-
+        <item name="android:textColor">@color/colorGreen</item>
     </style>
 
 

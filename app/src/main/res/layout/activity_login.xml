@@ -4,6 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/viewGroup_login_phone"
         android:layout_width="0dp"
@@ -34,8 +42,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="255dp"
-        android:layout_height="223dp"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
         android:scaleType="fitCenter"
         android:src="@drawable/ic_avatar"
         app:layout_constraintBottom_toTopOf="@+id/viewGroup_login_phone"
@@ -98,14 +106,14 @@
         android:id="@+id/btn_login_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:background="?selectableItemBackground"
         android:text="@string/login_register"
         android:textColor="@color/colorGreen"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login_submit" />
-
-
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
 

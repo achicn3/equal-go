@@ -28,7 +28,6 @@ class FirebaseUtil {
         fun retrieveStatics(year: Int,Month:Int,firebaseCallback: FirebaseCallback){
             val key = LoginManager.instance.userData?.userKey
             val monthStr = if(Month<10) "0$Month" else "$Month"
-            Log.d("status","month $monthStr, year $year")
             key?.run {
                 db.child(RECORD_NODE).child(this).child(year.toString()).child(monthStr).addListenerForSingleValueEvent(object: ValueEventListener{
                     override fun onCancelled(p0: DatabaseError) {
@@ -40,6 +39,7 @@ class FirebaseUtil {
                         val list = mutableListOf<RecordInfo?>()
                         for(data in p0.children){
                             val value = data.getValue(RecordInfo::class.java)
+                            value?.days = data.key?.toInt()
                             Log.d("status","statics value :$value")
                             list.add(value)
                         }

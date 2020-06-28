@@ -1,4 +1,4 @@
-package com.local.local.screen.fragment.ui.home
+package com.local.local.screen.fragment.ui.home.viewpager
 
 import android.view.View
 import androidx.viewpager2.widget.ViewPager2

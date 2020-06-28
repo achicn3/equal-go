@@ -14,10 +14,11 @@ data class UserInfo(
     var latitude : Double? = null,
     var longitude : Double? = null
 ){
-    fun updatePoints(value: Int){
-        points += value
+    enum class Type(val type:String){
+        ADMIN("Admin"),
+        STORE("Store"),
+        USER("User")
     }
-
     fun updateLocation(location: Location){
         latitude = location.latitude
         longitude = location.longitude
