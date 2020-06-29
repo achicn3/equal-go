@@ -4,9 +4,6 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.swiperefreshlayout.widget.CircularProgressDrawable
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.local.local.R
 import com.local.local.body.UserInfo
 import com.local.local.extensions.Extensions.loadCircleImage
@@ -14,7 +11,7 @@ import com.local.local.extensions.Extensions.loadCircleImage
 class FriendListAdapter(private val context: Context, private val friendList: List<UserInfo>) : RecyclerView.Adapter<FriendListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendListViewHolder {
         return FriendListViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.cardview_friends,parent,false)
+            LayoutInflater.from(parent.context).inflate(R.layout.view_friends,parent,false)
         )
     }
 

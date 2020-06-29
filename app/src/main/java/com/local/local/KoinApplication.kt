@@ -6,8 +6,9 @@ import com.local.local.retrofit.ImageUploadServiceHolder
 import com.local.local.retrofit.services.ServiceBuilder
 import com.local.local.screen.fragment.ui.firends.addfriend.AddFriendViewModel
 import com.local.local.screen.fragment.ui.firends.friendlsit.FriendListViewModel
-import com.local.local.screen.fragment.ui.home.daystatics.HomeViewModel
-import com.local.local.screen.fragment.ui.home.detailstatics.StaticsViewModel
+import com.local.local.screen.fragment.ui.points.daystatics.HomeViewModel
+import com.local.local.screen.fragment.ui.points.detailstatics.StaticsViewModel
+import com.local.local.screen.fragment.ui.points.transaction.TransactionViewModel
 import com.local.local.screen.fragment.ui.profile.ProfileInfoViewModel
 import com.local.local.screen.login.LoginViewModel
 import com.local.local.screen.register.RegisterViewModel
@@ -26,6 +27,7 @@ class KoinApplication : MultiDexApplication() {
         viewModel { ProfileInfoViewModel() }
         viewModel { HomeViewModel() }
         viewModel { StaticsViewModel() }
+        viewModel { TransactionViewModel() }
         single { ServiceBuilder.buildOkHttpClient() }
         single { ImageUploadServiceHolder(get()) }
     }

@@ -13,6 +13,7 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.local.local.R
 import com.local.local.extensions.Extensions.loadCircleImage
+import com.local.local.manager.LoginManager
 import com.local.local.screen.fragment.dialog.BaseDialogFragment
 import kotlinx.android.synthetic.main.fragment_profileinfo.view.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -54,7 +55,10 @@ class ProfileInfoFragment : BaseDialogFragment() {
         var fileName: String? = null
         var uploadFile: File? = null
         viewModel.retrieveDefaultAvatar()
-        val userAvatar = view.findViewById<ImageView>(R.id.iv_profileInfo_userAvatar)
+
+        val userAvatar = view.findViewById<ImageView>(R.id.iv_profileInfo_userAvatar).apply{
+            loadCircleImage(context,LoginManager.instance.userData?.avatarUrl)
+        }
         view.findViewById<RecyclerView>(R.id.rv_profileInfo_defaultIcon).apply {
             layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
             adapter = rvAdapter
@@ -76,6 +80,7 @@ class ProfileInfoFragment : BaseDialogFragment() {
                             })
             )
         }
+
         view.findViewById<ImageView>(R.id.iv_profileInfo_editProfileAvatar).setOnClickListener {
             showBottomSheet(context)
         }

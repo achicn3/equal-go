@@ -8,6 +8,7 @@
         app:tabSelectedTextColor="@color/colorGreen"
         android:id="@+id/viewGroup_home_tabs"
         android:layout_width="match_parent"
+        app:tabIndicatorColor="@color/colorGreen"
         android:layout_height="wrap_content"/>
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewGroup_home_viewPager"

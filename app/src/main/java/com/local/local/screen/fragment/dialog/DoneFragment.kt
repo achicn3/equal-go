@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.local.local.R
 
-class DoneFragment(var showMsg: String? = null) : DialogFragment() {
+class DoneFragment(private var showMsg: String? = null) : DialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

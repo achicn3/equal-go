@@ -25,7 +25,6 @@
             android:layout_height="64dp"
             android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
-            android:tint="@color/colorGreen"
             android:src="@drawable/ic_profile_default_avatar"
             tools:ignore="RtlCompat"
             tools:layout_editor_absoluteX="196dp"
@@ -107,6 +106,7 @@
         app:boxCornerRadiusTopStart="6dp"
         app:boxStrokeColor="@color/colorGreen"
         app:boxStrokeWidth="2dp"
+        app:hintTextColor="@color/colorGreen"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="345dp">
 
@@ -118,8 +118,19 @@
             android:inputType="textEmailAddress"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
+            android:textCursorDrawable="@color/colorGreen"
             tools:ignore="RtlHardcoded"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="356dp" />
     </com.google.android.material.textfield.TextInputLayout>
+
+    <android.widget.Button
+        android:id="@+id/btn_profileInfo_save"
+        android:layout_width="200dp"
+        android:layout_marginTop="32dp"
+        android:layout_gravity="center"
+        android:background="@color/colorGreen"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:text="@string/save" />
 </LinearLayout>

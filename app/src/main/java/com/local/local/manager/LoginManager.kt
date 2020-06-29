@@ -30,8 +30,8 @@ class LoginManager private constructor() {
             dispatchUserInfoChanged()
             dispatchLogStateChanged()
         }
-
     }
+
     interface LoginListener {
         fun onLogStateChange()
         fun onUserInfoChange()

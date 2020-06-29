@@ -2,6 +2,7 @@ package com.kdanmobile.cloud.event
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.local.local.event.EventBroadcaster
 import java.util.concurrent.ConcurrentLinkedQueue
 
 class EventManager<T> : EventBroadcaster<T> {

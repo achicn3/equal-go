@@ -1,7 +1,7 @@
 package com.local.local.screen.fragment.ui.firends.addfriend
 
 import androidx.lifecycle.ViewModel
-import com.kdanmobile.cloud.event.EventBroadcaster
+import com.local.local.event.EventBroadcaster
 import com.kdanmobile.cloud.event.EventManager
 import com.local.local.body.UserInfo
 import com.local.local.callback.FirebaseCallback

@@ -1,4 +1,4 @@
-package com.kdanmobile.cloud.event
+package com.local.local.event
 
 import androidx.lifecycle.LiveData
 

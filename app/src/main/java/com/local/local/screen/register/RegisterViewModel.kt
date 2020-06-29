@@ -10,7 +10,7 @@ import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.google.firebase.ktx.Firebase
-import com.kdanmobile.cloud.event.EventBroadcaster
+import com.local.local.event.EventBroadcaster
 import com.kdanmobile.cloud.event.EventManager
 import com.local.local.body.UserInfo
 import com.local.local.callback.FirebaseCallback

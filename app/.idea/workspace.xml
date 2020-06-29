@@ -11,43 +11,63 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe79870-7c81-4f4b-8ca0-077e7050aa48" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/detailstatics/CustomBarChartRender.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/color/drawer_item_color.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_account.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_list.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_points.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/StoreInfo.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/TransactionItems.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/OnClearFromRecentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/PointsMainFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/detailstatics/DistanceValueFormatter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/detailstatics/PointsValueFormatter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionAdapter.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionItemViewHolder.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionSucFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionViewModel.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/store/StoreLoginFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/LocationUtil.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_signin.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_main_points_title.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/style_transaction_item_edge.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_main_points.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_store_login.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_transaction.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_transaction_success.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/res/layout/view_transaction_item.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/navEditor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/navEditor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/RecordInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/RecordInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/retrofit/ImageUploadServiceHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/retrofit/ImageUploadServiceHolder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/retrofit/services/UploadService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/retrofit/services/UploadService.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/event/EventBroadcaster.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/event/EventBroadcaster.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/event/EventManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/event/EventManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/extensions/Extensions.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/extensions/Extensions.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/manager/LoginManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/manager/LoginManager.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/MainActivity.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/daystatics/HomeFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/daystatics/HomeViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/StaticsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/detailstatics/StaticsFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/StaticsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/detailstatics/StaticsViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/ViewPagerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/viewpager/ViewPagerAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/ViewPagerFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/viewpager/ViewPagerFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/ZoomOutPageTransformer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/viewpager/ZoomOutPageTransformer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/dialog/DoneFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/dialog/DoneFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/addfriend/AddFriendViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/addfriend/AddFriendViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/friendlsit/FriendListAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/firends/friendlsit/FriendListAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/daystatics/HomeFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/daystatics/HomeFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/daystatics/HomeViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/daystatics/HomeViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/detailstatics/CustomBarChartRender.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/detailstatics/CustomBarChartRender.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/detailstatics/StaticsFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/detailstatics/StaticsFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/detailstatics/StaticsViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/detailstatics/StaticsViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/viewpager/ViewPagerAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/viewpager/ViewPagerAdapter.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/viewpager/ViewPagerFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/viewpager/ViewPagerFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/home/viewpager/ZoomOutPageTransformer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/viewpager/ZoomOutPageTransformer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/LoginViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/register/RegisterViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/register/RegisterViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_addfriends.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/drawable/style_edge_color.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/drawable/style_addfriend_icon_edge_color.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_main2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_main2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/activity_register.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_add_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_add_friends.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/layout/cardview_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/view_friends.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_detail_statics.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_detail_statics.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_friends.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_friends.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_main.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_profileinfo.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_profileinfo.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_show_qrcode.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_show_qrcode.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_slideshow.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_slideshow.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/layout/fragment_viewpager.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_viewpager.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/menu/activity_main2_drawer.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/menu/activity_main2_drawer.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/navigation/mobile_navigation.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/styles.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,7 +75,7 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="4_WVGA_Nexus_S_API_19" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="123" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -96,10 +116,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
-        <option value="layoutResourceFile" />
-        <option value="Kotlin Class" />
-        <option value="resourceFile" />
         <option value="Class" />
+        <option value="resourceFile" />
+        <option value="Kotlin Class" />
+        <option value="layoutResourceFile" />
       </list>
     </option>
   </component>
@@ -115,34 +135,34 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
     <property name="ApkExportedModule" value="app" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="4_WVGA_Nexus_S_API_19" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-28T17:28:01.522Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="123" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-29T08:57:36.684Z" />
     <property name="ExportApk.ApkPath" value="C:\Users\achic\local\app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV2" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$USER_HOME$/MPAndroidChart" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/res/drawable" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\achic\local\app\src\main\java\com\local\local\screen\fragment\ui\home\viewpager" />
-    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="com.local.local.screen.fragment.ui.home.viewpager" />
       <recent name="com.local.local.screen.fragment.ui.home.detailstatics" />
       <recent name="com.local.local.screen.fragment.ui.home.daystatics" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\achic\local\app\src\main\res\drawable" />
+      <recent name="C:\Users\achic\local\app" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.local.local.util" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\achic\local\app" />
-      <recent name="C:\Users\achic\local\app\src\main\res\drawable" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\achic\local\app\src\main\java\com\local\local\screen\fragment\ui\home\viewpager" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -266,16 +286,5 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt</url>
-          <line>24</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

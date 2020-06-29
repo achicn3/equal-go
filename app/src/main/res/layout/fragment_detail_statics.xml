@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/iv_detailStatics_left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_weight="1"
             android:rotation="180"
             android:tint="@color/colorGreen"
@@ -38,13 +38,14 @@
             android:layout_weight="1"
             android:textStyle="bold"
             android:gravity="center"
+            android:layout_gravity="center"
             android:textSize="20sp"
             tools:text="2020年06月" />
 
         <ImageView
             android:id="@+id/iv_detailStatics_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_weight="1"
             android:tint="@color/colorGreen"
             app:srcCompat="@drawable/ic_arrow"

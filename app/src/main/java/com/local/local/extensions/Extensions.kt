@@ -33,6 +33,19 @@ object Extensions {
         this.value = this.value
     }
 
+    fun ImageView.loadImage(context: Context,url: String?){
+        val cp = CircularProgressDrawable(context)
+        cp.strokeWidth = 5f
+        cp.centerRadius = 30f
+        cp.setColorSchemeColors(R.color.colorGreen)
+        cp.start()
+        Glide.with(context)
+                .load(url)
+                .centerCrop()
+                .placeholder(cp)
+                .into(this)
+    }
+
     fun ImageView.loadCircleImage(context: Context,url: String?){
         val cp = CircularProgressDrawable(context)
         cp.strokeWidth = 5f

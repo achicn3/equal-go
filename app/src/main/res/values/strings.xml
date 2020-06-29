@@ -66,11 +66,20 @@
     <string name="accumulation_points">今日已累計\n%d 點</string>
     <string name="date_format">%d/%s/%s</string>
     <string name="date_format_year_month">%d年/%s月</string>
-    <string name="accumulation_points_title">累計點數</string>
+    <string name="accumulation_points_title">累積點數</string>
     <string name="friends_list_title">好友選單</string>
     <string name="public_map_title">公共區域</string>
     <string name="error_addFriend_input_self_phone">請勿輸入自己的手機號碼!</string>
     <string name="home_today_statics">當日數據</string>
-    <string name="home_details_statics">詳細數據</string>
+    <string name="distance_details_statics">距離總覽</string>
+    <string name="points_details_statics">點數總覽</string>
     <string name="drawer_statics_title">數據查詢</string>
+    <string name="store_login">商家登入</string>
+    <string name="store_account">帳號</string>
+    <string name="store_password">密碼</string>
+    <string name="transation_notice_rule_title">優惠卷使用注意事項</string>
+    <string name="transaction_exchange">兌換</string>
+    <string name="transactionSuc_confirm">請由商家按下此確認按鈕</string>
+    <string name="transactionSuc_rules">請注意! 同筆消費只能使用一次優惠卷</string>
+    <string name="transactionSuc_countDown_format">0%d:%d</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.local.local.screen.fragment.ui.home.daystatics
+package com.local.local.screen.fragment.ui.points.daystatics
 
 import android.util.Log
 import androidx.lifecycle.LiveData

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,6 +13,7 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/viewGroup_login_phone"
         android:layout_width="0dp"
@@ -45,7 +47,8 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:scaleType="fitCenter"
-        android:src="@drawable/ic_avatar"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/ic_signin"
         app:layout_constraintBottom_toTopOf="@+id/viewGroup_login_phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,7 +81,7 @@
         android:layout_marginTop="32dp"
         android:text="@string/login_submit"
         android:textColor="@android:color/white"
-        android:background="@drawable/style_commonn_btn"
+        android:background="@color/colorGreen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cb_login_rememberMe" />
@@ -113,6 +116,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_login_submit" />
+
+            <android.widget.Button
+                android:id="@+id/btn_store_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="?selectableItemBackground"
+                android:text="@string/store_login"
+                app:layout_constraintEnd_toEndOf="@+id/btn_login_sendCode"
+                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

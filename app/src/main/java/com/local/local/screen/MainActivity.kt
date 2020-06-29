@@ -4,6 +4,7 @@ import android.content.Intent
 import android.location.Location
 import android.os.Bundle
 import android.os.Looper
+import android.util.Log
 import android.view.Menu
 import android.view.View
 import android.widget.Button
@@ -26,6 +27,7 @@ import com.local.local.extensions.Extensions.loadCircleImage
 import com.local.local.manager.LoginManager
 import com.local.local.screen.login.LoginActivity
 import com.local.local.util.FirebaseUtil
+import com.local.local.util.LocationUtil
 import com.local.local.util.PermissionUtil
 import java.text.SimpleDateFormat
 import java.util.*
@@ -33,69 +35,15 @@ import kotlin.collections.HashMap
 
 
 class MainActivity : AppCompatActivity() {
-    private val seconds : Long = 1000L
-    private val distanceMap = HashMap<String,Float>()
     private lateinit var appBarConfiguration: AppBarConfiguration
     private fun toLocalPhone(phoneNumber: String?): String
         = "0${phoneNumber?.substring(4)}"
-    private var client : FusedLocationProviderClient? = null
-    private var lastLocation : Location? = null
 
-    //每15分鐘更新距離會觸發的callback
-    private val locationCallback = object : LocationCallback(){
-        override fun onLocationResult(p0: LocationResult?) {
-            p0?.lastLocation?.run {
-               onLocationChanged(this)
-            }
-        }
-    }
-
-    //處理距離的邏輯
-    fun onLocationChanged(newLocation: Location){
-        lastLocation = if(lastLocation == null){
-            newLocation
-        }else{
-            //計算移動距離
-            lastLocation?.apply {
-                val floatArray = FloatArray(1)
-                Location.distanceBetween(latitude,longitude,newLocation.latitude,newLocation.longitude,floatArray)
-                val time = Calendar.getInstance(Locale.TAIWAN).time
-                val date = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN).format(time)
-                val moveDistance = distanceMap[date]?.plus(floatArray[0]) ?: floatArray[0]
-                distanceMap[date] = moveDistance
-                if(floatArray[0]>850f){
-                    FirebaseUtil.updateRecord(date,floatArray[0],1)
-                }else{
-                    FirebaseUtil.updateRecord(date,floatArray[0],0)
-                }
-            }
-            LoginManager.instance.userData?.updateLocation(newLocation)
-            FirebaseUtil.updateUserInfo()
-            newLocation
-        }
-    }
-
-    private fun startLocationUpdates(){
-        val locationRequest = LocationRequest().apply {
-            priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-            interval = 3*seconds
-        }
-        val locationSettingRequest = LocationSettingsRequest.Builder().apply {
-            addLocationRequest(locationRequest)
-        }.build()
-
-        LocationServices.getSettingsClient(this).apply {
-            checkLocationSettings(locationSettingRequest)
-        }
-        client = LocationServices.getFusedLocationProviderClient(this)
-        if(!PermissionUtil.hasGrantedLocation(this))
-            return
-        client?.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper())
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
+        startService(Intent(this,OnClearFromRecentService::class.java))
         val toolbar: Toolbar = findViewById(R.id.toolbar)
         setSupportActionBar(toolbar)
 
@@ -119,13 +67,13 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
         navView.findViewById<Button>(R.id.btn_drawer_logout).setOnClickListener {
             LoginManager.instance.logout()
-            client?.removeLocationUpdates(locationCallback)
+            LocationUtil.removeListener()
             startActivity(Intent(this,LoginActivity::class.java))
         }
 
         val drawerAccountView : View by lazy { navView.getHeaderView(0)}
         drawerAccountView.setOnClickListener {
-            if(navController.currentDestination?.id != R.id.profileInfoFragment && navController.currentDestination?.id == R.id.nav_home) {
+            if(navController.currentDestination?.id != R.id.nav_profile && navController.currentDestination?.id == R.id.nav_home) {
                 navController.navigate(R.id.action_nav_home_to_profileInfoFragment)
                 drawerLayout.closeDrawers()
             }
@@ -140,14 +88,16 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onUserInfoChange() {
+                Log.d("status","user info change should be called.")
                 ivDrawerAvatar.loadCircleImage(this@MainActivity,LoginManager.instance.userData?.avatarUrl)
                 tvDrawerName.text = LoginManager.instance.userData?.name
                 tvDrawerPhone.text = toLocalPhone(LoginManager.instance.userData?.phone)
+                Log.d("status","user info avatar is ${LoginManager.instance.userData?.avatarUrl},name : ${LoginManager.instance.userData?.name}, phone: ${toLocalPhone(LoginManager.instance.userData?.phone)}")
             }
         }
 
         LoginManager.instance.addListener(loginListener)
-        startLocationUpdates()
+        LocationUtil.startLocationUpdates(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

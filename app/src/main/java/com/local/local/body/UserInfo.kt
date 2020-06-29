@@ -19,8 +19,13 @@ data class UserInfo(
         STORE("Store"),
         USER("User")
     }
+
     fun updateLocation(location: Location){
         latitude = location.latitude
         longitude = location.longitude
+    }
+
+    fun updatePoints(value: Int){
+        points += value
     }
 }

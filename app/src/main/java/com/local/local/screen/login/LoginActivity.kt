@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
+import android.text.TextUtils
 import android.transition.Explode
 import android.util.TypedValue
 import android.view.View
@@ -123,7 +124,8 @@ class LoginActivity : BaseActivity() {
             val code = et_login_code.text.toString()
             val phoneNumber = et_login_phone.text.toString()
             val isRemember = cb_login_rememberMe.isChecked
-            viewModel.onClickLogin(code, phoneNumber, isRemember)
+            if(!TextUtils.isEmpty(phoneNumber) && !TextUtils.isEmpty(code))
+                viewModel.onClickLogin(code, phoneNumber, isRemember)
         }
 
         btn_login_register.setOnClickListener {

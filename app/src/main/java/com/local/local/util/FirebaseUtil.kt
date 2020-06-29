@@ -6,6 +6,8 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.local.local.body.RecordInfo
+import com.local.local.body.StoreInfo
+import com.local.local.body.TransactionItems
 import com.local.local.body.UserInfo
 import com.local.local.callback.FirebaseCallback
 import com.local.local.manager.LoginManager
@@ -18,12 +20,52 @@ class FirebaseUtil {
         private const val DISTANCE_NODE = "distance"
         private const val RECORD_NODE = "record"
         private const val FRIENDS_NODE = "friends"
+        private const val STORE_NODE = "stores"
+        private const val EXCHANGE_NODE = "exchange"
         private fun isUniversalPhoneNumber(phoneNumber: String?): Boolean =
                 phoneNumber?.substring(0, 4) == "+886"
 
         private fun toUniversalPhoneNumber(phoneNumber: String?): String =
                 "+886${phoneNumber?.substring(1)}"
 
+
+
+        fun retrieveStoreInfo(firebaseCallback: FirebaseCallback){
+            db.child(STORE_NODE).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    firebaseCallback.retrieveStoreInfo(listOf())
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val storeInfo = mutableListOf<StoreInfo>()
+                    for(data in p0.children){
+                        val info = data.getValue(StoreInfo::class.java) ?: continue
+                        storeInfo.add(info)
+                    }
+                    firebaseCallback.retrieveStoreInfo(storeInfo)
+                }
+
+            })
+        }
+
+        fun retrieveStoreItems(storeKey: String, firebaseCallback: FirebaseCallback){
+            db.child(EXCHANGE_NODE).child(storeKey).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    firebaseCallback.retrieveStoreItems(listOf())
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val itemsList = arrayListOf<TransactionItems>()
+                    for(data in p0.children){
+                        val items = data.getValue(TransactionItems::class.java) ?: continue
+                        itemsList.add(items)
+                    }
+                    firebaseCallback.retrieveStoreItems(itemsList)
+                }
+            })
+        }
 
         fun retrieveStatics(year: Int,Month:Int,firebaseCallback: FirebaseCallback){
             val key = LoginManager.instance.userData?.userKey
@@ -91,13 +133,13 @@ class FirebaseUtil {
             }
         }
 
-        fun updateUserInfo() {
+        fun updateUserInfo(firebaseCallback: FirebaseCallback? = null) {
             val key = LoginManager.instance.userData?.userKey
             key?.run {
                 db.child(USER_NODE).child(this).setValue(
                         LoginManager.instance.userData
                 ) { p0, _ ->
-                    p0?.toException()?.printStackTrace()
+                    firebaseCallback?.updateUserInfoResponse(p0 == null)
                 }
             }
         }

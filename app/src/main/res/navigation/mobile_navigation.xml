@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.local.local.screen.fragment.ui.home.viewpager.ViewPagerFragment"
+        android:name="com.local.local.screen.fragment.ui.points.viewpager.ViewPagerFragment"
         android:label="@string/accumulation_points_title"
         tools:layout="@layout/fragment_viewpager">
         <action
             android:id="@+id/action_nav_home_to_profileInfoFragment"
-            app:destination="@id/profileInfoFragment" />
+            app:destination="@id/nav_profile" />
         <action
             android:id="@+id/action_nav_home_to_publicMap"
             app:destination="@id/nav_map" />
@@ -50,7 +50,7 @@
         tools:layout="@layout/fragment_friend_friendlist"
         />
     <fragment
-        android:id="@+id/profileInfoFragment"
+        android:id="@+id/nav_profile"
         android:name="com.local.local.screen.fragment.ui.profile.ProfileInfoFragment"
         tools:layout="@layout/fragment_profileinfo"
         android:label="個人資訊" />

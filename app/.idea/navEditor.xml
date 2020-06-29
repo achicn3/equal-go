@@ -101,13 +101,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="profileInfoFragment">
+                  <entry key="nav_profileInfo">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="888" />
-                            <option name="y" value="453" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                       </LayoutPositions>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/iv_transactionSuc_close"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/ic_close"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_transactionSuc_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="兌換成功!"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_transactionSuc_item"
+        app:layout_constraintStart_toStartOf="@+id/iv_transactionSuc_item"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_transactionSuc_item"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_transactionSuc_title"
+        tools:ignore="RtlHardcoded" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        android:text="@string/transactionSuc_rules"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="@+id/iv_transactionSuc_item"
+        app:layout_constraintStart_toStartOf="@+id/iv_transactionSuc_item"
+        app:layout_constraintTop_toBottomOf="@+id/iv_transactionSuc_item" />
+
+    <TextView
+        android:id="@+id/tv_transactionSuc_countDown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView11"
+        app:layout_constraintStart_toStartOf="@+id/textView11"
+        app:layout_constraintTop_toBottomOf="@+id/textView11"
+        tools:text="03:00" />
+
+    <android.widget.Button
+        android:id="@+id/btn_transactionSuc_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@color/colorGreen"
+        android:text="@string/transactionSuc_confirm"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="32sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_transactionSuc_countDown" />
+</androidx.constraintlayout.widget.ConstraintLayout>

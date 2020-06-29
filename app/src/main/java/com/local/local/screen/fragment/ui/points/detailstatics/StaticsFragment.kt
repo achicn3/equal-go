@@ -1,4 +1,4 @@
-package com.local.local.screen.fragment.ui.home.detailstatics
+package com.local.local.screen.fragment.ui.points.detailstatics
 
 import android.os.Build
 import android.os.Bundle
@@ -12,9 +12,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import com.github.mikephil.charting.charts.BarChart
-import com.github.mikephil.charting.charts.PieChart
-import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -26,7 +23,7 @@ import com.local.local.screen.fragment.dialog.MonthYearPickerDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 
-class StaticsFragment : Fragment(),MonthYearPickerDialog.DateListener {
+class StaticsFragment(private val type: String = "距離") : Fragment(),MonthYearPickerDialog.DateListener {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_detail_statics,container,false)
     }
@@ -46,11 +43,16 @@ class StaticsFragment : Fragment(),MonthYearPickerDialog.DateListener {
         val entries = arrayListOf<BarEntry>()
         list.forEach { info ->
             val days = info?.days ?: return@forEach
-            entries.add(BarEntry(days.toFloat(),info.distance))
+            when(type){
+                "距離" -> entries.add(BarEntry(days.toFloat(),info.distance))
+                else -> entries.add(BarEntry(days.toFloat(),info.points.toFloat()))
+            }
         }
         val dataSet = BarDataSet(entries,"日期").apply {
             colors = ColorTemplate.VORDIPLOM_COLORS.toList()
             highLightAlpha = 255
+            valueTextSize = 32f
+            valueFormatter = if(type == "距離") DistanceValueFormatter() else PointsValueFormatter()
         }
         return BarData(dataSet).apply {
             barWidth = 0.9f
@@ -74,9 +76,30 @@ class StaticsFragment : Fragment(),MonthYearPickerDialog.DateListener {
             renderer = CustomBarChartRender(this,animator,viewPortHandler).apply {
                 setRadius(20)
             }
-        }
-        barChart.xAxis.apply {
-            granularity = 1f
+            description.isEnabled = false
+            xAxis.apply {
+                granularity = 1f
+            }
+            //左邊Y軸
+            axisLeft.apply {
+                if(type == "點數")
+                    //1個單位間格
+                    granularity = 1f
+                else{
+                    //換算成公里
+                    valueFormatter = DistanceValueFormatter()
+                }
+            }
+            //右邊Y軸
+            axisRight.apply {
+                if(type == "點數")
+                    //1個單位間格
+                    granularity = 1f
+                else{
+                    valueFormatter = DistanceValueFormatter()
+                }
+            }
+
         }
 
         val barItems = arrayListOf<BarEntry>()
