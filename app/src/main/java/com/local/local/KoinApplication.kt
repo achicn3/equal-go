@@ -8,7 +8,7 @@ import com.local.local.screen.fragment.ui.firends.addfriend.AddFriendViewModel
 import com.local.local.screen.fragment.ui.firends.friendlsit.FriendListViewModel
 import com.local.local.screen.fragment.ui.points.daystatics.HomeViewModel
 import com.local.local.screen.fragment.ui.points.detailstatics.StaticsViewModel
-import com.local.local.screen.fragment.ui.points.transaction.TransactionViewModel
+import com.local.local.screen.fragment.ui.points.transaction.exchange.TransactionViewModel
 import com.local.local.screen.fragment.ui.profile.ProfileInfoViewModel
 import com.local.local.screen.login.LoginViewModel
 import com.local.local.screen.register.RegisterViewModel

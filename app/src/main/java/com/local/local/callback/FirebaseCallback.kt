@@ -2,7 +2,7 @@ package com.local.local.callback
 
 import com.local.local.body.RecordInfo
 import com.local.local.body.StoreInfo
-import com.local.local.body.TransactionItems
+import com.local.local.body.StoreItems
 import com.local.local.body.UserInfo
 
 open class FirebaseCallback {
@@ -19,6 +19,6 @@ open class FirebaseCallback {
     open fun retrieveStatics(recordInfoList : List<RecordInfo?>){}//取得當月總數據
     open fun addStore(store: StoreInfo){}//商家註冊成功後發送商家資訊
     open fun retrieveStoreInfo(storeNames: List<StoreInfo>){}//取得所有商家的名稱
-    open fun retrieveStoreItems(storeItems: List<TransactionItems>){} //取得商家的優惠列表
+    open fun retrieveStoreItems(storeItems: List<StoreItems>){} //取得商家的優惠列表
     open fun updateUserInfoResponse(isSuccess : Boolean){}
 }

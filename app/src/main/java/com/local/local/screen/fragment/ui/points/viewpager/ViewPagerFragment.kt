@@ -11,7 +11,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import com.local.local.R
 import com.local.local.screen.fragment.ui.points.daystatics.HomeFragment
 import com.local.local.screen.fragment.ui.points.detailstatics.StaticsFragment
-import com.local.local.screen.fragment.ui.points.transaction.TransactionFragment
+import com.local.local.screen.fragment.ui.points.transaction.exchange.TransactionFragment
 
 class ViewPagerFragment : Fragment() {
     private lateinit var vp: ViewPager2
@@ -25,7 +25,7 @@ class ViewPagerFragment : Fragment() {
         val activity = activity ?: return super.onViewCreated(view, savedInstanceState)
         vp = view.findViewById(R.id.viewGroup_home_viewPager)
         tabs = view.findViewById(R.id.viewGroup_home_tabs)
-        val fragmentList = arrayListOf(HomeFragment(), StaticsFragment(),StaticsFragment("點數"),TransactionFragment())
+        val fragmentList = arrayListOf(HomeFragment(), StaticsFragment(),StaticsFragment("點數"), TransactionFragment())
         val vpAdapter = ViewPagerAdapter(fragmentList, activity.supportFragmentManager, lifecycle)
         vp.adapter = vpAdapter
         vp.setPageTransformer(ZoomOutPageTransformer())

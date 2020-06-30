@@ -1,4 +1,4 @@
-package com.local.local.screen.fragment.ui.points.transaction
+package com.local.local.screen.fragment.ui.points.transaction.exchange
 
 import android.view.View
 import android.widget.Button

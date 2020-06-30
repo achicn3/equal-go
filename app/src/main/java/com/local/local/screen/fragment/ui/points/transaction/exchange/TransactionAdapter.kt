@@ -1,15 +1,15 @@
-package com.local.local.screen.fragment.ui.points.transaction
+package com.local.local.screen.fragment.ui.points.transaction.exchange
 
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
-import com.local.local.body.TransactionItems
+import com.local.local.body.StoreItems
 import com.local.local.extensions.Extensions.loadImage
 
 class TransactionAdapter(private val context: Context,
-                         private val transItems: List<TransactionItems>) :
+                         private val transItems: List<StoreItems>) :
         RecyclerView.Adapter<TransactionItemViewHolder>() {
     interface ClickListener {
         fun onClickConfirm(position: Int)

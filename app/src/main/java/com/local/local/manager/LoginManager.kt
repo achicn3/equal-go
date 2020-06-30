@@ -81,6 +81,11 @@ class LoginManager private constructor() {
         dispatchUserInfoChanged()
     }
 
+    fun alertUserInfoChanged(){
+        dispatchUserInfoChanged()
+        dispatchLogStateChanged()
+    }
+
     fun loadData(context: Context,firebaseUser: FirebaseUser?){
         this.firebaseUser = firebaseUser ?: return
         FirebaseUtil.getUserInfoByPhone(firebaseUser.phoneNumber,firebaseCallback)

@@ -1,15 +1,18 @@
-package com.local.local.screen.fragment.ui.points.transaction
+package com.local.local.screen.fragment.ui.points.transaction.exchange
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.local.local.event.EventBroadcaster
 import com.kdanmobile.cloud.event.EventManager
 import com.local.local.body.StoreInfo
-import com.local.local.body.TransactionItems
+import com.local.local.body.StoreItems
+import com.local.local.body.TransactionInfo
 import com.local.local.callback.FirebaseCallback
 import com.local.local.extensions.Extensions.notifyObserver
 import com.local.local.manager.LoginManager
 import com.local.local.util.FirebaseUtil
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @SuppressWarnings("all")
@@ -26,13 +29,14 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
         eventManager.send(this)
     }
 
-    val storeItems = MutableLiveData(mutableListOf<TransactionItems>())
+    val storeItems = MutableLiveData(mutableListOf<StoreItems>())
     val storeInfo = MutableLiveData(mutableListOf<StoreInfo>())
     val showingStoreName = MutableLiveData<String>()
     private val firebaseCallback = object : FirebaseCallback() {
-        override fun retrieveStoreItems(storeItems: List<TransactionItems>) {
+        override fun retrieveStoreItems(storeItems: List<StoreItems>) {
             this@TransactionViewModel.storeItems.value?.clear()
             this@TransactionViewModel.storeItems.value?.addAll(storeItems)
+
             this@TransactionViewModel.storeItems.notifyObserver()
         }
 
@@ -77,11 +81,18 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
     }
 
     fun onClickExchange(position: Int) {
-        val needPoints = storeItems.value?.get(position)?.needPoints ?: return
+        val exchangeItems = storeItems.value?.get(position) ?: return
+        val needPoints = exchangeItems.needPoints
         val size = storeItems.value?.size ?: 0
         if (position >= size) return
         Event.OnUpdateStart().send()
-        LoginManager.instance.userData?.updatePoints(-needPoints)
+        val leftPoints = LoginManager.instance.userData?.updatePoints(-needPoints) ?: return
+        val date = Calendar.getInstance(Locale.TAIWAN).run {
+            SimpleDateFormat("YYYY/mm/dd").format(this.time).split("/")
+        }
+
+        val transactionInfo = TransactionInfo(exchangeItems.storeName,exchangeItems.storeType,date[0],date[1],date[2],leftPoints)
+        FirebaseUtil.addTransactionInfo(transactionInfo)
         FirebaseUtil.updateUserInfo(firebaseCallback)
     }
 
@@ -90,6 +101,6 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
     }
 
     private fun retrieveStoreItems(storeInfo: StoreInfo) {
-        FirebaseUtil.retrieveStoreItems(storeInfo.key, firebaseCallback)
+        FirebaseUtil.retrieveStoreItems(storeInfo, firebaseCallback)
     }
 }

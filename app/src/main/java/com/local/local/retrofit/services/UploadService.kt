@@ -9,6 +9,7 @@ import java.io.File
 
 
 interface UploadService {
+    @Multipart
     @POST("3/upload")
     fun uploadImageAsync(
         @Header("Authorization") authorization: String = "Client-ID 507d938c85f2ab1",

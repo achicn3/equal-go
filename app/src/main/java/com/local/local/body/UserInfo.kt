@@ -25,7 +25,8 @@ data class UserInfo(
         longitude = location.longitude
     }
 
-    fun updatePoints(value: Int){
+    fun updatePoints(value: Int) : Int{
         points += value
+        return points
     }
 }

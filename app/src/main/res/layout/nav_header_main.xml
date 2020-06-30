@@ -16,24 +16,26 @@
 
     <ImageView
         android:id="@+id/iv_drawer_avatar"
-        android:layout_width="79dp"
-        android:layout_height="66dp"
+        android:layout_width="80dp"
+        android:layout_height="70dp"
         android:contentDescription="@string/nav_header_desc"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:scaleType="centerCrop"
         app:srcCompat="@drawable/ic_avatar" />
 
     <TextView
         android:id="@+id/tv_drawer_name"
         android:layout_width="match_parent"
+        android:textColor="@color/colorDarkBlue"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
         tools:text="名字"
-        android:textSize="18sp"
+        android:textSize="24sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/tv_drawer_cellphone"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         tools:text="0912345678" />

@@ -5,10 +5,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
-import com.local.local.body.RecordInfo
-import com.local.local.body.StoreInfo
-import com.local.local.body.TransactionItems
-import com.local.local.body.UserInfo
+import com.local.local.body.*
 import com.local.local.callback.FirebaseCallback
 import com.local.local.manager.LoginManager
 
@@ -22,6 +19,7 @@ class FirebaseUtil {
         private const val FRIENDS_NODE = "friends"
         private const val STORE_NODE = "stores"
         private const val EXCHANGE_NODE = "exchange"
+        private const val TRANSACTION_RECORD_INFO = "transaction_record"
         private fun isUniversalPhoneNumber(phoneNumber: String?): Boolean =
                 phoneNumber?.substring(0, 4) == "+886"
 
@@ -29,6 +27,26 @@ class FirebaseUtil {
                 "+886${phoneNumber?.substring(1)}"
 
 
+        /**
+         * 使用者兌換物品成功，儲存交易紀錄。
+         * */
+        fun addTransactionInfo(transactionInfo: TransactionInfo){
+            val key = LoginManager.instance.userData?.userKey
+            key?.run {
+                val year= transactionInfo.year
+                val month = transactionInfo.month
+                val day = transactionInfo.day
+                db.child(TRANSACTION_RECORD_INFO)
+                        .child(this)
+                        .child(year)
+                        .child(month)
+                        .child(day)
+                        .push()
+                        .setValue(transactionInfo){ p0,p1 ->
+
+                        }
+            }
+        }
 
         fun retrieveStoreInfo(firebaseCallback: FirebaseCallback){
             db.child(STORE_NODE).addListenerForSingleValueEvent(object : ValueEventListener{
@@ -49,7 +67,8 @@ class FirebaseUtil {
             })
         }
 
-        fun retrieveStoreItems(storeKey: String, firebaseCallback: FirebaseCallback){
+        fun retrieveStoreItems(storeInfo: StoreInfo, firebaseCallback: FirebaseCallback){
+            val storeKey = storeInfo.key
             db.child(EXCHANGE_NODE).child(storeKey).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
@@ -57,9 +76,11 @@ class FirebaseUtil {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    val itemsList = arrayListOf<TransactionItems>()
+                    val itemsList = arrayListOf<StoreItems>()
                     for(data in p0.children){
-                        val items = data.getValue(TransactionItems::class.java) ?: continue
+                        val items = data.getValue(StoreItems::class.java) ?: continue
+                        items.storeName = storeInfo.storeName
+                        items.storeType = storeInfo.storeType
                         itemsList.add(items)
                     }
                     firebaseCallback.retrieveStoreItems(itemsList)

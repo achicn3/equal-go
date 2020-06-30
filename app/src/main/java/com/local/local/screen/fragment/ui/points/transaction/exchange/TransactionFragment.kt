@@ -1,4 +1,4 @@
-package com.local.local.screen.fragment.ui.points.transaction
+package com.local.local.screen.fragment.ui.points.transaction.exchange
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,9 +13,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
 import com.local.local.body.StoreInfo
-import com.local.local.body.TransactionItems
+import com.local.local.body.StoreItems
 import com.local.local.manager.LoginManager
 import com.local.local.screen.fragment.dialog.LoadingFragment
+import com.local.local.screen.fragment.ui.points.transaction.success.TransactionSucFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import kotlin.random.Random
 
@@ -34,7 +35,8 @@ class TransactionFragment : Fragment() {
                 ?: return super.onViewCreated(view, savedInstanceState)
         val activity = activity ?: return super.onViewCreated(view, savedInstanceState)
         val tvStores = view.findViewById<TextView>(R.id.tv_transaction_store)
-        val storeItems = mutableListOf<TransactionItems>()
+        val storeItems = mutableListOf<StoreItems>()
+        val args: Bundle? = Bundle()
         viewModel.retrieveStoreNames()
         val storeNames = mutableListOf<StoreInfo>()
         var randomIndex = 0
@@ -60,6 +62,8 @@ class TransactionFragment : Fragment() {
                         Toast.makeText(context, "點數不足! 請多至戶外活動來累積點數", Toast.LENGTH_SHORT).show()
                     } else {
                         viewModel.onClickExchange(position)
+                        args?.clear()
+                        args?.putString("imgUrl",storeItems[position].imgUrl)
                     }
                 }
             }
@@ -110,7 +114,10 @@ class TransactionFragment : Fragment() {
                 }
                 is TransactionViewModel.Event.OnUpdateSuc -> {
                     activity.supportFragmentManager.findFragmentByTag(TransactionSucTag) ?: kotlin.run {
-                        TransactionSucFragment().showNow(activity.supportFragmentManager, TransactionSucTag)
+                        TransactionSucFragment().apply {
+                            arguments = args
+                            showNow(activity.supportFragmentManager, TransactionSucTag)
+                        }
                     }
                 }
                 is TransactionViewModel.Event.OnUpdateFail -> {
