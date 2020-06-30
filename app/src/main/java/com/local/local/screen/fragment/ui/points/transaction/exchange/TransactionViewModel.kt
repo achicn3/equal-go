@@ -32,6 +32,7 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
     val storeItems = MutableLiveData(mutableListOf<StoreItems>())
     val storeInfo = MutableLiveData(mutableListOf<StoreInfo>())
     val showingStoreName = MutableLiveData<String>()
+    var selectedIndex : Int = 0
     private val firebaseCallback = object : FirebaseCallback() {
         override fun retrieveStoreItems(storeItems: List<StoreItems>) {
             this@TransactionViewModel.storeItems.value?.clear()
@@ -67,14 +68,17 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
         when {
             randomIndex >= size -> {
                 showingStoreName.value = value[0].storeName
+                selectedIndex = 0
                 retrieveStoreItems(value[0])
             }
             randomIndex < 0 -> {
                 showingStoreName.value = value[value.lastIndex].storeName
+                selectedIndex = value.lastIndex
                 retrieveStoreItems(value[value.lastIndex])
             }
             else -> {
                 showingStoreName.value = value[randomIndex].storeName
+                selectedIndex = randomIndex
                 retrieveStoreItems(value[randomIndex])
             }
         }

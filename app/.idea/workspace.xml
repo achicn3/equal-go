@@ -11,33 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe79870-7c81-4f4b-8ca0-077e7050aa48" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/TransactionInfo.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/record/TransactionRecord.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/anim/anim_left_to_right.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/anim/item_animation_fall_down.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_transaction_type_edu.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_transaction_type_food.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/drawable/ic_transaction_type_fun.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/fragment_transaction_record.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/LocationInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/LocationInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/RecordInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/RecordInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/TransactionItems.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/StoreItems.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/UserInfo.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/manager/LoginManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/manager/LoginManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/retrofit/services/UploadService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/retrofit/services/UploadService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionAdapter.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionAdapter.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionItemViewHolder.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionItemViewHolder.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionSucFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/success/TransactionSucFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/TransactionViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/viewpager/ViewPagerFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/viewpager/ViewPagerFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/profile/ProfileInfoViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/nav_header_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/nav_header_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/TransactionInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/TransactionInfo.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionViewModel.kt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
