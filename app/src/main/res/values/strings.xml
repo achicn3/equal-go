@@ -70,9 +70,11 @@
     <string name="friends_list_title">好友選單</string>
     <string name="public_map_title">公共區域</string>
     <string name="error_addFriend_input_self_phone">請勿輸入自己的手機號碼!</string>
-    <string name="home_today_statics">當日數據</string>
-    <string name="distance_details_statics">距離總覽</string>
-    <string name="points_details_statics">點數總覽</string>
+    <string name="view_pager_title_home_today_statics">當日數據</string>
+    <string name="viewpager_title_distance_details_statics">距離總覽</string>
+    <string name="viewpager_title_points_details_statics">點數總覽</string>
+    <string name="viewpager_title_exchange_item">優惠卷兌換</string>
+    <string name="viewpager_title_exchange_record">兌換紀錄</string>
     <string name="drawer_statics_title">數據查詢</string>
     <string name="store_login">商家登入</string>
     <string name="store_account">帳號</string>
@@ -82,4 +84,9 @@
     <string name="transactionSuc_confirm">請由商家按下此確認按鈕</string>
     <string name="transactionSuc_rules">請注意! 同筆消費只能使用一次優惠卷</string>
     <string name="transactionSuc_countDown_format">0%d:%d</string>
+    <string name="transaction_record_description">兌換物品: %s</string>
+    <string name="transaction_record_storeName">兌換商家: %s</string>
+    <string name="transaction_record_date">兌換日期:%s年%s月 %s</string>
+    <string name="transaction_record_left_points">當時剩餘點數\n%d</string>
+    <string name="edit">編輯</string>
 </resources>

@@ -1,9 +1,7 @@
 package com.local.local.callback
 
-import com.local.local.body.RecordInfo
-import com.local.local.body.StoreInfo
-import com.local.local.body.StoreItems
-import com.local.local.body.UserInfo
+import com.local.local.body.*
+import com.local.local.screen.fragment.ui.points.transaction.record.TransactionRecord
 
 open class FirebaseCallback {
     open fun isPhoneExisted(phoneNumber: String?, response: Boolean?){}
@@ -21,4 +19,6 @@ open class FirebaseCallback {
     open fun retrieveStoreInfo(storeNames: List<StoreInfo>){}//取得所有商家的名稱
     open fun retrieveStoreItems(storeItems: List<StoreItems>){} //取得商家的優惠列表
     open fun updateUserInfoResponse(isSuccess : Boolean){}
+    open fun userRetrieveTransactionRecord(transactionInfo: List<TransactionInfo>){}
+    open fun storeRetrieveTransactionRecord(transactionInfo : List<TransactionInfo>){}
 }

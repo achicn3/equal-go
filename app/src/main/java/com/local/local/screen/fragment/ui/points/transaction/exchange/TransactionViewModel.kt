@@ -1,5 +1,6 @@
 package com.local.local.screen.fragment.ui.points.transaction.exchange
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.local.local.event.EventBroadcaster
@@ -31,7 +32,7 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
 
     val storeItems = MutableLiveData(mutableListOf<StoreItems>())
     val storeInfo = MutableLiveData(mutableListOf<StoreInfo>())
-    val showingStoreName = MutableLiveData<String>()
+    val showingStore = MutableLiveData<StoreInfo>()
     var selectedIndex : Int = 0
     private val firebaseCallback = object : FirebaseCallback() {
         override fun retrieveStoreItems(storeItems: List<StoreItems>) {
@@ -64,22 +65,22 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
 
     fun setIndex(randomIndex: Int) {
         val size = storeInfo.value?.size ?: return
-        val value = storeInfo.value ?: return
+        val storeList = storeInfo.value ?: return
         when {
             randomIndex >= size -> {
-                showingStoreName.value = value[0].storeName
+                showingStore.value = storeList[0]
                 selectedIndex = 0
-                retrieveStoreItems(value[0])
+                retrieveStoreItems(storeList[0])
             }
             randomIndex < 0 -> {
-                showingStoreName.value = value[value.lastIndex].storeName
-                selectedIndex = value.lastIndex
-                retrieveStoreItems(value[value.lastIndex])
+                showingStore.value = storeList[storeList.lastIndex]
+                selectedIndex = storeList.lastIndex
+                retrieveStoreItems(storeList[storeList.lastIndex])
             }
             else -> {
-                showingStoreName.value = value[randomIndex].storeName
+                showingStore.value = storeList[randomIndex]
                 selectedIndex = randomIndex
-                retrieveStoreItems(value[randomIndex])
+                retrieveStoreItems(storeList[randomIndex])
             }
         }
     }
@@ -92,11 +93,13 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
         Event.OnUpdateStart().send()
         val leftPoints = LoginManager.instance.userData?.updatePoints(-needPoints) ?: return
         val date = Calendar.getInstance(Locale.TAIWAN).run {
-            SimpleDateFormat("YYYY/mm/dd").format(this.time).split("/")
+            SimpleDateFormat("YYYY/MM/dd", Locale.TAIWAN).format(this.time).split("/")
         }
-
-        val transactionInfo = TransactionInfo(exchangeItems.storeName,exchangeItems.storeType,date[0],date[1],date[2],leftPoints)
-        FirebaseUtil.addTransactionInfo(transactionInfo)
+        Log.d("status","today dayte : $date")
+        val store = storeInfo.value?.get(selectedIndex) ?: return
+        val transactionInfo = TransactionInfo(exchangeItems.storeName,exchangeItems.storeType,exchangeItems.description,date[0],date[1],date[2],leftPoints)
+        Log.d("status","transaction info : $transactionInfo")
+        FirebaseUtil.addTransactionInfo(transactionInfo,store)
         FirebaseUtil.updateUserInfo(firebaseCallback)
     }
 

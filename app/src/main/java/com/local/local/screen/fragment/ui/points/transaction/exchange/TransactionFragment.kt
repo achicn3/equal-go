@@ -35,24 +35,30 @@ class TransactionFragment : Fragment() {
                 ?: return super.onViewCreated(view, savedInstanceState)
         val activity = activity ?: return super.onViewCreated(view, savedInstanceState)
         val tvStores = view.findViewById<TextView>(R.id.tv_transaction_store)
+        val ivType = view.findViewById<ImageView>(R.id.iv_transaction_type)
         val storeItems = mutableListOf<StoreItems>()
         val args: Bundle? = Bundle()
         viewModel.retrieveStoreNames()
-        val storeNames = mutableListOf<StoreInfo>()
+        val stores = mutableListOf<StoreInfo>()
         var randomIndex = 0
         viewModel.storeInfo.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
-            storeNames.clear()
-            storeNames.addAll(it.toList())
-            if (storeNames.size > 0) {
-                randomIndex = Random.nextInt(0, storeNames.size)
+            stores.clear()
+            stores.addAll(it.toList())
+            if (stores.size > 0) {
+                randomIndex = Random.nextInt(0, stores.size)
                 viewModel.setIndex(randomIndex)
             }
         })
 
-        viewModel.showingStoreName.observe(viewLifecycleOwner, Observer {
+        viewModel.showingStore.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
-            tvStores.text = it
+            tvStores.text = it.storeName
+            when(it.storeType){
+                "食" -> ivType.setBackgroundResource(R.drawable.ic_transaction_type_food)
+                "育" -> ivType.setBackgroundResource(R.drawable.ic_transaction_type_edu)
+                "樂" -> ivType.setBackgroundResource(R.drawable.ic_transaction_type_fun)
+            }
         })
 
         val clickListener = object : TransactionAdapter.ClickListener {
@@ -78,7 +84,7 @@ class TransactionFragment : Fragment() {
 
         view.findViewById<ImageView>(R.id.iv_transaction_left).setOnClickListener {
             randomIndex += 1
-            if(randomIndex>=storeNames.size){
+            if(randomIndex>=stores.size){
                 randomIndex = 0
             }
             viewModel.setIndex(randomIndex)
@@ -87,7 +93,7 @@ class TransactionFragment : Fragment() {
         view.findViewById<ImageView>(R.id.iv_transaction_right).setOnClickListener {
             randomIndex -= 1
             if(randomIndex< 0){
-                randomIndex = storeNames.lastIndex
+                randomIndex = stores.lastIndex
             }
             viewModel.setIndex(randomIndex)
         }

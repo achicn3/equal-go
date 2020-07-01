@@ -1,4 +1,4 @@
-package com.local.local.screen.fragment.ui.store
+package com.local.local.screen.login.store
 
 import android.os.Bundle
 import android.text.TextUtils
@@ -13,19 +13,6 @@ import com.local.local.R
 import com.local.local.screen.fragment.dialog.BaseDialogFragment
 
 class StoreLoginFragment : BaseDialogFragment() {
-    interface StoreLoginListener {
-        fun onClickLogin(account: String, pwd: String, accountView: TextInputLayout, pwdView: TextInputLayout)
-    }
-
-    private var storeLoginListener: StoreLoginListener? = null
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (targetFragment != null) {
-            storeLoginListener = targetFragment as StoreLoginListener
-        }
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val btnConfirm = view.findViewById<Button>(R.id.btn_storeLogin_confrim)
@@ -47,7 +34,6 @@ class StoreLoginFragment : BaseDialogFragment() {
                 viewGroupPwd.error = "請輸入密碼"
                 return@setOnClickListener
             }
-            storeLoginListener?.onClickLogin(account, pwd, viewGroupAccount, viewGroupPwd)
         }
 
         btnCancel.setOnClickListener {

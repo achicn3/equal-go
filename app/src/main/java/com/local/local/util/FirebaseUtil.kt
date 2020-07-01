@@ -20,6 +20,7 @@ class FirebaseUtil {
         private const val STORE_NODE = "stores"
         private const val EXCHANGE_NODE = "exchange"
         private const val TRANSACTION_RECORD_INFO = "transaction_record"
+        private const val STORE_EXCHANGE_RECORD_INFO = "store_transaction_record"
         private fun isUniversalPhoneNumber(phoneNumber: String?): Boolean =
                 phoneNumber?.substring(0, 4) == "+886"
 
@@ -27,10 +28,61 @@ class FirebaseUtil {
                 "+886${phoneNumber?.substring(1)}"
 
 
+
+        fun storeRetrieveTransactionInfo(storeInfo: StoreInfo,year: String,month:String,day: String,firebaseCallback: FirebaseCallback){
+            val key = storeInfo.key
+            db.child(STORE_EXCHANGE_RECORD_INFO)
+                    .child(key)
+                    .child(year)
+                    .child(month)
+                    .child(day)
+                    .addListenerForSingleValueEvent(object : ValueEventListener{
+                        override fun onCancelled(p0: DatabaseError) {
+                            p0.toException().printStackTrace()
+                            firebaseCallback.storeRetrieveTransactionRecord(listOf())
+                        }
+
+                        override fun onDataChange(p0: DataSnapshot) {
+                            val records = mutableListOf<TransactionInfo>()
+                            for(data in p0.children){
+                                val record = data.getValue(TransactionInfo::class.java) ?: continue
+                                records.add(record)
+                            }
+                            firebaseCallback.storeRetrieveTransactionRecord(records)
+                        }
+                    })
+        }
+
+        fun userRetrieveTransactionInfo(year: String,month: String,day: String,firebaseCallback: FirebaseCallback){
+            val key = LoginManager.instance.userData?.userKey
+            key?.run {
+                db.child(TRANSACTION_RECORD_INFO)
+                        .child(this)
+                        .child(year)
+                        .child(month)
+                        .child(day)
+                        .addListenerForSingleValueEvent(object : ValueEventListener{
+                            override fun onCancelled(p0: DatabaseError) {
+                                p0.toException().printStackTrace()
+                                firebaseCallback.userRetrieveTransactionRecord(listOf())
+                            }
+
+                            override fun onDataChange(p0: DataSnapshot) {
+                                val records = mutableListOf<TransactionInfo>()
+                                for(data in p0.children){
+                                    val transactionInfo = data.getValue(TransactionInfo::class.java) ?: continue
+                                    records.add(transactionInfo)
+                                }
+                                firebaseCallback.userRetrieveTransactionRecord(records)
+                            }
+                        })
+            }
+        }
+
         /**
          * 使用者兌換物品成功，儲存交易紀錄。
          * */
-        fun addTransactionInfo(transactionInfo: TransactionInfo){
+        fun addTransactionInfo(transactionInfo: TransactionInfo,storeInfo: StoreInfo){
             val key = LoginManager.instance.userData?.userKey
             key?.run {
                 val year= transactionInfo.year
@@ -43,8 +95,14 @@ class FirebaseUtil {
                         .child(day)
                         .push()
                         .setValue(transactionInfo){ p0,p1 ->
-
                         }
+                db.child(STORE_EXCHANGE_RECORD_INFO)
+                        .child(storeInfo.key)
+                        .child(year)
+                        .child(month)
+                        .child(day)
+                        .push()
+                        .setValue(transactionInfo)
             }
         }
 

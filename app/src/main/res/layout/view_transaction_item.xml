@@ -62,5 +62,18 @@
         android:layout_marginTop="12dp"
         android:background="@color/colorGreen"
         android:text="@string/transaction_exchange"
+        android:layout_marginBottom="16dp"
         android:textColor="@android:color/white" />
+
+    <android.widget.Button
+        android:id="@+id/btn_transaction_edit"
+        android:layout_width="150dp"
+        android:visibility="gone"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="12dp"
+        android:background="@color/colorGreen"
+        android:text="@string/edit"
+        android:layout_marginBottom="16dp"
+        android:textColor="@android:color/white"  />
 </LinearLayout>

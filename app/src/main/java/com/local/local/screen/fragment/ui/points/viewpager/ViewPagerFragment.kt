@@ -12,6 +12,7 @@ import com.local.local.R
 import com.local.local.screen.fragment.ui.points.daystatics.HomeFragment
 import com.local.local.screen.fragment.ui.points.detailstatics.StaticsFragment
 import com.local.local.screen.fragment.ui.points.transaction.exchange.TransactionFragment
+import com.local.local.screen.fragment.ui.points.transaction.record.TransactionRecord
 
 class ViewPagerFragment : Fragment() {
     private lateinit var vp: ViewPager2
@@ -25,23 +26,26 @@ class ViewPagerFragment : Fragment() {
         val activity = activity ?: return super.onViewCreated(view, savedInstanceState)
         vp = view.findViewById(R.id.viewGroup_home_viewPager)
         tabs = view.findViewById(R.id.viewGroup_home_tabs)
-        val fragmentList = arrayListOf(HomeFragment(), StaticsFragment(),StaticsFragment("點數"), TransactionFragment())
+        val fragmentList = arrayListOf(HomeFragment(), StaticsFragment(),StaticsFragment("點數"), TransactionFragment(),TransactionRecord())
         val vpAdapter = ViewPagerAdapter(fragmentList, activity.supportFragmentManager, lifecycle)
         vp.adapter = vpAdapter
         vp.setPageTransformer(ZoomOutPageTransformer())
         TabLayoutMediator(tabs, vp, TabLayoutMediator.TabConfigurationStrategy { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = getString(R.string.home_today_statics)
+                    tab.text = getString(R.string.view_pager_title_home_today_statics)
                 }
                 1 -> {
-                    tab.text = getString(R.string.distance_details_statics)
+                    tab.text = getString(R.string.viewpager_title_distance_details_statics)
                 }
                 2 -> {
-                    tab.text = getString(R.string.points_details_statics)
+                    tab.text = getString(R.string.viewpager_title_points_details_statics)
                 }
                 3->{
-                    tab.text = "點數兌換"
+                    tab.text = getString(R.string.viewpager_title_exchange_item)
+                }
+                4 ->{
+                    tab.text = getString(R.string.viewpager_title_exchange_record)
                 }
             }
         }).attach()
