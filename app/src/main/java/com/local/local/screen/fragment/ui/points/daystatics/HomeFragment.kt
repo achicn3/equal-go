@@ -17,7 +17,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 import androidx.lifecycle.Observer
 import com.local.local.body.RecordInfo
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import java.text.DecimalFormat
 
 class HomeFragment : Fragment() {
@@ -58,7 +58,7 @@ class HomeFragment : Fragment() {
         val tvPointsInPb = view.findViewById<TextView>(R.id.tv_main_pointsInPb).apply {
             text = getString(R.string.accumulation_points, 30)
         }
-        val listener = object : LoginManager.LoginListener{
+        val listener = object : UserLoginManager.LoginListener{
             override fun onLogStateChange() {
 
             }
@@ -68,7 +68,7 @@ class HomeFragment : Fragment() {
             }
 
         }
-        LoginManager.instance.addListener(listener)
+        UserLoginManager.instance.addListener(listener)
         val tvDistance = view.findViewById<TextView>(R.id.tv_main_moveDistance)
         val tvDates = view.findViewById<TextView>(R.id.tv_main_date).apply {
             setOnClickListener {

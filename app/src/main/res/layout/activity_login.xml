@@ -118,7 +118,7 @@
         app:layout_constraintTop_toBottomOf="@+id/btn_login_submit" />
 
             <android.widget.Button
-                android:id="@+id/btn_store_login"
+                android:id="@+id/btn_login_storeLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"

@@ -11,23 +11,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efe79870-7c81-4f4b-8ca0-077e7050aa48" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/record/TransactionRecordAdapter.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/record/TransactionRecordViewHolder.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/record/TransactionRecordViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/store/StoreLoginViewModel.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/res/layout/view_user_transaction_record.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/LoginRegisterBody.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/register/store/StoreRegister.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/register/store/StoreRegisterViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/KoinApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/body/TransactionInfo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/body/TransactionInfo.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/callback/FirebaseCallback.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/exchange/TransactionViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/record/TransactionRecord.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/transaction/record/TransactionRecord.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/viewpager/ViewPagerFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/points/viewpager/ViewPagerFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/fragment/ui/store/StoreLoginFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/store/StoreLoginFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/store/StoreLoginViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/screen/login/store/StoreLoginViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/local/local/util/FirebaseUtil.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/layout/view_transaction_item.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/layout/view_transaction_item.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +86,7 @@
   <component name="PropertiesComponent">
     <property name="ApkExportedModule" value="app" />
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="123" />
-    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-06-30T12:36:32.161Z" />
+    <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-07-01T22:22:10.944Z" />
     <property name="ExportApk.ApkPath" value="C:\Users\achic\local\app" />
     <property name="ExportApk.BuildVariants" value="release" />
     <property name="ExportApk.SignV2" value="true" />

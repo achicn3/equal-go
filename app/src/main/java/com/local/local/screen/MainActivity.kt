@@ -1,9 +1,7 @@
 package com.local.local.screen
 
 import android.content.Intent
-import android.location.Location
 import android.os.Bundle
-import android.os.Looper
 import android.util.Log
 import android.view.Menu
 import android.view.View
@@ -18,20 +16,14 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.gms.location.*
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.local.local.R
 import com.local.local.extensions.Extensions.loadCircleImage
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import com.local.local.screen.login.LoginActivity
-import com.local.local.util.FirebaseUtil
 import com.local.local.util.LocationUtil
-import com.local.local.util.PermissionUtil
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.HashMap
 
 
 class MainActivity : AppCompatActivity() {
@@ -66,7 +58,7 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
         navView.findViewById<Button>(R.id.btn_drawer_logout).setOnClickListener {
-            LoginManager.instance.logout()
+            UserLoginManager.instance.logout()
             LocationUtil.removeListener()
             startActivity(Intent(this,LoginActivity::class.java))
         }
@@ -82,21 +74,21 @@ class MainActivity : AppCompatActivity() {
         val ivDrawerAvatar = drawerAccountView.findViewById<ImageView>(R.id.iv_drawer_avatar)
         val tvDrawerName = drawerAccountView.findViewById<TextView>(R.id.tv_drawer_name)
         val tvDrawerPhone = drawerAccountView.findViewById<TextView>(R.id.tv_drawer_cellphone)
-        val loginListener = object : LoginManager.LoginListener{
+        val loginListener = object : UserLoginManager.LoginListener{
             override fun onLogStateChange() {
 
             }
 
             override fun onUserInfoChange() {
                 Log.d("status","user info change should be called.")
-                ivDrawerAvatar.loadCircleImage(this@MainActivity,LoginManager.instance.userData?.avatarUrl)
-                tvDrawerName.text = LoginManager.instance.userData?.name
-                tvDrawerPhone.text = toLocalPhone(LoginManager.instance.userData?.phone)
-                Log.d("status","user info avatar is ${LoginManager.instance.userData?.avatarUrl},name : ${LoginManager.instance.userData?.name}, phone: ${toLocalPhone(LoginManager.instance.userData?.phone)}")
+                ivDrawerAvatar.loadCircleImage(this@MainActivity,UserLoginManager.instance.userData?.avatarUrl)
+                tvDrawerName.text = UserLoginManager.instance.userData?.name
+                tvDrawerPhone.text = toLocalPhone(UserLoginManager.instance.userData?.phone)
+                Log.d("status","user info avatar is ${UserLoginManager.instance.userData?.avatarUrl},name : ${UserLoginManager.instance.userData?.name}, phone: ${toLocalPhone(UserLoginManager.instance.userData?.phone)}")
             }
         }
 
-        LoginManager.instance.addListener(loginListener)
+        UserLoginManager.instance.addListener(loginListener)
         LocationUtil.startLocationUpdates(this)
     }
 

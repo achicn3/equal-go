@@ -13,7 +13,7 @@ import com.local.local.event.EventBroadcaster
 import com.kdanmobile.cloud.event.EventManager
 import com.local.local.body.UserInfo
 import com.local.local.callback.FirebaseCallback
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import com.local.local.util.FirebaseUtil
 import java.util.concurrent.TimeUnit
 
@@ -133,7 +133,7 @@ class LoginViewModel(
                 if (task.isSuccessful) {
                     firebaseUser = task.result?.user
                     FirebaseUtil.getUserInfoByPhone(firebaseUser?.phoneNumber, loginCallback)
-                    LoginManager.instance.loadData(context, firebaseUser)
+                    UserLoginManager.instance.loadData(context, firebaseUser)
                     Event.OnLoginSuc().send()
                 } else {
                     task.exception?.printStackTrace()

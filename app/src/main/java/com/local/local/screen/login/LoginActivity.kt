@@ -16,13 +16,15 @@ import com.local.local.extensions.Extensions.listenTextAndClearError
 import com.local.local.screen.BaseActivity
 import com.local.local.screen.FirstActivity
 import com.local.local.screen.MainActivity
+import com.local.local.screen.store.login.StoreLoginFragment
 import com.local.local.screen.register.RegisterActivity
+import com.local.local.screen.store.StoreMainActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.coroutines.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
-class LoginActivity : BaseActivity() {
+class LoginActivity : BaseActivity(),StoreLoginFragment.Response {
     private val viewModel: LoginViewModel by viewModel() {
         parametersOf(this)
     }
@@ -30,6 +32,10 @@ class LoginActivity : BaseActivity() {
     private fun View.addRipple() = with(TypedValue()) {
         context.theme.resolveAttribute(android.R.attr.selectableItemBackground, this, true)
         setBackgroundResource(resourceId)
+    }
+
+    companion object{
+        private const val StoreLoginTag = "StoreLoginTag"
     }
 
     private fun initSendCodeBtn() {
@@ -135,9 +141,24 @@ class LoginActivity : BaseActivity() {
                 startActivity(this)
             }
         }
+
+        btn_login_storeLogin.setOnClickListener {
+            supportFragmentManager.findFragmentByTag(StoreLoginTag) ?: run{
+                StoreLoginFragment().apply {
+                    showNow(supportFragmentManager, StoreLoginTag)
+                }
+            }
+        }
     }
 
     override fun onBackPressed() {
         startActivity(Intent(this,FirstActivity::class.java))
+    }
+
+    override fun loginResponse(response: Boolean) {
+        if(response)
+            startActivity(Intent(this,StoreMainActivity::class.java))
+        else
+            Toast.makeText(this,"登入失敗",Toast.LENGTH_SHORT).show()
     }
 }

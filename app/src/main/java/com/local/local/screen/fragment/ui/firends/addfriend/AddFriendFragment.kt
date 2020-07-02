@@ -15,13 +15,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.local.local.R
 import com.local.local.extensions.Extensions.loadCircleImage
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import com.local.local.screen.fragment.dialog.BaseDialogFragment
 import kotlinx.android.synthetic.main.fragment_add_friends.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -74,7 +72,7 @@ class AddFriendFragment : BaseDialogFragment() {
             val validate =
                 isPhoneValid(phoneNumber)
             when {
-                phoneNumber.toUniversalPhoneNumber() == LoginManager.instance.userData?.phone -> {
+                phoneNumber.toUniversalPhoneNumber() == UserLoginManager.instance.userData?.phone -> {
                     viewGroupPhone.error = getString(R.string.error_addFriend_input_self_phone)
                 }
                 validate -> {

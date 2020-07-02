@@ -14,7 +14,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.local.local.R
 import com.local.local.extensions.Extensions.locationList
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import com.local.local.util.PermissionRationalActivity
 import com.local.local.util.PermissionUtil
 
@@ -48,8 +48,8 @@ class PublicMap : Fragment(), OnMapReadyCallback {
                             .title(location.name)
             )
         }
-        val nowLan = LoginManager.instance.userData?.latitude ?: 23.06382
-        val nowLng = LoginManager.instance.userData?.longitude ?: 120.41593
+        val nowLan = UserLoginManager.instance.userData?.latitude ?: 23.06382
+        val nowLng = UserLoginManager.instance.userData?.longitude ?: 120.41593
         googleMap?.addMarker(MarkerOptions().position(LatLng(nowLan,nowLng)).title("上一次所在位置"))
         googleMap?.animateCamera(CameraUpdateFactory.newLatLngZoom(LatLng(nowLan,nowLng),18.0f))
     }

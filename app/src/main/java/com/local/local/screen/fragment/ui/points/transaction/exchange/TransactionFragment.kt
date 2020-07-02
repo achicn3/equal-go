@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
 import com.local.local.body.StoreInfo
 import com.local.local.body.StoreItems
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import com.local.local.screen.fragment.dialog.LoadingFragment
 import com.local.local.screen.fragment.ui.points.transaction.success.TransactionSucFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -31,7 +31,7 @@ class TransactionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val context = context ?: return super.onViewCreated(view, savedInstanceState)
-        val userData = LoginManager.instance.userData
+        val userData = UserLoginManager.instance.userData
                 ?: return super.onViewCreated(view, savedInstanceState)
         val activity = activity ?: return super.onViewCreated(view, savedInstanceState)
         val tvStores = view.findViewById<TextView>(R.id.tv_transaction_store)

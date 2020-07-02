@@ -4,7 +4,7 @@ import android.content.Context
 import android.location.Location
 import android.os.Looper
 import com.google.android.gms.location.*
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -44,7 +44,7 @@ class LocationUtil {
                         FirebaseUtil.updateRecord(date,floatArray[0],0)
                     }
                 }
-                LoginManager.instance.userData?.updateLocation(newLocation)
+                UserLoginManager.instance.userData?.updateLocation(newLocation)
                 FirebaseUtil.updateUserInfo()
                 newLocation
             }

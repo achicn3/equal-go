@@ -51,6 +51,11 @@
             android:screenOrientation="nosensor"/>
         <activity android:name=".util.PermissionRationalActivity"
             android:screenOrientation="nosensor"/>
+        <activity android:name=".screen.store.StoreMainActivity"
+            android:screenOrientation="nosensor" />
+        <activity android:name=".screen.admin.AdminActivity"
+            android:screenOrientation="nosensor"
+            />
         <activity android:name=".screen.FirstActivity"
             android:screenOrientation="nosensor"
             android:configChanges="keyboardHidden|orientation|screenSize">

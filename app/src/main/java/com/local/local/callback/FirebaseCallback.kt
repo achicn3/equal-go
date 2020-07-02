@@ -21,4 +21,9 @@ open class FirebaseCallback {
     open fun updateUserInfoResponse(isSuccess : Boolean){}
     open fun userRetrieveTransactionRecord(transactionInfo: List<TransactionInfo>){}
     open fun storeRetrieveTransactionRecord(transactionInfo : List<TransactionInfo>){}
+    open fun storeCheckRegistered(registered: Boolean){}
+    open fun storeSendRegisterInfoResponse(response: Boolean){}
+    open fun storeLoginResponse(response: Boolean){}
+    open fun storeCheckWaitingConfirm(response: Boolean){}
+    open fun adminLoginResponse(response: Boolean){}
 }

@@ -8,15 +8,15 @@ import com.local.local.body.UserInfo
 import com.local.local.callback.FirebaseCallback
 import com.local.local.util.FirebaseUtil
 
-class LoginManager private constructor() {
+class UserLoginManager private constructor() {
     companion object {
-        val instance: LoginManager by lazy { Holder.INSTANCE }
+        val instance: UserLoginManager by lazy { Holder.INSTANCE }
         private val EXPIRE_SP = "userExpireSharePreference.pref"
         private val EXPIRE_TIME = "LoginExpireTime"
     }
 
     object Holder {
-        val INSTANCE = LoginManager()
+        val INSTANCE = UserLoginManager()
     }
 
     var firebaseUser: FirebaseUser? = null

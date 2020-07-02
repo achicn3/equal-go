@@ -1,7 +1,6 @@
 package com.local.local.screen.fragment.ui.profile
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
@@ -30,12 +29,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
 import com.local.local.R
 import com.local.local.extensions.Extensions.loadCircleImage
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import com.local.local.screen.fragment.dialog.BaseDialogFragment
 import com.local.local.util.PermissionUtil
-import kotlinx.android.synthetic.main.fragment_profileinfo.*
 import kotlinx.android.synthetic.main.fragment_profileinfo.view.*
-import kotlinx.android.synthetic.main.fragment_profileinfo.view.iv_profileInfo_userAvatar
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
 import java.io.FileOutputStream
@@ -215,11 +212,11 @@ class ProfileInfoFragment : BaseDialogFragment() {
             }
         }
         val userAvatar = view.findViewById<ImageView>(R.id.iv_profileInfo_userAvatar).apply{
-            loadCircleImage(context,LoginManager.instance.userData?.avatarUrl)
+            loadCircleImage(context,UserLoginManager.instance.userData?.avatarUrl)
         }
 
         val etName = view.findViewById<TextInputEditText>(R.id.et_profileInfo_displayName).apply {
-            setText(LoginManager.instance.userData?.name)
+            setText(UserLoginManager.instance.userData?.name)
         }
 
         view.findViewById<RecyclerView>(R.id.rv_profileInfo_defaultIcon).apply {

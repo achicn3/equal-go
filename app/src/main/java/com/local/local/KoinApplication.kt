@@ -12,7 +12,9 @@ import com.local.local.screen.fragment.ui.points.transaction.exchange.Transactio
 import com.local.local.screen.fragment.ui.points.transaction.record.TransactionRecordViewModel
 import com.local.local.screen.fragment.ui.profile.ProfileInfoViewModel
 import com.local.local.screen.login.LoginViewModel
+import com.local.local.screen.store.login.StoreLoginViewModel
 import com.local.local.screen.register.RegisterViewModel
+import com.local.local.screen.store.register.StoreRegisterViewModel
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.startKoin
@@ -23,6 +25,12 @@ class KoinApplication : MultiDexApplication() {
     val m: Module = module {
         viewModel { (activity: Activity) -> LoginViewModel(get(),activity) }
         viewModel { (activity: Activity) -> RegisterViewModel(get(), activity) }
+        viewModel { (activity: Activity) ->
+            StoreLoginViewModel(
+                activity
+            )
+        }
+        viewModel { StoreRegisterViewModel() }
         viewModel { AddFriendViewModel() }
         viewModel { FriendListViewModel(get()) }
         viewModel { ProfileInfoViewModel() }

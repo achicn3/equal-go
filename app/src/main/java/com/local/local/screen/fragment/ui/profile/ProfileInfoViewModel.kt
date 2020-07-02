@@ -7,7 +7,7 @@ import androidx.lifecycle.ViewModel
 import com.google.gson.GsonBuilder
 import com.local.local.callback.FirebaseCallback
 import com.local.local.extensions.Extensions.notifyObserver
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import com.local.local.retrofit.ImageUploadServiceHolder
 import com.local.local.util.FirebaseUtil
 import kotlinx.coroutines.Dispatchers
@@ -37,14 +37,14 @@ class ProfileInfoViewModel : ViewModel() {
     fun onClickSave(userClickPosition: Int, name: String) {
         var changed = false
         if (!TextUtils.isEmpty(name)) {
-            LoginManager.instance.userData?.name = name
-            LoginManager.instance.alertUserInfoChanged()
+            UserLoginManager.instance.userData?.name = name
+            UserLoginManager.instance.alertUserInfoChanged()
             FirebaseUtil.updateUserInfo()
         }
         if (userClickPosition != -1) {
             val newUrl = defaultAvatarList.value?.get(userClickPosition) ?: return
-            LoginManager.instance.userData?.avatarUrl = newUrl
-            LoginManager.instance.alertUserInfoChanged()
+            UserLoginManager.instance.userData?.avatarUrl = newUrl
+            UserLoginManager.instance.alertUserInfoChanged()
             FirebaseUtil.updateUserInfo()
         } else if (uploadFile != null) {
             GlobalScope.launch(Dispatchers.IO) {
@@ -67,10 +67,10 @@ class ProfileInfoViewModel : ViewModel() {
                                     .toJson(errorBody)}"
                     )
                     if (response.isSuccessful) {
-                        LoginManager.instance.userData?.avatarUrl = response.body()?.data?.link
+                        UserLoginManager.instance.userData?.avatarUrl = response.body()?.data?.link
                                 ?: return@withContext
                         changed = true
-                        LoginManager.instance.alertUserInfoChanged()
+                        UserLoginManager.instance.alertUserInfoChanged()
                         FirebaseUtil.updateUserInfo()
                     }
                 }

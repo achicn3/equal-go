@@ -7,7 +7,7 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.local.local.body.*
 import com.local.local.callback.FirebaseCallback
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 
 @Suppress("NAME_SHADOWING")
 class FirebaseUtil {
@@ -17,17 +17,114 @@ class FirebaseUtil {
         private const val DISTANCE_NODE = "distance"
         private const val RECORD_NODE = "record"
         private const val FRIENDS_NODE = "friends"
-        private const val STORE_NODE = "stores"
-        private const val EXCHANGE_NODE = "exchange"
-        private const val TRANSACTION_RECORD_INFO = "transaction_record"
-        private const val STORE_EXCHANGE_RECORD_INFO = "store_transaction_record"
+        private const val STORE_NODE = "stores" //使用者用來拿商店資訊的
+        private const val EXCHANGE_NODE = "exchange"    //儲存商家的商品節點
+        private const val TRANSACTION_RECORD_INFO = "transaction_record" //使用者儲存交易紀錄的節點
+        private const val STORE_EXCHANGE_RECORD_INFO = "store_transaction_record"   //商家用來抓取被兌換商品的節點
+        private const val STORE_REGISTER_SEND_TO_ADMIN = "store_register_wait_verification" //等待審核的商家節點
+        private const val STORE_USER_NODE = "store_user"    //儲存商店使用者的資訊節點
+        private const val ADMIN_USER_NODE = "adminUserNode"
         private fun isUniversalPhoneNumber(phoneNumber: String?): Boolean =
                 phoneNumber?.substring(0, 4) == "+886"
 
         private fun toUniversalPhoneNumber(phoneNumber: String?): String =
                 "+886${phoneNumber?.substring(1)}"
 
+        fun adminConfirmStoreInfo(storeInfo: StoreInfo){
+            db.child(STORE_REGISTER_SEND_TO_ADMIN).child(storeInfo.key).apply {
+                addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onCancelled(p0: DatabaseError) {
+                        p0.toException().printStackTrace()
+                    }
 
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val data = p0.getValue(LoginRegisterBody::class.java)
+                        db.child(STORE_NODE).child(storeInfo.key).setValue(storeInfo)
+                        db.child(STORE_NODE).child(storeInfo.key).setValue(data)
+                        removeValue()
+                    }
+
+                })
+            }
+        }
+
+        fun storeCheckIfWaitingConfirm(accountID: String,firebaseCallback: FirebaseCallback){
+            db.child(STORE_REGISTER_SEND_TO_ADMIN).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    Log.d("Status","errreor is herererewrwerq weqweqwe")
+                    firebaseCallback.storeCheckWaitingConfirm(true)
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    var isWaiting = false
+                    for(data in p0.children){
+                        val value = data.getValue(LoginRegisterBody::class.java) ?: continue
+                        if(value.accountID == accountID){
+                            Log.d("status","this data chnge is called")
+                            isWaiting = true
+                            break
+                        }
+                    }
+                    firebaseCallback.storeCheckWaitingConfirm(isWaiting)
+                }
+
+            })
+        }
+
+        fun storeLogin(accountID: String,pwd: String,firebaseCallback: FirebaseCallback){
+            db.child(STORE_USER_NODE).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    firebaseCallback.storeLoginResponse(false)
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    var response = false
+                    for(ch in p0.children){
+                        val data = ch.getValue(LoginRegisterBody::class.java) ?: continue
+                        if(data.accountID == accountID && data.pwd == pwd){
+                            response = true
+                            break
+                        }
+                    }
+                    firebaseCallback.storeLoginResponse(response)
+                }
+
+            })
+        }
+
+        fun storeCheckIfExisted(accountID: String, firebaseCallback: FirebaseCallback){
+            db.child(STORE_USER_NODE).addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    firebaseCallback.storeCheckRegistered(true)
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    var existed = false
+                    for(children in p0.children){
+                        val data = children.getValue(LoginRegisterBody::class.java) ?: continue
+                        if(data.accountID == accountID){
+                            existed = true
+                            break
+                        }
+                    }
+                    firebaseCallback.storeCheckRegistered(existed)
+                }
+            })
+        }
+
+        fun getKey() : String? {
+            return db.child("dummy").push().key
+        }
+
+        fun storeSendRegisterInfoToAdmin(accountID: String,pwd: String,storeInfo: StoreInfo,firebaseCallback: FirebaseCallback){
+            val account = LoginRegisterBody(accountID, pwd,storeInfo)
+            db.child(STORE_REGISTER_SEND_TO_ADMIN).child(storeInfo.key).setValue(account){ p0,_ ->
+                firebaseCallback.storeSendRegisterInfoResponse(p0 == null)
+            }
+        }
 
         fun storeRetrieveTransactionInfo(storeInfo: StoreInfo,year: String,month:String,day: String,firebaseCallback: FirebaseCallback){
             val key = storeInfo.key
@@ -54,7 +151,7 @@ class FirebaseUtil {
         }
 
         fun userRetrieveTransactionInfo(year: String,month: String,day: String,firebaseCallback: FirebaseCallback){
-            val key = LoginManager.instance.userData?.userKey
+            val key = UserLoginManager.instance.userData?.userKey
             key?.run {
                 db.child(TRANSACTION_RECORD_INFO)
                         .child(this)
@@ -83,7 +180,7 @@ class FirebaseUtil {
          * 使用者兌換物品成功，儲存交易紀錄。
          * */
         fun addTransactionInfo(transactionInfo: TransactionInfo,storeInfo: StoreInfo){
-            val key = LoginManager.instance.userData?.userKey
+            val key = UserLoginManager.instance.userData?.userKey
             key?.run {
                 val year= transactionInfo.year
                 val month = transactionInfo.month
@@ -147,7 +244,7 @@ class FirebaseUtil {
         }
 
         fun retrieveStatics(year: Int,Month:Int,firebaseCallback: FirebaseCallback){
-            val key = LoginManager.instance.userData?.userKey
+            val key = UserLoginManager.instance.userData?.userKey
             val monthStr = if(Month<10) "0$Month" else "$Month"
             key?.run {
                 db.child(RECORD_NODE).child(this).child(year.toString()).child(monthStr).addListenerForSingleValueEvent(object: ValueEventListener{
@@ -172,7 +269,7 @@ class FirebaseUtil {
         }
 
         fun retrieveRecord(date: String, firebaseCallback: FirebaseCallback) {
-            val key = LoginManager.instance.userData?.userKey
+            val key = UserLoginManager.instance.userData?.userKey
             val dateFormat = date.split("/")
             Log.d("status","date format : $dateFormat key : $key")
             key?.run {
@@ -192,7 +289,7 @@ class FirebaseUtil {
         }
 
         fun updateRecord(date: String, distance: Float, points: Int) {
-            val key = LoginManager.instance.userData?.userKey
+            val key = UserLoginManager.instance.userData?.userKey
             val dateFormat = date.split("/")
             key?.run {
                 db.child(RECORD_NODE).child(key).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2]).apply {
@@ -213,10 +310,10 @@ class FirebaseUtil {
         }
 
         fun updateUserInfo(firebaseCallback: FirebaseCallback? = null) {
-            val key = LoginManager.instance.userData?.userKey
+            val key = UserLoginManager.instance.userData?.userKey
             key?.run {
                 db.child(USER_NODE).child(this).setValue(
-                        LoginManager.instance.userData
+                        UserLoginManager.instance.userData
                 ) { p0, _ ->
                     firebaseCallback?.updateUserInfoResponse(p0 == null)
                 }
@@ -243,7 +340,7 @@ class FirebaseUtil {
         }
 
         fun retrieveFriendList(firebaseCallback: FirebaseCallback){
-            val key = LoginManager.instance.userData?.userKey ?: return
+            val key = UserLoginManager.instance.userData?.userKey ?: return
             db.child(FRIENDS_NODE).child(key).addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
@@ -284,7 +381,7 @@ class FirebaseUtil {
         }
 
         fun checkFriendsAlreadyAdd(userInfo: UserInfo?, callback: FirebaseCallback){
-            val userKey = LoginManager.instance.userData?.userKey
+            val userKey = UserLoginManager.instance.userData?.userKey
             userKey?.let {
                 run{
                     db.child(FRIENDS_NODE).child(it).orderByChild("phone").equalTo(userInfo?.phone).ref
@@ -314,7 +411,7 @@ class FirebaseUtil {
         }
 
         fun addFriends(userInfo: UserInfo?, callback: FirebaseCallback) {
-            val userKey = LoginManager.instance.userData?.userKey
+            val userKey = UserLoginManager.instance.userData?.userKey
             userKey?.let {
                 db.child(FRIENDS_NODE).child(it).push().setValue(userInfo) { p0, _ ->
                     if (p0 != null) {

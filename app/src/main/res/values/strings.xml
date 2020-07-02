@@ -89,4 +89,9 @@
     <string name="transaction_record_date">兌換日期:%s年%s月 %s</string>
     <string name="transaction_record_left_points">當時剩餘點數\n%d</string>
     <string name="edit">編輯</string>
+    <string name="store_register_title">商家註冊</string>
+    <string name="et_store_name_hint">商家名稱</string>
+    <string name="register">註冊</string>
+    <string name="email">信箱</string>
+    <string name="pwd">密碼</string>
 </resources>

@@ -10,7 +10,7 @@ import com.local.local.body.StoreItems
 import com.local.local.body.TransactionInfo
 import com.local.local.callback.FirebaseCallback
 import com.local.local.extensions.Extensions.notifyObserver
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 import com.local.local.util.FirebaseUtil
 import java.text.SimpleDateFormat
 import java.util.*
@@ -91,7 +91,7 @@ class TransactionViewModel(private val eventManager: EventManager<Event> = Event
         val size = storeItems.value?.size ?: 0
         if (position >= size) return
         Event.OnUpdateStart().send()
-        val leftPoints = LoginManager.instance.userData?.updatePoints(-needPoints) ?: return
+        val leftPoints = UserLoginManager.instance.userData?.updatePoints(-needPoints) ?: return
         val date = Calendar.getInstance(Locale.TAIWAN).run {
             SimpleDateFormat("YYYY/MM/dd", Locale.TAIWAN).format(this.time).split("/")
         }

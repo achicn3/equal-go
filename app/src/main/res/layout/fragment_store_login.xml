@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/viewGroup_storeLogin_account"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -15,9 +15,7 @@
         android:layout_marginEnd="16dp"
         app:boxStrokeColor="@color/colorGreen"
         app:errorEnabled="true"
-        app:boxStrokeWidth="4dp"
         app:hintTextColor="@color/colorGreen"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -39,7 +37,6 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:boxStrokeColor="@color/colorGreen"
-        app:boxStrokeWidth="4dp"
         app:endIconMode="password_toggle"
         app:errorEnabled="true"
         app:hintTextColor="@color/colorGreen"
@@ -61,9 +58,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="17dp"
+        android:background="@color/colorGreen"
         android:text="@string/cancel"
         android:textColor="@android:color/white"
-        android:background="@color/colorGreen"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/btn_storeLogin_confrim"
         app:layout_constraintEnd_toStartOf="@+id/btn_storeLogin_confrim"
         app:layout_constraintTop_toTopOf="@+id/btn_storeLogin_confrim"
@@ -74,9 +72,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
-        android:textColor="@android:color/white"
         android:background="@color/colorGreen"
         android:text="@string/login_submit"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/viewGroup_storeLogin_pwd"
+        app:layout_constraintTop_toBottomOf="@+id/viewGroup_storeLogin_pwd" />
+
+    <android.widget.Button
+        android:id="@+id/btn_storeLogin_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:layout_marginBottom="16dp"
+        android:background="@color/colorGreen"
+        android:text="@string/register"
+        android:textColor="@android:color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/viewGroup_storeLogin_pwd"
         app:layout_constraintTop_toBottomOf="@+id/viewGroup_storeLogin_pwd" />
 </androidx.constraintlayout.widget.ConstraintLayout>

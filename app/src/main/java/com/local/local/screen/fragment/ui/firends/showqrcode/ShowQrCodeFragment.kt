@@ -5,13 +5,12 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.Window
-import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.DialogFragment
 import com.google.zxing.BarcodeFormat
 import com.journeyapps.barcodescanner.BarcodeEncoder
 import com.local.local.R
-import com.local.local.manager.LoginManager
+import com.local.local.manager.UserLoginManager
 
 class ShowQrCodeFragment() : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
@@ -22,7 +21,7 @@ class ShowQrCodeFragment() : DialogFragment() {
         v.findViewById<ImageView>(R.id.iv_showQrCode_close).setOnClickListener {
             dismiss()
         }
-        val key = LoginManager.instance.userData?.userKey ?: return super.onCreateDialog(
+        val key = UserLoginManager.instance.userData?.userKey ?: return super.onCreateDialog(
             savedInstanceState
         )
         val encoder = BarcodeEncoder()
