@@ -34,6 +34,7 @@ class TransactionAdapter(private val context: Context,
         with(transItems[position]) {
             holder.ivItems.loadImage(context, imgUrl)
             holder.tvDescription.text = description
+            holder.tvNeedPoints.text = context.getString(R.string.needPoints,needPoints)
             holder.btnConfirm.setOnClickListener {
                 clickListener?.onClickConfirm(position)
             }

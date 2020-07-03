@@ -12,4 +12,5 @@ class TransactionItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemVi
     val ivItems : ImageView = itemView.findViewById(R.id.iv_transaction_item)
     val tvDescription: TextView = itemView.findViewById(R.id.tv_transaction_description)
     val btnConfirm : Button = itemView.findViewById(R.id.btn_transaction_confirm)
+    val tvNeedPoints : TextView = itemView.findViewById(R.id.tv_transaction_needPoints)
 }

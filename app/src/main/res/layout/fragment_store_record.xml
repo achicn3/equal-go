@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:id="@+id/viewGroup_storeRecord_date"
+        android:layout_marginTop="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/iv_storeRecord_left"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:rotation="180"
+            android:tint="@color/colorGreen"
+            app:srcCompat="@drawable/ic_arrow"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/tv_storeRecord_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            tools:text="2020年06月" />
+
+        <ImageView
+            android:id="@+id/iv_storeRecord_right"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_weight="1"
+            android:tint="@color/colorGreen"
+            app:srcCompat="@drawable/ic_arrow"
+            tools:ignore="VectorDrawableCompat" />
+    </LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginTop="8dp"
+        android:id="@+id/rv_storeRecord_items"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+</LinearLayout>

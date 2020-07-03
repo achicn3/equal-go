@@ -17,6 +17,9 @@ class StoreLoginViewModel(private val activity: Activity, private val eventManag
         class OnLoginFinish() : Event()
         class OnLoginSuc() : Event()
         class OnLoginFail() : Event()
+        class OnAccountNotExist: Event()
+        class OnAdminLoginSuc() : Event()
+        class OnAdminLoginFail() : Event()
     }
 
     private val auth = Firebase.auth.apply {
@@ -35,17 +38,10 @@ class StoreLoginViewModel(private val activity: Activity, private val eventManag
                 .send()
             when(registered){
                 true -> {
-                    auth.signInWithEmailAndPassword(email,pwd).addOnCompleteListener(activity){ task ->
-                        if(task.isSuccessful){
-                            FirebaseUtil.storeLogin(email,pwd,this)
-                        }else{
-                            Event.OnLoginFail()
-                                .send()
-                        }
-                    }
+                    FirebaseUtil.storeLogin(email,pwd,this)
                 }
                 false ->{
-                    Event.OnLoginFail()
+                    Event.OnAccountNotExist()
                         .send()
                 }
             }
@@ -57,6 +53,15 @@ class StoreLoginViewModel(private val activity: Activity, private val eventManag
                 false -> Event.OnLoginFail().send()
             }
         }
+
+        override fun adminLoginResponse(response: Boolean) {
+            Event.OnLoginFinish().send()
+            when(response){
+                true -> Event.OnAdminLoginSuc().send()
+                false -> Event.OnAdminLoginFail().send()
+            }
+        }
+
     }
 
     fun onClickLogin(account: String, pwd: String) {
@@ -64,6 +69,9 @@ class StoreLoginViewModel(private val activity: Activity, private val eventManag
             .send()
         email = account
         this.pwd = pwd
-        FirebaseUtil.storeCheckIfExisted(account,firebaseCallback)
+        if(email != "boliagogo@gmail.com")
+            FirebaseUtil.storeCheckIfExisted(account,firebaseCallback)
+        else
+            FirebaseUtil.adminLogin(account,pwd, firebaseCallback)
     }
 }

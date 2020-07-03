@@ -23,15 +23,77 @@ class FirebaseUtil {
         private const val STORE_EXCHANGE_RECORD_INFO = "store_transaction_record"   //商家用來抓取被兌換商品的節點
         private const val STORE_REGISTER_SEND_TO_ADMIN = "store_register_wait_verification" //等待審核的商家節點
         private const val STORE_USER_NODE = "store_user"    //儲存商店使用者的資訊節點
-        private const val ADMIN_USER_NODE = "adminUserNode"
+        private const val ADMIN_USER_NODE = "admin"
         private fun isUniversalPhoneNumber(phoneNumber: String?): Boolean =
                 phoneNumber?.substring(0, 4) == "+886"
 
         private fun toUniversalPhoneNumber(phoneNumber: String?): String =
                 "+886${phoneNumber?.substring(1)}"
 
-        fun adminConfirmStoreInfo(storeInfo: StoreInfo){
-            db.child(STORE_REGISTER_SEND_TO_ADMIN).child(storeInfo.key).apply {
+        fun adminLogin(accountID: String, pwd: String, firebaseCallback: FirebaseCallback) {
+            db.child(ADMIN_USER_NODE).addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    firebaseCallback.adminLoginResponse(false)
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    var suc = false
+                    for (data in p0.children) {
+                        val value = data.getValue(AdminAccountBody::class.java) ?: continue
+                        if (value.email == accountID && value.password == pwd) {
+                            suc = true
+                            break
+                        }
+                    }
+                    firebaseCallback.adminLoginResponse(suc)
+                }
+
+            })
+        }
+
+        fun adminRetrieveUserInfo(firebaseCallback: FirebaseCallback) {
+            db.child(USER_NODE).addValueEventListener(object : ValueEventListener {
+                override fun onCancelled(p0: DatabaseError) {
+                    p0.toException().printStackTrace()
+                    firebaseCallback.adminRetrieveUserList(arrayListOf())
+                }
+
+                override fun onDataChange(p0: DataSnapshot) {
+                    val userList = arrayListOf<UserInfo>()
+                    for (data in p0.children) {
+                        val userInfo = data.getValue(UserInfo::class.java) ?: continue
+                        userList.add(userInfo)
+                    }
+                    firebaseCallback.adminRetrieveUserList(userList)
+                }
+
+            })
+        }
+
+        fun adminRetrieveVerificationStore(firebaseCallback: FirebaseCallback) {
+            db.child(STORE_REGISTER_SEND_TO_ADMIN)
+                .addValueEventListener(object : ValueEventListener {
+                    override fun onCancelled(p0: DatabaseError) {
+                        p0.toException().printStackTrace()
+                        firebaseCallback.adminRetrieveVerificationStore(arrayListOf())
+                    }
+
+                    override fun onDataChange(p0: DataSnapshot) {
+                        val storeList = arrayListOf<LoginRegisterBody>()
+                        for (ch in p0.children) {
+                            val data = ch.getValue(LoginRegisterBody::class.java) ?: continue
+                            storeList.add(data)
+                        }
+                        firebaseCallback.adminRetrieveVerificationStore(storeList)
+                    }
+
+                })
+        }
+
+        fun adminConfirmStoreInfo(store: LoginRegisterBody) {
+            val key = store.storeInfo?.key ?: return
+            db.child(STORE_REGISTER_SEND_TO_ADMIN).child(key).apply {
                 addListenerForSingleValueEvent(object : ValueEventListener{
                     override fun onCancelled(p0: DatabaseError) {
                         p0.toException().printStackTrace()
@@ -39,8 +101,8 @@ class FirebaseUtil {
 
                     override fun onDataChange(p0: DataSnapshot) {
                         val data = p0.getValue(LoginRegisterBody::class.java)
-                        db.child(STORE_NODE).child(storeInfo.key).setValue(storeInfo)
-                        db.child(STORE_NODE).child(storeInfo.key).setValue(data)
+                        db.child(STORE_NODE).child(key).setValue(store.storeInfo)
+                        db.child(STORE_USER_NODE).child(key).setValue(data)
                         removeValue()
                     }
 
@@ -48,11 +110,29 @@ class FirebaseUtil {
             }
         }
 
+        fun storeAddCoupon(
+            storeInfo: StoreInfo,
+            storeItems: StoreItems,
+            key: String? = null,
+            firebaseCallback: FirebaseCallback
+        ) {
+            if (key == null)
+                db.child(EXCHANGE_NODE).child(storeInfo.key).child(storeItems.storeItemsKey)
+                    .setValue(storeItems) { p0, p1 ->
+                        firebaseCallback.storeAddItemsResponse(p0 == null)
+                    }
+            else{
+                db.child(EXCHANGE_NODE).child(storeInfo.key).child(key)
+                    .setValue(storeItems) { p0, p1 ->
+                        firebaseCallback.storeAddItemsResponse(p0 == null)
+                    }
+            }
+        }
+
         fun storeCheckIfWaitingConfirm(accountID: String,firebaseCallback: FirebaseCallback){
             db.child(STORE_REGISTER_SEND_TO_ADMIN).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
-                    Log.d("Status","errreor is herererewrwerq weqweqwe")
                     firebaseCallback.storeCheckWaitingConfirm(true)
                 }
 
@@ -61,7 +141,6 @@ class FirebaseUtil {
                     for(data in p0.children){
                         val value = data.getValue(LoginRegisterBody::class.java) ?: continue
                         if(value.accountID == accountID){
-                            Log.d("status","this data chnge is called")
                             isWaiting = true
                             break
                         }
@@ -98,7 +177,7 @@ class FirebaseUtil {
             db.child(STORE_USER_NODE).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
-                    firebaseCallback.storeCheckRegistered(true)
+                    firebaseCallback.storeCheckRegistered(false)
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
@@ -126,24 +205,32 @@ class FirebaseUtil {
             }
         }
 
-        fun storeRetrieveTransactionInfo(storeInfo: StoreInfo,year: String,month:String,day: String,firebaseCallback: FirebaseCallback){
+        fun storeRetrieveTransactionInfo(
+            storeInfo: StoreInfo,
+            year: String,
+            month: String,
+            firebaseCallback: FirebaseCallback
+        ) {
             val key = storeInfo.key
             db.child(STORE_EXCHANGE_RECORD_INFO)
                     .child(key)
                     .child(year)
                     .child(month)
-                    .child(day)
-                    .addListenerForSingleValueEvent(object : ValueEventListener{
+                .addValueEventListener(object : ValueEventListener {
                         override fun onCancelled(p0: DatabaseError) {
                             p0.toException().printStackTrace()
                             firebaseCallback.storeRetrieveTransactionRecord(listOf())
                         }
 
                         override fun onDataChange(p0: DataSnapshot) {
-                            val records = mutableListOf<TransactionInfo>()
+                            val records = mutableListOf<StoreTransactionRecordBody>()
                             for(data in p0.children){
-                                val record = data.getValue(TransactionInfo::class.java) ?: continue
-                                records.add(record)
+                                for (items in data.children) {
+                                    val record =
+                                        items.getValue(StoreTransactionRecordBody::class.java)
+                                            ?: continue
+                                    records.add(record)
+                                }
                             }
                             firebaseCallback.storeRetrieveTransactionRecord(records)
                         }
@@ -180,7 +267,16 @@ class FirebaseUtil {
          * 使用者兌換物品成功，儲存交易紀錄。
          * */
         fun addTransactionInfo(transactionInfo: TransactionInfo,storeInfo: StoreInfo){
-            val key = UserLoginManager.instance.userData?.userKey
+            val userData = UserLoginManager.instance.userData ?: return
+            val userName = userData.name ?: return
+            val userPhone = userData.phone ?: return
+            val transactionRecordBody = StoreTransactionRecordBody(
+                userData.avatarUrl,
+                userName,
+                userPhone,
+                transactionInfo.productDescription
+            )
+            val key = userData.userKey
             key?.run {
                 val year= transactionInfo.year
                 val month = transactionInfo.month
@@ -199,7 +295,7 @@ class FirebaseUtil {
                         .child(month)
                         .child(day)
                         .push()
-                        .setValue(transactionInfo)
+                    .setValue(transactionRecordBody)
             }
         }
 
@@ -224,7 +320,8 @@ class FirebaseUtil {
 
         fun retrieveStoreItems(storeInfo: StoreInfo, firebaseCallback: FirebaseCallback){
             val storeKey = storeInfo.key
-            db.child(EXCHANGE_NODE).child(storeKey).addListenerForSingleValueEvent(object : ValueEventListener{
+            db.child(EXCHANGE_NODE).child(storeKey)
+                .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
                     firebaseCallback.retrieveStoreItems(listOf())
@@ -234,8 +331,6 @@ class FirebaseUtil {
                     val itemsList = arrayListOf<StoreItems>()
                     for(data in p0.children){
                         val items = data.getValue(StoreItems::class.java) ?: continue
-                        items.storeName = storeInfo.storeName
-                        items.storeType = storeInfo.storeType
                         itemsList.add(items)
                     }
                     firebaseCallback.retrieveStoreItems(itemsList)

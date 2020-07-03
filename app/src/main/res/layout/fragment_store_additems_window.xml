@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/viewGroup_addItems_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="8dp"
+        android:background="@drawable/style_transaction_item_edge"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/iv_addItems_img"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:srcCompat="@drawable/ic_local_hospital_24px"
+            tools:ignore="VectorDrawableCompat" />
+
+        <TextView
+            android:id="@+id/tv_addItems_img"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="12dp"
+            android:gravity="center"
+            android:text="@string/click_here_to_upload_img"
+            android:textColor="@color/colorDarkBlue"
+            android:textSize="32sp" />
+    </LinearLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/viewGroup_addItems_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
+        app:boxStrokeColor="@color/colorGreen"
+        app:hintTextColor="@color/colorGreen">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_addItems_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/coupon_name"
+            android:textCursorDrawable="@color/colorGreen" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/viewGroup_addItems_points"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
+        app:boxStrokeColor="@color/colorGreen"
+        app:errorEnabled="true"
+        app:hintTextColor="@color/colorGreen">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_addItems_points"
+            android:layout_width="match_parent"
+            android:inputType="number"
+            android:layout_height="wrap_content"
+            android:hint="@string/need_points"
+            android:textCursorDrawable="@color/colorGreen" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <android.widget.Button
+        android:id="@+id/btn_addItems_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="12dp"
+        android:background="@color/colorGreen"
+        android:gravity="center"
+        android:text="@string/confirm"
+        android:layout_marginBottom="12dp"
+        android:textColor="@color/gmm_white"
+        android:textSize="32sp" />
+
+</LinearLayout>

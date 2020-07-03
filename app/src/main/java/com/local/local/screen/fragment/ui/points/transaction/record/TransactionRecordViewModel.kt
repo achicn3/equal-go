@@ -16,7 +16,6 @@ class TransactionRecordViewModel : ViewModel() {
     val record = MutableLiveData(mutableListOf<TransactionInfo>())
     private val firebaseCallback = object : FirebaseCallback() {
         override fun userRetrieveTransactionRecord(transactionInfo: List<TransactionInfo>) {
-            super.storeRetrieveTransactionRecord(transactionInfo)
             record.value?.clear()
             record.value?.addAll(transactionInfo)
             Log.d("status","in retreieve record : $record")

@@ -54,6 +54,16 @@
         android:textSize="20sp"
         tools:ignore="HardcodedText,RtlHardcoded" />
 
+    <TextView
+        android:id="@+id/tv_transaction_needPoints"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textColor="@color/colorDarkBlue"
+        android:textSize="32sp"
+        android:layout_marginTop="8dp"
+        tools:text="30點" />
+
     <android.widget.Button
         android:id="@+id/btn_transaction_confirm"
         android:layout_width="150dp"

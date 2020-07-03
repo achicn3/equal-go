@@ -88,10 +88,16 @@
     <string name="transaction_record_storeName">兌換商家: %s</string>
     <string name="transaction_record_date">兌換日期:%s年%s月 %s</string>
     <string name="transaction_record_left_points">當時剩餘點數\n%d</string>
+    <string name="needPoints">%d 點</string>
+    <string name="admin_userList_left_points">剩餘點數\n%d</string>
     <string name="edit">編輯</string>
     <string name="store_register_title">商家註冊</string>
     <string name="et_store_name_hint">商家名稱</string>
     <string name="register">註冊</string>
     <string name="email">信箱</string>
     <string name="pwd">密碼</string>
+    <string name="plus_sign">+</string>
+    <string name="click_here_to_upload_img">點擊此處上傳/選取\n優惠券照片</string>
+    <string name="coupon_name">優惠券名稱</string>
+    <string name="need_points">所需點數</string>
 </resources>

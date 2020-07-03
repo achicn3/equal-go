@@ -77,8 +77,8 @@ class UserLoginManager private constructor() {
         firebaseUser = null
         Firebase.auth.signOut()
         userData = null
-        dispatchLogStateChanged()
-        dispatchUserInfoChanged()
+//        dispatchLogStateChanged()
+//        dispatchUserInfoChanged()
     }
 
     fun alertUserInfoChanged(){

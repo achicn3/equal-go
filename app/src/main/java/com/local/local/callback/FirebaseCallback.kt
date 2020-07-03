@@ -20,10 +20,13 @@ open class FirebaseCallback {
     open fun retrieveStoreItems(storeItems: List<StoreItems>){} //取得商家的優惠列表
     open fun updateUserInfoResponse(isSuccess : Boolean){}
     open fun userRetrieveTransactionRecord(transactionInfo: List<TransactionInfo>){}
-    open fun storeRetrieveTransactionRecord(transactionInfo : List<TransactionInfo>){}
+    open fun storeRetrieveTransactionRecord(transactionInfo : List<StoreTransactionRecordBody>){}
     open fun storeCheckRegistered(registered: Boolean){}
     open fun storeSendRegisterInfoResponse(response: Boolean){}
     open fun storeLoginResponse(response: Boolean){}
+    open fun storeAddItemsResponse(response: Boolean){}//商家增加商品之Response , true= 成功,false = 失敗
     open fun storeCheckWaitingConfirm(response: Boolean){}
     open fun adminLoginResponse(response: Boolean){}
+    open fun adminRetrieveUserList(userList: ArrayList<UserInfo>){}
+    open fun adminRetrieveVerificationStore(storeList: ArrayList<LoginRegisterBody>){}
 }

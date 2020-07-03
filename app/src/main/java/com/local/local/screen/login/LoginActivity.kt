@@ -16,6 +16,7 @@ import com.local.local.extensions.Extensions.listenTextAndClearError
 import com.local.local.screen.BaseActivity
 import com.local.local.screen.FirstActivity
 import com.local.local.screen.MainActivity
+import com.local.local.screen.admin.AdminActivity
 import com.local.local.screen.store.login.StoreLoginFragment
 import com.local.local.screen.register.RegisterActivity
 import com.local.local.screen.store.StoreMainActivity
@@ -155,10 +156,21 @@ class LoginActivity : BaseActivity(),StoreLoginFragment.Response {
         startActivity(Intent(this,FirstActivity::class.java))
     }
 
-    override fun loginResponse(response: Boolean) {
-        if(response)
-            startActivity(Intent(this,StoreMainActivity::class.java))
+    override fun storeLoginResponse(response: Boolean) {
+        if(response) {
+            startActivity(Intent(this, StoreMainActivity::class.java))
+            finish()
+        }
         else
+            Toast.makeText(this,"登入失敗",Toast.LENGTH_SHORT).show()
+    }
+
+    override fun adminLoginResponse(response: Boolean) {
+        if(response) {
+            Toast.makeText(this,"管理員登入成功",Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, AdminActivity::class.java))
+
+        }else
             Toast.makeText(this,"登入失敗",Toast.LENGTH_SHORT).show()
     }
 }

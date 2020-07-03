@@ -48,7 +48,6 @@ class HomeViewModel : ViewModel() {
     }
 
     fun searchRecord(date: String){
-        Log.d("status","here")
         FirebaseUtil.retrieveRecord(date,firebaseCallback)
     }
 

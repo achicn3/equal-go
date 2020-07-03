@@ -18,8 +18,12 @@ class FirstActivity : AppCompatActivity() {
 
         if (!PermissionUtil.hasGrantedReadWriteExternalStorage(this) or !PermissionUtil.hasGrantedActivity(this) or !PermissionUtil.hasGrantedLocation(this)) {
             startActivity(Intent(this, PermissionRationalActivity::class.java))
+            finish()
         }
-        if (PermissionUtil.hasGrantedLocation(this) && PermissionUtil.hasGrantedCamera(this) && PermissionUtil.hasGrantedReadWriteExternalStorage(this))
+        if (PermissionUtil.hasGrantedLocation(this) && PermissionUtil.hasGrantedCamera(this) && PermissionUtil.hasGrantedReadWriteExternalStorage(this)){
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
+        }
+
     }
 }

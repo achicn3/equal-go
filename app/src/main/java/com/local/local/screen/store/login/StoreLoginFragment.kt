@@ -22,7 +22,8 @@ import org.koin.core.parameter.parametersOf
 
 class StoreLoginFragment : BaseDialogFragment() {
     interface Response{
-        fun loginResponse(response: Boolean)
+        fun storeLoginResponse(response: Boolean)
+        fun adminLoginResponse(response: Boolean)
     }
 
     private var response : Response? = null
@@ -90,11 +91,20 @@ class StoreLoginFragment : BaseDialogFragment() {
                     dismissLoadingMsg()
                 }
                 is StoreLoginViewModel.Event.OnLoginSuc ->{
-                    response?.loginResponse(true)
+                    response?.storeLoginResponse(true)
                     dismiss()
                 }
                 is StoreLoginViewModel.Event.OnLoginFail ->{
                     showErrorMsg("登入失敗")
+                }
+                is StoreLoginViewModel.Event.OnAdminLoginSuc -> {
+                    response?.adminLoginResponse(true)
+                }
+                is StoreLoginViewModel.Event.OnAdminLoginFail -> {
+                    response?.adminLoginResponse(false)
+                }
+                is StoreLoginViewModel.Event.OnAccountNotExist -> {
+                    showErrorMsg("該帳號不存在!")
                 }
             }.also {
                 viewModel.onEventConsumed(event)
