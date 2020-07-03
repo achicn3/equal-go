@@ -16,7 +16,6 @@ import android.widget.*
 import androidx.core.content.FileProvider
 import androidx.lifecycle.Observer
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -84,7 +83,8 @@ class AddItemDialogFragment : BaseDialogFragment() {
 
     private lateinit var ivItem: ImageView
     private lateinit var dialog: BottomSheetDialog
-    private lateinit var bottomSheetView: View
+    private val bottomSheetView: View by lazy {
+            LayoutInflater.from(context).inflate(R.layout.view_bottomsheet_editprofile, null) }
 
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -98,7 +98,6 @@ class AddItemDialogFragment : BaseDialogFragment() {
                 Glide.with(this)
                     .asBitmap()
                     .load(selectedImageUri)
-                    .apply(RequestOptions().circleCrop())
                     .into(object : CustomTarget<Bitmap>(640, 640) {
                         override fun onLoadCleared(placeholder: Drawable?) {
                         }
@@ -120,7 +119,6 @@ class AddItemDialogFragment : BaseDialogFragment() {
             Glide.with(this)
                 .asBitmap()
                 .load(imageUri)
-                .apply(RequestOptions().circleCrop())
                 .into(object : CustomTarget<Bitmap>(640, 640) {
                     override fun onLoadCleared(placeholder: Drawable?) {
                     }
@@ -140,6 +138,7 @@ class AddItemDialogFragment : BaseDialogFragment() {
         val context = context ?: return super.onCreateDialog(savedInstanceState)
         val view = LayoutInflater.from(context).inflate(R.layout.fragment_store_additems_window,null)
         val storeItems : StoreItems? = arguments?.getSerializable("storeItem") as StoreItems?
+        ivItem = view.findViewById(R.id.iv_addItems_img)
         dialog = BottomSheetDialog(context).apply {
             setContentView(bottomSheetView)
             setOnShowListener {
@@ -200,6 +199,7 @@ class AddItemDialogFragment : BaseDialogFragment() {
             val points = storeItems?.needPoints?.toString() ?: ""
             setText(points)
         }
+
         view.findViewById<ImageView>(R.id.iv_addItems_img).apply {
             if(storeItems?.imgUrl != null)
                 loadImage(context,storeItems.imgUrl)
@@ -216,12 +216,13 @@ class AddItemDialogFragment : BaseDialogFragment() {
                 viewGroupPoints.error = "請輸入所需之點數"
                 return@setOnClickListener
             }
-            if(uploadFile == null){
+            if (uploadFile == null && arguments == null) {
                 Toast.makeText(context,"請上傳優惠券照片!",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
             val itemsKey = storeItems?.storeItemsKey
-            viewModel.onClickConfirm(uploadFile!!,name,points,itemsKey)
+
+            viewModel.onClickConfirm(uploadFile, name, points, storeItems)
         }
 
         viewModel.eventLiveData.observe(this, Observer { event ->
@@ -229,7 +230,12 @@ class AddItemDialogFragment : BaseDialogFragment() {
             when(event){
                 is AddItemViewModel.Event.OnSaveStart -> showLoadingMsg()
                 is AddItemViewModel.Event.OnSaveFinish -> dismissLoadingMsg()
-                is AddItemViewModel.Event.OnSaveSuc -> showDoneMsg("優惠券新增成功!")
+                is AddItemViewModel.Event.OnSaveSuc -> {
+                    if (arguments == null)
+                        showDoneMsg("優惠券新增成功!")
+                    else
+                        showDoneMsg("修改成功!")
+                }
                 is AddItemViewModel.Event.OnSaveFailed -> showErrorMsg("優惠券新增失敗")
             }.also {
                 viewModel.onEventConsumed(event)

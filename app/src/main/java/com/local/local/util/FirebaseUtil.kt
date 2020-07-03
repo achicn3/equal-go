@@ -116,15 +116,18 @@ class FirebaseUtil {
             key: String? = null,
             firebaseCallback: FirebaseCallback
         ) {
+            Log.d("status","firebase here .... ${key == null}")
             if (key == null)
                 db.child(EXCHANGE_NODE).child(storeInfo.key).child(storeItems.storeItemsKey)
                     .setValue(storeItems) { p0, p1 ->
                         firebaseCallback.storeAddItemsResponse(p0 == null)
+                        Log.d("status","hasdhadshasdh is succ? ${p0==null}")
                     }
             else{
                 db.child(EXCHANGE_NODE).child(storeInfo.key).child(key)
                     .setValue(storeItems) { p0, p1 ->
                         firebaseCallback.storeAddItemsResponse(p0 == null)
+                        Log.d("status","zxcbzxcbzxcb is succ? ${p0==null}")
                     }
             }
         }
@@ -155,19 +158,20 @@ class FirebaseUtil {
             db.child(STORE_USER_NODE).addListenerForSingleValueEvent(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
-                    firebaseCallback.storeLoginResponse(false)
+                    firebaseCallback.storeLoginResponse(false,null)
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
                     var response = false
+                    var body : LoginRegisterBody? = null
                     for(ch in p0.children){
-                        val data = ch.getValue(LoginRegisterBody::class.java) ?: continue
-                        if(data.accountID == accountID && data.pwd == pwd){
+                        body = ch.getValue(LoginRegisterBody::class.java) ?: continue
+                        if(body.accountID == accountID && body.pwd == pwd){
                             response = true
                             break
                         }
                     }
-                    firebaseCallback.storeLoginResponse(response)
+                    firebaseCallback.storeLoginResponse(response,body)
                 }
 
             })
@@ -300,7 +304,7 @@ class FirebaseUtil {
         }
 
         fun retrieveStoreInfo(firebaseCallback: FirebaseCallback){
-            db.child(STORE_NODE).addListenerForSingleValueEvent(object : ValueEventListener{
+            db.child(STORE_NODE).addValueEventListener(object : ValueEventListener{
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
                     firebaseCallback.retrieveStoreInfo(listOf())
@@ -320,6 +324,7 @@ class FirebaseUtil {
 
         fun retrieveStoreItems(storeInfo: StoreInfo, firebaseCallback: FirebaseCallback){
             val storeKey = storeInfo.key
+            Log.d("status","in retrieveStoreItems the storekey is $storeKey")
             db.child(EXCHANGE_NODE).child(storeKey)
                 .addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
@@ -330,6 +335,7 @@ class FirebaseUtil {
                 override fun onDataChange(p0: DataSnapshot) {
                     val itemsList = arrayListOf<StoreItems>()
                     for(data in p0.children){
+                        Log.d("status","in retrieveStoreItems the storeItems is ${data.getValue(StoreItems::class.java)}")
                         val items = data.getValue(StoreItems::class.java) ?: continue
                         itemsList.add(items)
                     }
@@ -342,7 +348,7 @@ class FirebaseUtil {
             val key = UserLoginManager.instance.userData?.userKey
             val monthStr = if(Month<10) "0$Month" else "$Month"
             key?.run {
-                db.child(RECORD_NODE).child(this).child(year.toString()).child(monthStr).addListenerForSingleValueEvent(object: ValueEventListener{
+                db.child(RECORD_NODE).child(this).child(year.toString()).child(monthStr).addValueEventListener(object: ValueEventListener{
                     override fun onCancelled(p0: DatabaseError) {
                         p0.toException().printStackTrace()
                         firebaseCallback.retrieveStatics(listOf())
@@ -366,9 +372,8 @@ class FirebaseUtil {
         fun retrieveRecord(date: String, firebaseCallback: FirebaseCallback) {
             val key = UserLoginManager.instance.userData?.userKey
             val dateFormat = date.split("/")
-            Log.d("status","date format : $dateFormat key : $key")
             key?.run {
-                db.child(RECORD_NODE).child(this).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2]).addListenerForSingleValueEvent(object : ValueEventListener {
+                db.child(RECORD_NODE).child(this).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2]).addValueEventListener(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
                         p0.toException().printStackTrace()
                     }
@@ -443,9 +448,10 @@ class FirebaseUtil {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    val friendList = mutableListOf<UserInfo>()
+                    val friendList = mutableListOf<AddFriendsBody>()
                     for(data in p0.children){
-                        val friendInfo = data.getValue(UserInfo::class.java) ?: continue
+                        val friendInfo = data.getValue(AddFriendsBody::class.java) ?: continue
+                        Log.d("status","friend Info is ${friendInfo}")
                         friendList.add(friendInfo)
                     }
                     firebaseCallback.retrieveFriendList(friendList.toList())
@@ -456,7 +462,7 @@ class FirebaseUtil {
 
         fun getUserInfoByKey(userKey: String?, callback: FirebaseCallback) {
             val query = db.child(USER_NODE).orderByChild("userKey").equalTo(userKey).ref
-            query.addListenerForSingleValueEvent(object : ValueEventListener {
+            query.addValueEventListener(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
                     callback.getUserInfoByKey(null)
@@ -490,9 +496,8 @@ class FirebaseUtil {
                         override fun onDataChange(p0: DataSnapshot) {
                             var existed : Boolean? = false
                             for(data in p0.children){
-                                val v = data.getValue(UserInfo::class.java)
-                                existed = data.getValue(UserInfo::class.java)?.run {
-                                    phone == userInfo?.phone
+                                existed = data.getValue(AddFriendsBody::class.java)?.run {
+                                    friendPhone == userInfo?.phone
                                 }
                                 if(existed != null && existed)break
                             }
@@ -508,7 +513,8 @@ class FirebaseUtil {
         fun addFriends(userInfo: UserInfo?, callback: FirebaseCallback) {
             val userKey = UserLoginManager.instance.userData?.userKey
             userKey?.let {
-                db.child(FRIENDS_NODE).child(it).push().setValue(userInfo) { p0, _ ->
+                val friendsBody = AddFriendsBody(userInfo?.userKey!!,userInfo.phone!!)
+                db.child(FRIENDS_NODE).child(it).push().setValue(friendsBody) { p0, _ ->
                     if (p0 != null) {
                         callback.addFriendResponse(false)
                     } else {

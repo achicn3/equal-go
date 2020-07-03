@@ -1,5 +1,6 @@
 package com.local.local.screen.store.items
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.kdanmobile.cloud.event.EventManager
 import com.local.local.body.StoreItems
@@ -35,6 +36,7 @@ class AddItemViewModel(private val eventManager: EventManager<Event> = EventMana
 
     private val firebaseCallback = object : FirebaseCallback() {
         override fun storeAddItemsResponse(response: Boolean) {
+            Log.d("status", "store add response called...")
             Event.OnSaveFinish().send()
             when(response){
                 true -> Event.OnSaveSuc().send()
@@ -43,35 +45,60 @@ class AddItemViewModel(private val eventManager: EventManager<Event> = EventMana
         }
     }
 
-    fun onClickConfirm(uploadFile: File, couponName: String, needPoints: Int,key: String? = null) {
+    fun onClickConfirm(
+        uploadFile: File?,
+        couponName: String,
+        needPoints: Int,
+        oldStoreItems: StoreItems? = null
+    ) {
         Event.OnSaveStart().send()
-        GlobalScope.launch(Dispatchers.IO) {
-            val response = imageUploadServiceHolder.uploadImageAsync(
-                image = MultipartBody.Part.createFormData(
-                    "image",
-                    uploadFile.name,
-                    uploadFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
-                ),
-                title = "test",
-                description = "avatar"
-            ).await()
-            withContext(Dispatchers.Main) {
-                if (response.isSuccessful) {
-                    val storeInfo = StoreLoginManager.instance.storeInfo ?: return@withContext
-                    val itemsKey = FirebaseUtil.getKey() ?: return@withContext
-                    val link = response.body()?.data?.link ?: return@withContext
-                    val storeItems = StoreItems(
-                        couponName,
-                        needPoints,
-                        link,
-                        storeInfo.storeName,
-                        storeInfo.storeType,
-                        itemsKey
-                    )
-                    FirebaseUtil.storeAddCoupon(storeInfo, storeItems,key, firebaseCallback)
-                } else {
-                    Event.OnSaveFinish().send()
-                    Event.OnSaveFailed().send()
+        if (uploadFile == null && oldStoreItems != null) {
+            val storeInfo = StoreLoginManager.instance.storeInfo ?: return
+            val itemsKey = FirebaseUtil.getKey() ?: return
+            val newStoreItems = StoreItems(
+                couponName,
+                needPoints,
+                oldStoreItems.imgUrl,
+                storeInfo.storeName,
+                storeInfo.storeType,
+                itemsKey
+            )
+            FirebaseUtil.storeAddCoupon(
+                storeInfo,
+                newStoreItems,
+                oldStoreItems.storeItemsKey,
+                firebaseCallback
+            )
+            return
+        } else if (uploadFile != null) {
+            GlobalScope.launch(Dispatchers.IO) {
+                val response = imageUploadServiceHolder.uploadImageAsync(
+                    image = MultipartBody.Part.createFormData(
+                        "image",
+                        uploadFile.name,
+                        uploadFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                    ),
+                    title = "test",
+                    description = "avatar"
+                ).await()
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        val storeInfo = StoreLoginManager.instance.storeInfo ?: return@withContext
+                        val itemsKey = FirebaseUtil.getKey() ?: return@withContext
+                        val link = response.body()?.data?.link ?: return@withContext
+                        val storeItems = StoreItems(
+                            couponName,
+                            needPoints,
+                            link,
+                            storeInfo.storeName,
+                            storeInfo.storeType,
+                            itemsKey
+                        )
+                        FirebaseUtil.storeAddCoupon(storeInfo, storeItems, null, firebaseCallback)
+                    } else {
+                        Event.OnSaveFinish().send()
+                        Event.OnSaveFailed().send()
+                    }
                 }
             }
         }

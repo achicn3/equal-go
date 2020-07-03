@@ -26,7 +26,7 @@ class StoreItemsAdapter(
 
     override fun onBindViewHolder(holder: StoreItemsViewHolder, position: Int) {
         with(storeItems[position]){
-            holder.tvProductDescription.text = storeName
+            holder.tvProductDescription.text = description
             holder.ivProductImg.loadImage(context,imgUrl)
             holder.btnEdit.setOnClickListener {
                 listener.onClickEdit(this)

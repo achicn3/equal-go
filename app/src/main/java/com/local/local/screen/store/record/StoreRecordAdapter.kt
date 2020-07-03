@@ -28,6 +28,7 @@ class StoreRecordAdapter(
         with(records[position]) {
             holder.tvName.text = userName
             holder.tvPhone.text = userPhone
+            holder.tvDescription.text = context.getString(R.string.store_transactionRecord_userExchangeItem,itemDescription)
             holder.ivAvatar.loadCircleImage(context, userAvatarUrl)
         }
     }

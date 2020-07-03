@@ -10,4 +10,5 @@ class StoreRecordViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val ivAvatar = itemView.findViewById<ImageView>(R.id.iv_storeRecord_userAvatar)
     val tvName = itemView.findViewById<TextView>(R.id.tv_storeRecord_userName)
     val tvPhone = itemView.findViewById<TextView>(R.id.tv_storeRecord_userPhone)
+    val tvDescription = itemView.findViewById<TextView>(R.id.tv_storeRecord_description)
 }

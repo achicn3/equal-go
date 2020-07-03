@@ -45,13 +45,15 @@ class StoreRecordFragment : Fragment(), MonthYearPickerDialog.DateListener {
             viewModel.incrementMonth()
         }
 
-        view.findViewById<TextView>(R.id.tv_storeRecord_date).setOnClickListener {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                activity.supportFragmentManager.also { fragmentManager ->
-                    fragmentManager.findFragmentByTag(datePickerTag) ?: run {
-                        MonthYearPickerDialog().apply {
-                            setTargetFragment(this@StoreRecordFragment, 0)
-                            showNow(fragmentManager, datePickerTag)
+        val tvDate = view.findViewById<TextView>(R.id.tv_storeRecord_date).apply {
+            setOnClickListener {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    activity.supportFragmentManager.also { fragmentManager ->
+                        fragmentManager.findFragmentByTag(datePickerTag) ?: run {
+                            MonthYearPickerDialog().apply {
+                                setTargetFragment(this@StoreRecordFragment, 0)
+                                showNow(fragmentManager, datePickerTag)
+                            }
                         }
                     }
                 }
@@ -60,9 +62,10 @@ class StoreRecordFragment : Fragment(), MonthYearPickerDialog.DateListener {
 
         viewModel.calendar.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
-            val year = it.get(Calendar.YEAR).format()
+            val year = it.get(Calendar.YEAR)
             val month = (it.get(Calendar.MONTH) + 1).format()
-            viewModel.searchRecord(year, month)
+            viewModel.searchRecord(year.toString(), month)
+            tvDate.text = context.getString(R.string.date_format_year_month,year,month)
         })
 
         val recordList = arrayListOf<StoreTransactionRecordBody>()

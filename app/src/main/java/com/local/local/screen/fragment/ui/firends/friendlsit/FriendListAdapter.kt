@@ -1,14 +1,16 @@
 package com.local.local.screen.fragment.ui.firends.friendlsit
 
 import android.content.Context
+import android.location.Location
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
 import com.local.local.body.UserInfo
 import com.local.local.extensions.Extensions.loadCircleImage
+import com.local.local.manager.UserLoginManager
 
-class FriendListAdapter(private val context: Context, private val friendList: List<UserInfo>) : RecyclerView.Adapter<FriendListViewHolder>() {
+class FriendListAdapter(private val context: Context, private val friendList: List<UserInfo?>) : RecyclerView.Adapter<FriendListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FriendListViewHolder {
         return FriendListViewHolder(
             LayoutInflater.from(parent.context).inflate(R.layout.view_friends,parent,false)
@@ -21,9 +23,17 @@ class FriendListAdapter(private val context: Context, private val friendList: Li
 
     override fun onBindViewHolder(holder: FriendListViewHolder, position: Int) {
         with(friendList[position]){
-            holder.ivFriendsAvatar.loadCircleImage(context,friendList[position].avatarUrl)
-            holder.tvFriendsName.text = name
-            holder.tvFriendsDistance.text = context.getString(R.string.distance,2)
+            val userInfo = this ?: return@with
+            holder.ivFriendsAvatar.loadCircleImage(context,userInfo.avatarUrl)
+            holder.tvFriendsName.text = userInfo.name
+
+            val floatArray = FloatArray(1)
+            val myLat = UserLoginManager.instance.userData?.latitude ?: 0.0
+            val myLong = UserLoginManager.instance.userData?.longitude ?: 0.0
+            val friendLat = latitude ?: 0.0
+            val friendLong = longitude ?: 0.0
+            Location.distanceBetween(myLat,myLat,friendLat,friendLong,floatArray)
+            holder.tvFriendsDistance.text = context.getString(R.string.distance,floatArray[0]/1000)
         }
     }
 }

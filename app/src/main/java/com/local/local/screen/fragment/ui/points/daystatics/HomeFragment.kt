@@ -68,6 +68,7 @@ class HomeFragment : Fragment() {
             }
 
         }
+
         UserLoginManager.instance.addListener(listener)
         val tvDistance = view.findViewById<TextView>(R.id.tv_main_moveDistance)
         val tvDates = view.findViewById<TextView>(R.id.tv_main_date).apply {

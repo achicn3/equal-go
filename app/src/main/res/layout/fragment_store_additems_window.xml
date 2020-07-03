@@ -20,8 +20,10 @@
 
         <ImageView
             android:id="@+id/iv_addItems_img"
+            android:layout_marginTop="8dp"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:scaleType="centerCrop"
             app:srcCompat="@drawable/ic_local_hospital_24px"
             tools:ignore="VectorDrawableCompat" />
 

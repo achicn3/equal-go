@@ -11,7 +11,7 @@ open class FirebaseCallback {
     open fun isKeyExisted(userKey: String?,response: Boolean?){}
     open fun addFriendResponse(response: Boolean?){}//true ->增加好友成功 false失敗
     open fun isFriendsAdded(response: Boolean?){} // true->已經加過好友了 false 還沒加過
-    open fun retrieveFriendList(friendList: List<UserInfo>?){}//取得好友清單~
+    open fun retrieveFriendList(friendList: List<AddFriendsBody>?){}//取得好友清單~
     open fun retrieveDefaultAvatar(avatarList: List<String?>){}//取得預設大頭貼
     open fun retrieveRecord(recordInfo: RecordInfo?){} //搜尋某天的紀錄
     open fun retrieveStatics(recordInfoList : List<RecordInfo?>){}//取得當月總數據
@@ -23,7 +23,7 @@ open class FirebaseCallback {
     open fun storeRetrieveTransactionRecord(transactionInfo : List<StoreTransactionRecordBody>){}
     open fun storeCheckRegistered(registered: Boolean){}
     open fun storeSendRegisterInfoResponse(response: Boolean){}
-    open fun storeLoginResponse(response: Boolean){}
+    open fun storeLoginResponse(response: Boolean,body: LoginRegisterBody?){}
     open fun storeAddItemsResponse(response: Boolean){}//商家增加商品之Response , true= 成功,false = 失敗
     open fun storeCheckWaitingConfirm(response: Boolean){}
     open fun adminLoginResponse(response: Boolean){}
