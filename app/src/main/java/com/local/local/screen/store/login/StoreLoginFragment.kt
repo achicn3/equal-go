@@ -15,7 +15,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.local.local.R
 import com.local.local.extensions.Extensions.listenTextAndClearError
-import com.local.local.screen.fragment.dialog.BaseDialogFragment
+import com.local.local.screen.dialog.BaseDialogFragment
 import com.local.local.screen.store.register.StoreRegisterFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -39,7 +39,7 @@ class StoreLoginFragment : BaseDialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val context: Context = context ?: return super.onCreateDialog(savedInstanceState)
         val activity = activity ?: return super.onCreateDialog(savedInstanceState)
-        val viewModel : StoreLoginViewModel by viewModel(){
+        val viewModel : StoreLoginViewModel by viewModel {
             parametersOf(activity)
         }
         val view = LayoutInflater.from(context).inflate(R.layout.fragment_store_login, null)

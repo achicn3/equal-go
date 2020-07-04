@@ -2,17 +2,17 @@ package com.local.local.screen.admin
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.local.local.R
+import com.local.local.screen.admin.store.EditStoreFragment
 import com.local.local.screen.admin.userlist.UserListFragment
 import com.local.local.screen.admin.verification.VerificationFragment
-import com.local.local.screen.fragment.ui.points.viewpager.ViewPagerAdapter
-import com.local.local.screen.fragment.ui.points.viewpager.ZoomOutPageTransformer
 import com.local.local.screen.login.LoginActivity
+import com.local.local.screen.user.ui.points.viewpager.ViewPagerAdapter
+import com.local.local.screen.user.ui.points.viewpager.ZoomOutPageTransformer
 import kotlinx.android.synthetic.main.activity_store_main.*
 
 class AdminActivity : AppCompatActivity() {
@@ -23,9 +23,15 @@ class AdminActivity : AppCompatActivity() {
         val tabs = findViewById<TabLayout>(R.id.tabs_storeMain)
         val fragmentList = arrayListOf(
             UserListFragment(),
-            VerificationFragment()
+            VerificationFragment(),
+            EditStoreFragment()
         )
-        val vpAdapter = ViewPagerAdapter(fragmentList, supportFragmentManager, lifecycle)
+        val vpAdapter =
+            ViewPagerAdapter(
+                fragmentList,
+                supportFragmentManager,
+                lifecycle
+            )
         fab_logout.setOnClickListener {
             startActivity(Intent(this,LoginActivity::class.java))
             finish()
@@ -45,6 +51,9 @@ class AdminActivity : AppCompatActivity() {
                     }
                     1 -> {
                         tabs.text = "審核商家"
+                    }
+                    2 ->{
+                        tabs.text = "編輯/增加\n優惠券"
                     }
                 }
             }).attach()

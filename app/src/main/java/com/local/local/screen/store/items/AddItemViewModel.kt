@@ -3,6 +3,7 @@ package com.local.local.screen.store.items
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.kdanmobile.cloud.event.EventManager
+import com.local.local.body.StoreInfo
 import com.local.local.body.StoreItems
 import com.local.local.callback.FirebaseCallback
 import com.local.local.event.EventBroadcaster
@@ -22,10 +23,10 @@ import java.io.File
 class AddItemViewModel(private val eventManager: EventManager<Event> = EventManager()) :
     ViewModel(), EventBroadcaster<AddItemViewModel.Event> by eventManager {
     sealed class Event {
-        class OnSaveStart() : Event()
-        class OnSaveFinish() : Event()
-        class OnSaveSuc() : Event()
-        class OnSaveFailed() : Event()
+        class OnSaveStart : Event()
+        class OnSaveFinish : Event()
+        class OnSaveSuc : Event()
+        class OnSaveFailed : Event()
     }
 
     private val imageUploadServiceHolder by inject(ImageUploadServiceHolder::class.java)
@@ -49,28 +50,12 @@ class AddItemViewModel(private val eventManager: EventManager<Event> = EventMana
         uploadFile: File?,
         couponName: String,
         needPoints: Int,
-        oldStoreItems: StoreItems? = null
+        oldStoreItems: StoreItems? = null,
+        adminPassStoreInfo: StoreInfo?= null
     ) {
         Event.OnSaveStart().send()
-        if (uploadFile == null && oldStoreItems != null) {
-            val storeInfo = StoreLoginManager.instance.storeInfo ?: return
-            val itemsKey = FirebaseUtil.getKey() ?: return
-            val newStoreItems = StoreItems(
-                couponName,
-                needPoints,
-                oldStoreItems.imgUrl,
-                storeInfo.storeName,
-                storeInfo.storeType,
-                itemsKey
-            )
-            FirebaseUtil.storeAddCoupon(
-                storeInfo,
-                newStoreItems,
-                oldStoreItems.storeItemsKey,
-                firebaseCallback
-            )
-            return
-        } else if (uploadFile != null) {
+        //商家編輯商品並且有上傳新照片
+        if( uploadFile != null && oldStoreItems != null) {
             GlobalScope.launch(Dispatchers.IO) {
                 val response = imageUploadServiceHolder.uploadImageAsync(
                     image = MultipartBody.Part.createFormData(
@@ -83,7 +68,58 @@ class AddItemViewModel(private val eventManager: EventManager<Event> = EventMana
                 ).await()
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
-                        val storeInfo = StoreLoginManager.instance.storeInfo ?: return@withContext
+                        val storeInfo = StoreLoginManager.instance.storeInfo ?: adminPassStoreInfo ?: return@withContext
+                        val itemsKey = FirebaseUtil.getKey() ?: return@withContext
+                        val newStoreItems = StoreItems(
+                            couponName,
+                            needPoints,
+                            response.body()?.data?.link ?: oldStoreItems.imgUrl,
+                            storeInfo.storeName,
+                            storeInfo.storeType,
+                            oldStoreItems.storeItemsKey
+                        )
+                        FirebaseUtil.storeAddCoupon(
+                            storeInfo,
+                            newStoreItems,
+                            firebaseCallback
+                        )
+                    } else {
+                        Event.OnSaveFinish().send()
+                        Event.OnSaveFailed().send()
+                    }
+                }
+            }
+        }
+        else if (uploadFile == null && oldStoreItems != null) {
+            val storeInfo = StoreLoginManager.instance.storeInfo ?: adminPassStoreInfo ?: return
+            val newStoreItems = StoreItems(
+                couponName,
+                needPoints,
+                oldStoreItems.imgUrl,
+                storeInfo.storeName,
+                storeInfo.storeType,
+                oldStoreItems.storeItemsKey
+            )
+            FirebaseUtil.storeAddCoupon(
+                storeInfo,
+                newStoreItems,
+                firebaseCallback
+            )
+            return
+        } else if (uploadFile != null && oldStoreItems == null) {
+            GlobalScope.launch(Dispatchers.IO) {
+                val response = imageUploadServiceHolder.uploadImageAsync(
+                    image = MultipartBody.Part.createFormData(
+                        "image",
+                        uploadFile.name,
+                        uploadFile.asRequestBody("image/jpeg".toMediaTypeOrNull())
+                    ),
+                    title = "test",
+                    description = "avatar"
+                ).await()
+                withContext(Dispatchers.Main) {
+                    if (response.isSuccessful) {
+                        val storeInfo = StoreLoginManager.instance.storeInfo ?: adminPassStoreInfo ?: return@withContext
                         val itemsKey = FirebaseUtil.getKey() ?: return@withContext
                         val link = response.body()?.data?.link ?: return@withContext
                         val storeItems = StoreItems(
@@ -94,7 +130,7 @@ class AddItemViewModel(private val eventManager: EventManager<Event> = EventMana
                             storeInfo.storeType,
                             itemsKey
                         )
-                        FirebaseUtil.storeAddCoupon(storeInfo, storeItems, null, firebaseCallback)
+                        FirebaseUtil.storeAddCoupon(storeInfo, storeItems, firebaseCallback)
                     } else {
                         Event.OnSaveFinish().send()
                         Event.OnSaveFailed().send()

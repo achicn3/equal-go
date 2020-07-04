@@ -26,18 +26,18 @@ class RegisterViewModel(
     ViewModel(), EventBroadcaster<RegisterViewModel.Event> by eventManager {
 
     sealed class Event {
-        class OnSmsSendStart() : Event()
-        class OnSmsSendFinish() : Event()
-        class OnRegisterStart() : Event()
-        class OnVerificationStart() : Event()
-        class OnVerificationFinish() : Event()
-        class OnVerificationSuc() : Event()
-        class OnVerificationFail() : Event()
-        class OnLRegisterFinish() : Event()
-        class OnRegisterSuc() : Event()
-        class OnRegisterFail() : Event()
-        class OnPhoneExisted() : Event()
-        class OnError() : Event()
+        class OnSmsSendStart : Event()
+        class OnSmsSendFinish : Event()
+        class OnRegisterStart : Event()
+        class OnVerificationStart : Event()
+        class OnVerificationFinish : Event()
+        class OnVerificationSuc : Event()
+        class OnVerificationFail : Event()
+        class OnLRegisterFinish : Event()
+        class OnRegisterSuc : Event()
+        class OnRegisterFail : Event()
+        class OnPhoneExisted : Event()
+        class OnError : Event()
     }
 
     private fun Event.send() {

@@ -2,8 +2,8 @@ package com.local.local.screen
 
 import android.util.Patterns
 import androidx.appcompat.app.AppCompatActivity
-import com.local.local.screen.fragment.dialog.DoneFragment
-import com.local.local.screen.fragment.dialog.LoadingFragment
+import com.local.local.screen.dialog.DoneFragment
+import com.local.local.screen.dialog.LoadingFragment
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay

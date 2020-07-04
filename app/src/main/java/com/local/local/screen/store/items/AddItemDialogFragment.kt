@@ -24,10 +24,11 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.local.local.R
+import com.local.local.body.StoreInfo
 import com.local.local.body.StoreItems
 import com.local.local.extensions.Extensions.listenTextAndClearError
 import com.local.local.extensions.Extensions.loadImage
-import com.local.local.screen.fragment.dialog.BaseDialogFragment
+import com.local.local.screen.dialog.BaseDialogFragment
 import com.local.local.util.PermissionUtil
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.io.File
@@ -61,8 +62,10 @@ class AddItemDialogFragment : BaseDialogFragment() {
     private fun saveImage(bitmap: Bitmap, fileName: String) {
         if (TextUtils.isEmpty(fileName))
             return
+        uploadFile = File(context?.externalCacheDir, fileName)
         val uploadFile = uploadFile ?: return
-        if (uploadFile.exists()) {
+        Toast.makeText(context, "Here~", Toast.LENGTH_SHORT).show()
+        if (!uploadFile.exists()) {
             uploadFile.parent?.run {
                 File(this).mkdirs()
             }
@@ -77,7 +80,7 @@ class AddItemDialogFragment : BaseDialogFragment() {
         }
     }
 
-    var fileName: String? = null
+    var fileName: String = ""
     var uploadFile: File? = null
     var imageUri: Uri? = null
 
@@ -106,7 +109,7 @@ class AddItemDialogFragment : BaseDialogFragment() {
                             resource: Bitmap,
                             transition: Transition<in Bitmap>?
                         ) {
-                            saveImage(resource, fileName!!)
+                            saveImage(resource, fileName)
                             ivItem.setImageBitmap(resource)
                         }
                     })
@@ -127,7 +130,7 @@ class AddItemDialogFragment : BaseDialogFragment() {
                         resource: Bitmap,
                         transition: Transition<in Bitmap>?
                     ) {
-                        saveImage(resource, fileName!!)
+                        saveImage(resource, fileName)
                         ivItem.setImageBitmap(resource)
                     }
                 })
@@ -138,6 +141,7 @@ class AddItemDialogFragment : BaseDialogFragment() {
         val context = context ?: return super.onCreateDialog(savedInstanceState)
         val view = LayoutInflater.from(context).inflate(R.layout.fragment_store_additems_window,null)
         val storeItems : StoreItems? = arguments?.getSerializable("storeItem") as StoreItems?
+        val adminPassStoreInfo: StoreInfo? = arguments?.getSerializable("storeInfo") as StoreInfo?
         ivItem = view.findViewById(R.id.iv_addItems_img)
         dialog = BottomSheetDialog(context).apply {
             setContentView(bottomSheetView)
@@ -150,6 +154,18 @@ class AddItemDialogFragment : BaseDialogFragment() {
                 }
             }
         }
+
+        bottomSheetView.findViewById<Button>(R.id.btn_sheet_uploadPhoto).setOnClickListener {
+            if (!PermissionUtil.hasGrantedReadWriteExternalStorage(context))
+                PermissionUtil.requestReadWriteExternalStorage(activity, 0)
+            else {
+                val photoPickerIntent = Intent(Intent.ACTION_PICK)
+                photoPickerIntent.type = "image/*"
+                startActivityForResult(photoPickerIntent, selectImgCode)
+                dialog.dismiss()
+            }
+        }
+
 
         bottomSheetView.findViewById<Button>(R.id.btn_sheet_takePhoto).setOnClickListener {
             if (!PermissionUtil.hasGrantedCamera(context)) {
@@ -188,6 +204,7 @@ class AddItemDialogFragment : BaseDialogFragment() {
         view.findViewById<LinearLayout>(R.id.viewGroup_addItems_img).setOnClickListener {
             dialog.show()
         }
+
         val viewGroupName = view.findViewById<TextInputLayout>(R.id.viewGroup_addItems_name)
         val etCouponName = view.findViewById<TextInputEditText>(R.id.et_addItems_name).apply {
             listenTextAndClearError(viewGroupName)
@@ -206,12 +223,17 @@ class AddItemDialogFragment : BaseDialogFragment() {
         }
 
         view.findViewById<Button>(R.id.btn_addItems_confirm).setOnClickListener {
-            val name = etCouponName.text.toString()
-            val points = etPoints.text.toString().toInt()
-            if(TextUtils.isEmpty(name)){
+            if (TextUtils.isEmpty(etCouponName.text)) {
                 viewGroupName.error = "請輸入優惠券名稱"
                 return@setOnClickListener
             }
+            if (TextUtils.isEmpty(etPoints.text)) {
+                viewGroupPoints.error = "請輸入所需點數!"
+                return@setOnClickListener
+            }
+            val name = etCouponName.text.toString()
+            val points = etPoints.text.toString().toInt()
+
             if(TextUtils.isEmpty(etPoints.text)){
                 viewGroupPoints.error = "請輸入所需之點數"
                 return@setOnClickListener
@@ -220,9 +242,11 @@ class AddItemDialogFragment : BaseDialogFragment() {
                 Toast.makeText(context,"請上傳優惠券照片!",Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
-            val itemsKey = storeItems?.storeItemsKey
-
-            viewModel.onClickConfirm(uploadFile, name, points, storeItems)
+            if (uploadFile == null && storeItems == null && adminPassStoreInfo != null) {
+                Toast.makeText(context, "請上傳優惠券照片!", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            viewModel.onClickConfirm(uploadFile, name, points, storeItems, adminPassStoreInfo)
         }
 
         viewModel.eventLiveData.observe(this, Observer { event ->
@@ -231,10 +255,13 @@ class AddItemDialogFragment : BaseDialogFragment() {
                 is AddItemViewModel.Event.OnSaveStart -> showLoadingMsg()
                 is AddItemViewModel.Event.OnSaveFinish -> dismissLoadingMsg()
                 is AddItemViewModel.Event.OnSaveSuc -> {
-                    if (arguments == null)
+                    if (arguments == null) {
                         showDoneMsg("優惠券新增成功!")
-                    else
+                        dismiss()
+                    } else {
                         showDoneMsg("修改成功!")
+                        dismiss()
+                    }
                 }
                 is AddItemViewModel.Event.OnSaveFailed -> showErrorMsg("優惠券新增失敗")
             }.also {

@@ -1,7 +1,6 @@
 package com.local.local.callback
 
 import com.local.local.body.*
-import com.local.local.screen.fragment.ui.points.transaction.record.TransactionRecord
 
 open class FirebaseCallback {
     open fun isPhoneExisted(phoneNumber: String?, response: Boolean?){}

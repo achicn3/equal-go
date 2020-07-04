@@ -13,11 +13,11 @@ class StoreRegisterViewModel(
     private val eventManager: EventManager<Event> = EventManager()
 ) : ViewModel(), EventBroadcaster<StoreRegisterViewModel.Event> by eventManager {
     sealed class Event {
-        class OnRegisterStart() : Event()
-        class OnRegisterFinish() : Event()
-        class OnWaitingConfirm() : Event()
-        class OnRegisterInfoSendSuc() : Event()
-        class OnRegisterInfoSendFail() : Event()
+        class OnRegisterStart : Event()
+        class OnRegisterFinish : Event()
+        class OnWaitingConfirm : Event()
+        class OnRegisterInfoSendSuc : Event()
+        class OnRegisterInfoSendFail : Event()
     }
 
     private fun Event.send() {

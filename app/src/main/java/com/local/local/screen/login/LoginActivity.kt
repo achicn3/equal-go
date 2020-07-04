@@ -26,7 +26,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
 class LoginActivity : BaseActivity(),StoreLoginFragment.Response {
-    private val viewModel: LoginViewModel by viewModel() {
+    private val viewModel: LoginViewModel by viewModel {
         parametersOf(this)
     }
 

@@ -17,13 +17,13 @@ class StoreLoginViewModel(private val activity: Activity, private val eventManag
     ViewModel(), EventBroadcaster<StoreLoginViewModel.Event> by eventManager {
 
     sealed class Event {
-        class OnLoginStart() : Event()
-        class OnLoginFinish() : Event()
-        class OnLoginSuc() : Event()
-        class OnLoginFail() : Event()
+        class OnLoginStart : Event()
+        class OnLoginFinish : Event()
+        class OnLoginSuc : Event()
+        class OnLoginFail : Event()
         class OnAccountNotExist: Event()
-        class OnAdminLoginSuc() : Event()
-        class OnAdminLoginFail() : Event()
+        class OnAdminLoginSuc : Event()
+        class OnAdminLoginFail : Event()
     }
 
     private val auth = Firebase.auth.apply {

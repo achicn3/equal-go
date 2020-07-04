@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.local.local.screen.fragment.ui.points.viewpager.ViewPagerFragment"
+        android:name="com.local.local.screen.user.ui.points.viewpager.ViewPagerFragment"
         android:label="@string/accumulation_points_title"
         tools:layout="@layout/fragment_viewpager">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/nav_friends"
-        android:name="com.local.local.screen.fragment.ui.firends.FriendFragment"
+        android:name="com.local.local.screen.user.ui.firends.FriendFragment"
         android:label="@string/friends_list_title"
         tools:layout="@layout/fragment_friends" >
         <action
@@ -38,25 +38,25 @@
 
     <fragment
         android:id="@+id/addFriendFragment"
-        android:name="com.local.local.screen.fragment.ui.firends.addfriend.AddFriendFragment"
+        android:name="com.local.local.screen.user.ui.firends.addfriend.AddFriendFragment"
         android:label="加入好友"
         tools:layout="@layout/fragment_add_friends"
         />
 
     <fragment
         android:id="@+id/friendListFragment"
-        android:name="com.local.local.screen.fragment.ui.firends.friendlsit.FriendListFragment"
+        android:name="com.local.local.screen.user.ui.firends.friendlsit.FriendListFragment"
         android:label="好友"
         tools:layout="@layout/fragment_friend_friendlist"
         />
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.local.local.screen.fragment.ui.profile.ProfileInfoFragment"
+        android:name="com.local.local.screen.user.fragment.ui.profile.ProfileInfoFragment"
         tools:layout="@layout/fragment_profileinfo"
         android:label="個人資訊" />
     <fragment
         android:id="@+id/nav_map"
-        android:name="com.local.local.screen.fragment.ui.map.PublicMap"
+        android:name="com.local.local.screen.user.ui.map.PublicMap"
         tools:layout="@layout/fragment_map"
         android:label="公共區域查詢" />
 </navigation>

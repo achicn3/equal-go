@@ -15,7 +15,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.local.local.R
 import com.local.local.extensions.Extensions.listenTextAndClearError
-import com.local.local.screen.fragment.dialog.BaseDialogFragment
+import com.local.local.screen.dialog.BaseDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StoreRegisterFragment : BaseDialogFragment() {

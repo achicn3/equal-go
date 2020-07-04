@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:ignore="RtlHardcoded,ContentDescription"
-    tools:context=".screen.fragment.ui.firends.FriendFragment">
+    tools:context=".screen.user.ui.firends.FriendFragment">
 
     <ScrollView
         android:layout_width="match_parent"

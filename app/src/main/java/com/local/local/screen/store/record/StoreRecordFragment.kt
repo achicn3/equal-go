@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
 import com.local.local.body.StoreTransactionRecordBody
-import com.local.local.screen.fragment.dialog.MonthYearPickerDialog
+import com.local.local.screen.dialog.MonthYearPickerDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import java.util.*
 

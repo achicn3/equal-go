@@ -113,23 +113,14 @@ class FirebaseUtil {
         fun storeAddCoupon(
             storeInfo: StoreInfo,
             storeItems: StoreItems,
-            key: String? = null,
             firebaseCallback: FirebaseCallback
         ) {
-            Log.d("status","firebase here .... ${key == null}")
-            if (key == null)
                 db.child(EXCHANGE_NODE).child(storeInfo.key).child(storeItems.storeItemsKey)
                     .setValue(storeItems) { p0, p1 ->
                         firebaseCallback.storeAddItemsResponse(p0 == null)
                         Log.d("status","hasdhadshasdh is succ? ${p0==null}")
                     }
-            else{
-                db.child(EXCHANGE_NODE).child(storeInfo.key).child(key)
-                    .setValue(storeItems) { p0, p1 ->
-                        firebaseCallback.storeAddItemsResponse(p0 == null)
-                        Log.d("status","zxcbzxcbzxcb is succ? ${p0==null}")
-                    }
-            }
+
         }
 
         fun storeCheckIfWaitingConfirm(accountID: String,firebaseCallback: FirebaseCallback){

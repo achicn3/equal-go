@@ -61,14 +61,14 @@ class LoginViewModel(
     private var firebaseUser : FirebaseUser? = null
 
     sealed class Event {
-        class OnSmsSendStart() : Event()
-        class OnSmsSendFinish() : Event()
-        class OnLoginStart() : Event()
-        class OnLoginFinish() : Event()
-        class OnLoginSuc() : Event()
-        class OnLoginFail() : Event()
-        class OnUserNotRegister() : Event()
-        class OnError() : Event()
+        class OnSmsSendStart : Event()
+        class OnSmsSendFinish : Event()
+        class OnLoginStart : Event()
+        class OnLoginFinish : Event()
+        class OnLoginSuc : Event()
+        class OnLoginFail : Event()
+        class OnUserNotRegister : Event()
+        class OnError : Event()
     }
 
     private fun Event.send() {
