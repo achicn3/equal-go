@@ -14,6 +14,7 @@ class StoreItemsAdapter(
 ) : RecyclerView.Adapter<StoreItemsViewHolder>() {
     interface ClickListener{
         fun onClickEdit(storeItems: StoreItems)
+        fun onClickDelete(storeItems: StoreItems)
     }
     lateinit var listener : ClickListener
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StoreItemsViewHolder {
@@ -30,6 +31,9 @@ class StoreItemsAdapter(
             holder.ivProductImg.loadImage(context,imgUrl)
             holder.btnEdit.setOnClickListener {
                 listener.onClickEdit(this)
+            }
+            holder.btnDelete.setOnClickListener {
+                listener.onClickDelete(this)
             }
             holder.tvNeedPoints.text = context.getString(R.string.needPoints,needPoints)
         }

@@ -16,7 +16,8 @@ class FirstActivity : AppCompatActivity() {
         setContentView(R.layout.activity_welcom)
         first.playAnimation()
 
-        if (!PermissionUtil.hasGrantedReadWriteExternalStorage(this) or !PermissionUtil.hasGrantedActivity(this) or !PermissionUtil.hasGrantedLocation(this)) {
+        if (!PermissionUtil.hasGrantedReadWriteExternalStorage(this) or !PermissionUtil.hasGrantedActivity(this) or !PermissionUtil.hasGrantedLocation(this)
+            or !PermissionUtil.hasGrantedRecordAudio(this)) {
             startActivity(Intent(this, PermissionRationalActivity::class.java))
             finish()
         }

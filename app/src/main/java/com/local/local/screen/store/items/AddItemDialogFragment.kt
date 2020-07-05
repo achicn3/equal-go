@@ -64,7 +64,6 @@ class AddItemDialogFragment : BaseDialogFragment() {
             return
         uploadFile = File(context?.externalCacheDir, fileName)
         val uploadFile = uploadFile ?: return
-        Toast.makeText(context, "Here~", Toast.LENGTH_SHORT).show()
         if (!uploadFile.exists()) {
             uploadFile.parent?.run {
                 File(this).mkdirs()

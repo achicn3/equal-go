@@ -95,7 +95,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/layout_profileInfo_name"
+        android:id="@+id/viewGroup_profileInfo_name"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
@@ -105,6 +105,7 @@
         app:boxCornerRadiusTopEnd="6dp"
         app:boxCornerRadiusTopStart="6dp"
         app:boxStrokeColor="@color/colorGreen"
+        app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
         app:hintTextColor="@color/colorGreen"
         tools:layout_editor_absoluteX="16dp"
@@ -117,6 +118,7 @@
             android:hint="@string/username"
             android:inputType="textEmailAddress"
             android:paddingLeft="8dp"
+            android:singleLine="true"
             android:paddingRight="8dp"
             android:textCursorDrawable="@color/colorGreen"
             tools:ignore="RtlHardcoded"

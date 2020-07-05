@@ -6,6 +6,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/viewGroup_addItems_img"
         android:layout_width="match_parent"
@@ -92,5 +100,6 @@
         android:layout_marginBottom="12dp"
         android:textColor="@color/gmm_white"
         android:textSize="32sp" />
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

@@ -36,6 +36,10 @@ public class PermissionUtil {
         return hasGranted(context,Manifest.permission.ACCESS_FINE_LOCATION);
     }
 
+    public static boolean hasGrantedRecordAudio(Context context){
+        return hasGranted(context,Manifest.permission.RECORD_AUDIO);
+    }
+
     public static boolean hasGrantedReadContacts(Context context) {
         return hasGranted(context, Manifest.permission.READ_CONTACTS);
     }
@@ -90,6 +94,9 @@ public class PermissionUtil {
         requestPermissions(activity,new String[] {Manifest.permission.ACTIVITY_RECOGNITION},requestCode);
     }
 
+    public static void requestRecordAudio(Activity activity,int requestCode){
+        requestPermissions(activity,new String[]{Manifest.permission.RECORD_AUDIO},requestCode);
+    }
     public static void requestLocation(Activity activity,int requestCode){
         requestPermissions(activity,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},requestCode);
     }

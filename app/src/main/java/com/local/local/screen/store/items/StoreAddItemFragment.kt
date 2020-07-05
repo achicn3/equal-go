@@ -5,12 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
 import com.local.local.body.StoreItems
+import com.local.local.screen.dialog.LoadingFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class StoreAddItemFragment : Fragment() {
@@ -25,6 +27,7 @@ class StoreAddItemFragment : Fragment() {
 
     companion object {
         private const val showAddItemDialogTag = "ShowAddItemDialogTag"
+        private const val loadingTag = "ShowLoadingMsgTag"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -54,6 +57,10 @@ class StoreAddItemFragment : Fragment() {
                     }
                 }
             }
+
+            override fun onClickDelete(storeItems: StoreItems) {
+                viewModel.onClickDeleteItems(storeItems)
+            }
         }
 
         val rvAdapter = StoreItemsAdapter(context, storeItemsList).apply {
@@ -71,5 +78,31 @@ class StoreAddItemFragment : Fragment() {
             storeItemsList.addAll(it)
             rvAdapter.notifyDataSetChanged()
         })
+
+        viewModel.eventLiveData.observe(viewLifecycleOwner, Observer { event ->
+            event ?: return@Observer
+            when (event) {
+                is StoreAddItemViewModel.Event.OnDeleteStart -> {
+                    activity.supportFragmentManager.findFragmentByTag(loadingTag) ?: run {
+                        LoadingFragment()
+                            .showNow(activity.supportFragmentManager, loadingTag)
+                    }
+                }
+                is StoreAddItemViewModel.Event.OnDeleteFinish -> {
+                    activity.supportFragmentManager.findFragmentByTag(loadingTag)?.let { fragment ->
+                        (fragment as? LoadingFragment)?.dismiss()
+                    }
+                }
+                is StoreAddItemViewModel.Event.OnDeleteSuc -> {
+                    Toast.makeText(context,"刪除成功!",Toast.LENGTH_SHORT).show()
+                }
+                is StoreAddItemViewModel.Event.OnDeleteFail -> {
+                    Toast.makeText(context,"刪除失敗!",Toast.LENGTH_SHORT).show()
+                }
+            }.also {
+                viewModel.onEventConsumed(event)
+            }
+        })
+
     }
 }

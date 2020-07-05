@@ -1,5 +1,6 @@
 package com.local.local.screen.user.ui.firends.addfriend
 
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.local.local.event.EventBroadcaster
 import com.kdanmobile.cloud.event.EventManager
@@ -130,6 +131,8 @@ class AddFriendViewModel(
             }
         }
     }
+
+    val qrCodeScanResult = MutableLiveData<String>()
 
 
     private fun getUserInfoByPhone(phoneNumber: String?) {

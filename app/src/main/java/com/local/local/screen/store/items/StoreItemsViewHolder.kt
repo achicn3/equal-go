@@ -16,5 +16,8 @@ class StoreItemsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
     val btnEdit = itemView.findViewById<Button>(R.id.btn_transaction_edit).apply {
         visibility = View.VISIBLE
     }
+    val btnDelete = itemView.findViewById<Button>(R.id.btn_transaction_delete).apply {
+        visibility = View.VISIBLE
+    }
     val tvNeedPoints = itemView.findViewById<TextView>(R.id.tv_transaction_needPoints)
 }

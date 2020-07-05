@@ -17,7 +17,6 @@ package com.local.local.util;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,6 +42,7 @@ public class PermissionRationalActivity extends AppCompatActivity implements
     private static final int PERMISSION_REQUEST_LOCATION = 45;
     private static final int PERMISSION_REQUEST_READ_WRITE = 5566;
     private static final int PERMISSION_REQUEST_CAMERA = 5577;
+    private static final int PERMISSION_REQUEST_AUDIO_RECORD = 4488;
 
     @Override
     public void onBackPressed() {
@@ -56,7 +56,8 @@ public class PermissionRationalActivity extends AppCompatActivity implements
         // If permissions granted, we start the main activity (shut this activity down).
         if (PermissionUtil.hasGrantedReadWriteExternalStorage(this) &&
                 PermissionUtil.hasGrantedActivity(this) &&
-                PermissionUtil.hasGrantedCamera(this)
+                PermissionUtil.hasGrantedCamera(this) &&
+                PermissionUtil.hasGrantedRecordAudio(this)
         ) {
             finish();
         }
@@ -82,8 +83,10 @@ public class PermissionRationalActivity extends AppCompatActivity implements
     public void onClickApprovePermissionRequest(View view) {
         if(!PermissionUtil.hasGrantedReadWriteExternalStorage(this))
             PermissionUtil.requestReadWriteExternalStorage(this,PERMISSION_REQUEST_READ_WRITE);
+
         if(!PermissionUtil.hasGrantedCamera(this))
             PermissionUtil.requestCameraPermission(this,PERMISSION_REQUEST_CAMERA);
+
         if(!PermissionUtil.hasGrantedActivity(this))
             PermissionUtil.requestLocation(this, PERMISSION_REQUEST_LOCATION);
     }
@@ -103,6 +106,7 @@ public class PermissionRationalActivity extends AppCompatActivity implements
             boolean camera = PermissionUtil.hasGrantedCamera(this);
             boolean location = PermissionUtil.hasGrantedActivity(this);
             boolean readWrite = PermissionUtil.hasGrantedReadWriteExternalStorage(this);
+            boolean recordVideo = PermissionUtil.hasGrantedRecordAudio(this);
             switch (requestCode){
                 case PERMISSION_REQUEST_CAMERA:
                     if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
@@ -119,7 +123,7 @@ public class PermissionRationalActivity extends AppCompatActivity implements
                         readWrite = true;
                     }
             }
-            if(camera && location && readWrite){
+        if (camera && location && readWrite) {
                 startActivity(new Intent(this, FirstActivity.class));
                 finish();
             }

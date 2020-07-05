@@ -110,17 +110,26 @@ class FirebaseUtil {
             }
         }
 
+        fun storeDeleteCoupon(
+            storeInfo: StoreInfo,
+            storeItems: StoreItems,
+            firebaseCallback: FirebaseCallback
+        ) {
+            db.child(EXCHANGE_NODE).child(storeInfo.key).child(storeItems.storeItemsKey)
+                .removeValue { p0, p1 ->
+                    firebaseCallback.storeRemoveCouponResponse(p0 == null)
+                }
+        }
+
         fun storeAddCoupon(
             storeInfo: StoreInfo,
             storeItems: StoreItems,
             firebaseCallback: FirebaseCallback
         ) {
-                db.child(EXCHANGE_NODE).child(storeInfo.key).child(storeItems.storeItemsKey)
-                    .setValue(storeItems) { p0, p1 ->
-                        firebaseCallback.storeAddItemsResponse(p0 == null)
-                        Log.d("status","hasdhadshasdh is succ? ${p0==null}")
-                    }
-
+            db.child(EXCHANGE_NODE).child(storeInfo.key).child(storeItems.storeItemsKey)
+                .setValue(storeItems) { p0, p1 ->
+                    firebaseCallback.storeAddItemsResponse(p0 == null)
+                }
         }
 
         fun storeCheckIfWaitingConfirm(accountID: String,firebaseCallback: FirebaseCallback){

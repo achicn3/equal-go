@@ -40,7 +40,7 @@ class KoinApplication : MultiDexApplication() {
         viewModel { AddItemViewModel() }
         viewModel { StoreRegisterViewModel() }
         viewModel { StoreRecordViewModel() }
-        viewModel { AddFriendViewModel() }
+        single { AddFriendViewModel() }
         viewModel {
             FriendListViewModel(
                 get()

@@ -5,30 +5,19 @@ import androidx.lifecycle.ViewModel
 import com.kdanmobile.cloud.event.EventManager
 import com.local.local.body.StoreInfo
 import com.local.local.body.StoreItems
-import com.local.local.body.TransactionInfo
 import com.local.local.callback.FirebaseCallback
 import com.local.local.event.EventBroadcaster
 import com.local.local.extensions.Extensions.notifyObserver
-import com.local.local.manager.UserLoginManager
 import com.local.local.util.FirebaseUtil
-import java.text.SimpleDateFormat
-import java.util.*
 
 class EditStoreViewModel(private val eventManager: EventManager<Event> = EventManager()) :
     ViewModel(),
     EventBroadcaster<EditStoreViewModel.Event> by eventManager {
     sealed class Event {
-        class OnUpdateStart :
-            Event()
-
-        class OnUpdateFinish :
-            Event()
-
-        class OnUpdateSuc :
-            Event()
-
-        class OnUpdateFail :
-            Event()
+        class OnDeleteStart(): Event()
+        class OnDeleteFinish() : Event()
+        class OnDeleteSuc(): Event()
+        class OnDeleteFail() : Event()
     }
 
     private fun Event.send() {
@@ -52,19 +41,11 @@ class EditStoreViewModel(private val eventManager: EventManager<Event> = EventMa
             storeInfo.notifyObserver()
         }
 
-
-        override fun updateUserInfoResponse(isSuccess: Boolean) {
-            Event.OnUpdateFinish()
-                .send()
-            when (isSuccess) {
-                true -> {
-                    Event.OnUpdateSuc()
-                        .send()
-                }
-                else -> {
-                    Event.OnUpdateFail()
-                        .send()
-                }
+        override fun storeRemoveCouponResponse(response: Boolean) {
+            Event.OnDeleteFinish().send()
+            when(response){
+                true -> Event.OnDeleteSuc().send()
+                false -> Event.OnDeleteFail().send()
             }
         }
 
@@ -100,5 +81,10 @@ class EditStoreViewModel(private val eventManager: EventManager<Event> = EventMa
 
     private fun retrieveStoreItems(storeInfo: StoreInfo) {
         FirebaseUtil.retrieveStoreItems(storeInfo, firebaseCallback)
+    }
+
+    fun onClickDelete(storeInfo: StoreInfo, storeItems: StoreItems) {
+        Event.OnDeleteStart().send()
+        FirebaseUtil.storeDeleteCoupon(storeInfo, storeItems, firebaseCallback)
     }
 }

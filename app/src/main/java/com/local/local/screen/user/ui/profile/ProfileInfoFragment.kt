@@ -27,7 +27,9 @@ import com.bumptech.glide.request.transition.Transition
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.local.local.R
+import com.local.local.extensions.Extensions.listenTextAndClearError
 import com.local.local.extensions.Extensions.loadCircleImage
 import com.local.local.manager.UserLoginManager
 import com.local.local.screen.dialog.BaseDialogFragment
@@ -154,6 +156,7 @@ class ProfileInfoFragment : BaseDialogFragment() {
         val context = context ?: return super.onViewCreated(view, savedInstanceState)
         val defaultList = mutableListOf<String?>()
         val rvAdapter = ProfileInfoAdapter(context,defaultList)
+        val viewGroupName = view.findViewById<TextInputLayout>(R.id.viewGroup_profileInfo_name)
         ivAvatar = view.findViewById(R.id.iv_profileInfo_userAvatar)
         viewModel.retrieveDefaultAvatar()
 
@@ -251,8 +254,12 @@ class ProfileInfoFragment : BaseDialogFragment() {
             defaultList.addAll(it)
             rvAdapter.notifyDataSetChanged()
         })
-
+        etName.listenTextAndClearError(viewGroupName)
         view.findViewById<Button>(R.id.btn_profileInfo_save).setOnClickListener {
+            if(!TextUtils.isEmpty(etName.text)){
+                viewGroupName.error = "請輸入名字!!"
+                return@setOnClickListener
+            }
             val name = etName.text.toString()
             viewModel.onClickSave(userClickIconPosition,name)
             Toast.makeText(context,"儲存成功!",Toast.LENGTH_SHORT).show()

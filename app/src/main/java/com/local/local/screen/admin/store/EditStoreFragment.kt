@@ -4,10 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
 import com.local.local.body.StoreInfo
 import com.local.local.body.StoreItems
+import com.local.local.screen.dialog.LoadingFragment
 import com.local.local.screen.store.items.AddItemDialogFragment
 import com.local.local.screen.store.items.StoreAddItemFragment
 import com.local.local.screen.store.items.StoreItemsAdapter
@@ -34,6 +32,7 @@ class EditStoreFragment : Fragment() {
 
     companion object{
         private const val showAddItemDialogTag = "AddItemDialogTag"
+        private const val loadingTag = "ShowLoadingDialogTag"
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -61,6 +60,10 @@ class EditStoreFragment : Fragment() {
                         )
                     }
                 }
+            }
+
+            override fun onClickDelete(storeItems: StoreItems) {
+                viewModel.onClickDelete(stores[randomIndex],storeItems)
             }
         }
         val rvAdapter = StoreItemsAdapter(context,storeItems).apply {
@@ -124,6 +127,31 @@ class EditStoreFragment : Fragment() {
             storeItems.clear()
             storeItems.addAll(it)
             rvAdapter.notifyDataSetChanged()
+        })
+
+        viewModel.eventLiveData.observe(viewLifecycleOwner, Observer { event ->
+            event ?: return@Observer
+            when(event){
+                is EditStoreViewModel.Event.OnDeleteStart -> {
+                    activity.supportFragmentManager.findFragmentByTag(loadingTag) ?: run {
+                        LoadingFragment()
+                            .showNow(activity.supportFragmentManager, loadingTag)
+                    }
+                }
+                is EditStoreViewModel.Event.OnDeleteFinish -> {
+                    activity.supportFragmentManager.findFragmentByTag(loadingTag)?.let { fragment ->
+                        (fragment as? LoadingFragment)?.dismiss()
+                    }
+                }
+                is EditStoreViewModel.Event.OnDeleteSuc -> {
+                    Toast.makeText(context,"刪除成功!", Toast.LENGTH_SHORT).show()
+                }
+                is EditStoreViewModel.Event.OnDeleteFail ->{
+                    Toast.makeText(context,"刪除失敗!",Toast.LENGTH_SHORT).show()
+                }
+            }.also {
+                viewModel.onEventConsumed(event)
+            }
         })
 
 

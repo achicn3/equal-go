@@ -15,17 +15,19 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.local.local.R
 import com.local.local.extensions.Extensions.loadCircleImage
 import com.local.local.manager.UserLoginManager
 import com.local.local.screen.dialog.BaseDialogFragment
+import com.local.local.util.PermissionUtil
 import kotlinx.android.synthetic.main.fragment_add_friends.*
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.ext.android.inject
 
 class AddFriendFragment : BaseDialogFragment() {
-    private val viewModel: AddFriendViewModel by viewModel()
+    private val viewModel: AddFriendViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,6 +47,7 @@ class AddFriendFragment : BaseDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val context = context ?: return super.onViewCreated(view, savedInstanceState)
+        val activity = activity ?: return super.onViewCreated(view, savedInstanceState)
         val etPhone = view.findViewById<TextInputEditText>(R.id.et_addFriend_phone)
         val btnSearch = view.findViewById<ImageView>(R.id.iv_addFriend_search)
         val btnScan = view.findViewById<Button>(R.id.btn_addFriend_scanQRcode)
@@ -82,6 +85,7 @@ class AddFriendFragment : BaseDialogFragment() {
         }
 
         btnScan.setOnClickListener {
+            findNavController().navigate(R.id.action_addFriendFragment_to_scanQrCodeFragment)
 
         }
 

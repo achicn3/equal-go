@@ -101,4 +101,6 @@
     <string name="click_here_to_upload_img">點擊此處上傳/選取\n優惠券照片</string>
     <string name="coupon_name">優惠券名稱</string>
     <string name="need_points">所需點數</string>
+    <string name="delete">刪除</string>
+    <string name="scan_qr_code">掃描QR Code</string>
 </resources>

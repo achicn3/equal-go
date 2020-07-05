@@ -69,7 +69,6 @@ class AddItemViewModel(private val eventManager: EventManager<Event> = EventMana
                 withContext(Dispatchers.Main) {
                     if (response.isSuccessful) {
                         val storeInfo = StoreLoginManager.instance.storeInfo ?: adminPassStoreInfo ?: return@withContext
-                        val itemsKey = FirebaseUtil.getKey() ?: return@withContext
                         val newStoreItems = StoreItems(
                             couponName,
                             needPoints,

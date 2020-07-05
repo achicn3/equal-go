@@ -14,7 +14,6 @@ open class FirebaseCallback {
     open fun retrieveDefaultAvatar(avatarList: List<String?>){}//取得預設大頭貼
     open fun retrieveRecord(recordInfo: RecordInfo?){} //搜尋某天的紀錄
     open fun retrieveStatics(recordInfoList : List<RecordInfo?>){}//取得當月總數據
-    open fun addStore(store: StoreInfo){}//商家註冊成功後發送商家資訊
     open fun retrieveStoreInfo(storeNames: List<StoreInfo>){}//取得所有商家的名稱
     open fun retrieveStoreItems(storeItems: List<StoreItems>){} //取得商家的優惠列表
     open fun updateUserInfoResponse(isSuccess : Boolean){}
@@ -25,6 +24,7 @@ open class FirebaseCallback {
     open fun storeLoginResponse(response: Boolean,body: LoginRegisterBody?){}
     open fun storeAddItemsResponse(response: Boolean){}//商家增加商品之Response , true= 成功,false = 失敗
     open fun storeCheckWaitingConfirm(response: Boolean){}
+    open fun storeRemoveCouponResponse(response: Boolean){}
     open fun adminLoginResponse(response: Boolean){}
     open fun adminRetrieveUserList(userList: ArrayList<UserInfo>){}
     open fun adminRetrieveVerificationStore(storeList: ArrayList<LoginRegisterBody>){}
