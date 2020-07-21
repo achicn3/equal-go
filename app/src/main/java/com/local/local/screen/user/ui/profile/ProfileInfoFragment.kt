@@ -256,7 +256,7 @@ class ProfileInfoFragment : BaseDialogFragment() {
         })
         etName.listenTextAndClearError(viewGroupName)
         view.findViewById<Button>(R.id.btn_profileInfo_save).setOnClickListener {
-            if(!TextUtils.isEmpty(etName.text)){
+            if(TextUtils.isEmpty(etName.text)){
                 viewGroupName.error = "請輸入名字!!"
                 return@setOnClickListener
             }

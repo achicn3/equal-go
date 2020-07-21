@@ -39,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textCursorDrawable="@color/colorGreen"
+            android:singleLine="true"
             android:hint="@string/hint_cellphone_number" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,6 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textCursorDrawable="@color/colorGreen"
+            android:singleLine="true"
             android:hint="@string/please_enter_code" />
     </com.google.android.material.textfield.TextInputLayout>
 
