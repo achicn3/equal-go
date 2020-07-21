@@ -1,8 +1,12 @@
 package com.local.local.util
 
+import android.Manifest
+import android.app.Activity
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Looper
+import androidx.core.app.ActivityCompat
 import com.google.android.gms.location.*
 import com.local.local.manager.UserLoginManager
 import java.text.SimpleDateFormat
@@ -35,12 +39,13 @@ class LocationUtil {
                     val floatArray = FloatArray(1)
                     Location.distanceBetween(latitude,longitude,newLocation.latitude,newLocation.longitude,floatArray)
                     val time = Calendar.getInstance(Locale.TAIWAN).time
+                    //當天的移動距離 要累計
                     val date = SimpleDateFormat("yyyy/MM/dd", Locale.TAIWAN).format(time)
                     val moveDistance = distanceMap[date]?.plus(floatArray[0]) ?: floatArray[0]
                     distanceMap[date] = moveDistance
-                    if(floatArray[0]>850f){
+                    if(floatArray[0]>=850f){
                         FirebaseUtil.updateRecord(date,floatArray[0],1)
-                    }else{
+                    }else if(floatArray[0] >= 25f){//誤差為25公尺
                         FirebaseUtil.updateRecord(date,floatArray[0],0)
                     }
                 }
@@ -50,10 +55,10 @@ class LocationUtil {
             }
         }
 
-        fun startLocationUpdates(context: Context){
+        fun startLocationUpdates(context: Context,activity: Activity){
             val locationRequest = LocationRequest().apply {
                 priority = LocationRequest.PRIORITY_HIGH_ACCURACY
-                interval = 3*seconds
+                interval = 3*seconds //距離間隔
             }
             val locationSettingRequest = LocationSettingsRequest.Builder().apply {
                 addLocationRequest(locationRequest)
@@ -63,11 +68,22 @@ class LocationUtil {
                 checkLocationSettings(locationSettingRequest)
             }
             client = LocationServices.getFusedLocationProviderClient(context)
-            if(!PermissionUtil.hasGrantedLocation(context))
+            if(!PermissionUtil.hasGrantedFineLocation(context))
                 return
+            if (ActivityCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                    context,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                PermissionUtil.requestLocation(activity,4991)
+                return
+            }
             client?.requestLocationUpdates(locationRequest,locationCallback, Looper.myLooper())
         }
-
+        //若使用者關閉程式，需要移除listener
         fun removeListener(){
             client?.removeLocationUpdates(locationCallback)
         }

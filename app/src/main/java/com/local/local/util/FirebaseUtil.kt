@@ -116,7 +116,7 @@ class FirebaseUtil {
             firebaseCallback: FirebaseCallback
         ) {
             db.child(EXCHANGE_NODE).child(storeInfo.key).child(storeItems.storeItemsKey)
-                .removeValue { p0, p1 ->
+                .removeValue { p0, _ ->
                     firebaseCallback.storeRemoveCouponResponse(p0 == null)
                 }
         }
@@ -127,7 +127,7 @@ class FirebaseUtil {
             firebaseCallback: FirebaseCallback
         ) {
             db.child(EXCHANGE_NODE).child(storeInfo.key).child(storeItems.storeItemsKey)
-                .setValue(storeItems) { p0, p1 ->
+                .setValue(storeItems) { p0, _ ->
                     firebaseCallback.storeAddItemsResponse(p0 == null)
                 }
         }
@@ -291,7 +291,7 @@ class FirebaseUtil {
                         .child(month)
                         .child(day)
                         .push()
-                        .setValue(transactionInfo){ p0,p1 ->
+                        .setValue(transactionInfo){ _,_ ->
                         }
                 db.child(STORE_EXCHANGE_RECORD_INFO)
                         .child(storeInfo.key)
@@ -373,7 +373,7 @@ class FirebaseUtil {
             val key = UserLoginManager.instance.userData?.userKey
             val dateFormat = date.split("/")
             key?.run {
-                db.child(RECORD_NODE).child(this).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2]).addValueEventListener(object : ValueEventListener {
+                db.child(RECORD_NODE).child(this).child(dateFormat[0]).child(dateFormat[1]).child(dateFormat[2]).addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
                         p0.toException().printStackTrace()
                     }
@@ -381,6 +381,7 @@ class FirebaseUtil {
                     override fun onDataChange(p0: DataSnapshot) {
                         val value = p0.getValue(RecordInfo::class.java)
                         Log.d("status","info $value")
+                        value?.days = p0.key?.toInt()
                         firebaseCallback.retrieveRecord(value)
                     }
 
@@ -451,7 +452,6 @@ class FirebaseUtil {
                     val friendList = mutableListOf<AddFriendsBody>()
                     for(data in p0.children){
                         val friendInfo = data.getValue(AddFriendsBody::class.java) ?: continue
-                        Log.d("status","friend Info is ${friendInfo}")
                         friendList.add(friendInfo)
                     }
                     firebaseCallback.retrieveFriendList(friendList.toList())
@@ -462,7 +462,7 @@ class FirebaseUtil {
 
         fun getUserInfoByKey(userKey: String?, callback: FirebaseCallback) {
             val query = db.child(USER_NODE).orderByChild("userKey").equalTo(userKey).ref
-            query.addValueEventListener(object : ValueEventListener {
+            query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
                     callback.getUserInfoByKey(null)

@@ -45,6 +45,7 @@
     <string name="add">加入</string>
     <string name="my_qrcode">我的條碼</string>
     <string name="distance">距離: %.2f 公里</string>
+    <string name="points">點數: %d 點</string>
     <string name="logout">登出</string>
     <string name="username">使用者名稱</string>
     <string name="default_avatar">預設頭像</string>
@@ -61,6 +62,7 @@
     <string name="toady_activity">今日活動</string>
     <string name="move_distance">移動距離</string>
     <string name="km">公里</string>
+    <string name="meters">公尺</string>
     <string name="dot">點</string>
     <string name="days_point">今日累計</string>
     <string name="accumulation_points">今日已累計\n%d 點</string>
@@ -74,16 +76,16 @@
     <string name="view_pager_title_home_today_statics">當日數據</string>
     <string name="viewpager_title_distance_details_statics">距離總覽</string>
     <string name="viewpager_title_points_details_statics">點數總覽</string>
-    <string name="viewpager_title_exchange_item">優惠卷兌換</string>
+    <string name="viewpager_title_exchange_item">優惠券\n兌換</string>
     <string name="viewpager_title_exchange_record">兌換紀錄</string>
     <string name="drawer_statics_title">數據查詢</string>
     <string name="store_login">商家登入</string>
     <string name="store_account">帳號</string>
     <string name="store_password">密碼</string>
-    <string name="transation_notice_rule_title">優惠卷使用注意事項</string>
+    <string name="transation_notice_rule_title">優惠券使用注意事項</string>
     <string name="transaction_exchange">兌換</string>
     <string name="transactionSuc_confirm">請由商家按下此確認按鈕</string>
-    <string name="transactionSuc_rules">請注意! 同筆消費只能使用一次優惠卷</string>
+    <string name="transactionSuc_rules">請注意!\n同筆消費只能使用一次優惠券</string>
     <string name="transactionSuc_countDown_format">0%d:%d</string>
     <string name="transaction_record_description">兌換物品: %s</string>
     <string name="transaction_record_storeName">兌換商家: %s</string>

@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         UserLoginManager.instance.addListener(loginListener)
-        LocationUtil.startLocationUpdates(this)
+        LocationUtil.startLocationUpdates(this,this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

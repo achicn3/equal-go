@@ -16,7 +16,7 @@ import com.local.local.screen.store.record.StoreRecordViewModel
 import com.local.local.screen.store.register.StoreRegisterViewModel
 import com.local.local.screen.user.ui.firends.addfriend.AddFriendViewModel
 import com.local.local.screen.user.ui.firends.friendlsit.FriendListViewModel
-import com.local.local.screen.user.ui.points.daystatics.HomeViewModel
+import com.local.local.screen.user.ui.points.daystatics.DailyStaticsViewModel
 import com.local.local.screen.user.ui.points.detailstatics.StaticsViewModel
 import com.local.local.screen.user.ui.points.transaction.exchange.TransactionViewModel
 import com.local.local.screen.user.ui.points.transaction.record.TransactionRecordViewModel
@@ -47,7 +47,7 @@ class KoinApplication : MultiDexApplication() {
             )
         }
         viewModel { ProfileInfoViewModel() }
-        viewModel { HomeViewModel() }
+        viewModel { DailyStaticsViewModel() }
         viewModel { StaticsViewModel() }
         viewModel { TransactionViewModel() }
         viewModel { StoreAddItemViewModel() }

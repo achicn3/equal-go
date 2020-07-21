@@ -27,7 +27,7 @@ class PublicMap : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if(!PermissionUtil.hasGrantedLocation(context)){
+        if(!PermissionUtil.hasGrantedFineLocation(context)){
             startActivity(Intent(context,PermissionRationalActivity::class.java))
         }
         mapView = view.findViewById(R.id.map)

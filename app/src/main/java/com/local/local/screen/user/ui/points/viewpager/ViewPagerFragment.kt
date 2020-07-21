@@ -9,7 +9,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.local.local.R
-import com.local.local.screen.user.ui.points.daystatics.HomeFragment
+import com.local.local.screen.user.ui.points.daystatics.DailyStaticsFragment
 import com.local.local.screen.user.ui.points.detailstatics.StaticsFragment
 import com.local.local.screen.user.ui.points.transaction.exchange.TransactionFragment
 import com.local.local.screen.user.ui.points.transaction.record.TransactionRecord
@@ -27,7 +27,7 @@ class ViewPagerFragment : Fragment() {
         vp = view.findViewById(R.id.viewGroup_home_viewPager)
         tabs = view.findViewById(R.id.viewGroup_home_tabs)
         val fragmentList = arrayListOf(
-            HomeFragment(),
+            DailyStaticsFragment(),
             StaticsFragment(),
             StaticsFragment("點數"),
             TransactionFragment(),

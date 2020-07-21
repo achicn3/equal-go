@@ -7,7 +7,7 @@
     <color name="colorDarkBlue">#131F3D</color>
     <color name="colorYellow">#F4E729</color>
     <color name="accent_color">#0077FD</color>
-    <color name="colorBlue">#2C4277</color>
+    <color name="colorBlue">#131F3D</color>
     <color name="dsb_disabled_color">#66939393</color>
     <color name="dsb_ripple_color_pressed">#41ffffff</color>
     <color name="dsb_ripple_color_focused">#90ffffff</color>

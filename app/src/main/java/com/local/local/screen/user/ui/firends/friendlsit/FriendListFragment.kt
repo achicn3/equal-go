@@ -53,7 +53,7 @@ class FriendListFragment : BaseDialogFragment() {
             it ?: return@Observer
             friendList.clear()
             friendList.addAll(it)
-            Log.d("status","in observer friend list :$friendList")
+            friendList.sortByDescending { friendInfo-> friendInfo?.points ?: 0 }
             rvAdapter.notifyDataSetChanged()
             rvFriends.scheduleLayoutAnimation()
         })

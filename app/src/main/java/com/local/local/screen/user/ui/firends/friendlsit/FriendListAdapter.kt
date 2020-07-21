@@ -32,8 +32,9 @@ class FriendListAdapter(private val context: Context, private val friendList: Li
             val myLong = UserLoginManager.instance.userData?.longitude ?: 0.0
             val friendLat = latitude ?: 0.0
             val friendLong = longitude ?: 0.0
-            Location.distanceBetween(myLat,myLat,friendLat,friendLong,floatArray)
+            Location.distanceBetween(myLat,myLong,friendLat,friendLong,floatArray)
             holder.tvFriendsDistance.text = context.getString(R.string.distance,floatArray[0]/1000)
+            holder.tvFriendPoints.text = context.getString(R.string.points,points)
         }
     }
 }

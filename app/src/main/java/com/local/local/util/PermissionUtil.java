@@ -32,8 +32,12 @@ public class PermissionUtil {
         return hasGranted(context,Manifest.permission.ACTIVITY_RECOGNITION);
     }
 
-    public static boolean hasGrantedLocation(Context context){
+    public static boolean hasGrantedFineLocation(Context context){
         return hasGranted(context,Manifest.permission.ACCESS_FINE_LOCATION);
+    }
+
+    public static boolean hasGrantedCoarseLocation(Context context){
+        return hasGranted(context,Manifest.permission.ACCESS_COARSE_LOCATION);
     }
 
     public static boolean hasGrantedRecordAudio(Context context){
@@ -98,7 +102,7 @@ public class PermissionUtil {
         requestPermissions(activity,new String[]{Manifest.permission.RECORD_AUDIO},requestCode);
     }
     public static void requestLocation(Activity activity,int requestCode){
-        requestPermissions(activity,new String[]{Manifest.permission.ACCESS_FINE_LOCATION},requestCode);
+        requestPermissions(activity,new String[]{Manifest.permission.ACCESS_FINE_LOCATION,Manifest.permission.ACCESS_COARSE_LOCATION},requestCode);
     }
 
 }

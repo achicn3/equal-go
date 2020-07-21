@@ -19,6 +19,7 @@ class FriendListViewModel(private val context: Context) : ViewModel() {
     private val firebaseCallback = object : FirebaseCallback(){
         override fun retrieveFriendList(friendList: List<AddFriendsBody>?) {
             friendList?.also { list ->
+                friendKeyListImp.value?.clear()
                 friendKeyListImp.value?.addAll(list)
                 friendKeyListImp.notifyObserver()
             }

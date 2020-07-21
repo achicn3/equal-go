@@ -50,7 +50,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="28dp"
         android:layout_marginTop="8dp"
-        android:text="1.單筆交易每支手機限用一張優惠卷"
+        android:text="1.單筆交易每支手機限用一張優惠券"
         android:textSize="20sp"
         tools:ignore="HardcodedText,RtlHardcoded" />
 
