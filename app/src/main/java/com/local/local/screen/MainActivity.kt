@@ -1,5 +1,6 @@
 package com.local.local.screen
 
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
@@ -18,7 +20,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.navigation.NavigationView
-import com.google.android.material.snackbar.Snackbar
 import com.local.local.R
 import com.local.local.extensions.Extensions.loadCircleImage
 import com.local.local.manager.UserLoginManager
@@ -41,8 +42,23 @@ class MainActivity : AppCompatActivity() {
 
         val fab: FloatingActionButton = findViewById(R.id.fab)
         fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+            Intent(Intent.ACTION_SEND).run {
+                type = "message/rfc822"
+                putExtra(Intent.EXTRA_EMAIL, arrayOf("boliagogo@gmail.com"))
+                putExtra(Intent.EXTRA_SUBJECT, "[問題回報] ${UserLoginManager.instance.userData?.phone}")
+                putExtra(Intent.EXTRA_TEXT, "請輸入您的問題：\n")
+            }.run {
+                try {
+                    startActivity(Intent.createChooser(this, "回報問題"))
+                }catch (e: ActivityNotFoundException){
+                    Toast.makeText(
+                        this@MainActivity,
+                        "請直接聯絡boliagogo@gmail.com並說明問題。",
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+            }
         }
         val drawerLayout: DrawerLayout = findViewById(R.id.drawer_layout)
         val navView: NavigationView = findViewById(R.id.nav_view)

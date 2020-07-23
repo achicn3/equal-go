@@ -73,11 +73,11 @@
     <string name="public_map_title">公共區域</string>
     <string name="store_transactionRecord_userExchangeItem">兌換商品\n%s</string>
     <string name="error_addFriend_input_self_phone">請勿輸入自己的手機號碼!</string>
-    <string name="view_pager_title_home_today_statics">當日數據</string>
-    <string name="viewpager_title_distance_details_statics">距離總覽</string>
-    <string name="viewpager_title_points_details_statics">點數總覽</string>
+    <string name="view_pager_title_home_today_statics">當日\n數據</string>
+    <string name="viewpager_title_distance_details_statics">距離\n總覽</string>
+    <string name="viewpager_title_points_details_statics">點數\n總覽</string>
     <string name="viewpager_title_exchange_item">優惠券\n兌換</string>
-    <string name="viewpager_title_exchange_record">兌換紀錄</string>
+    <string name="viewpager_title_exchange_record">兌換\n紀錄</string>
     <string name="drawer_statics_title">數據查詢</string>
     <string name="store_login">商家登入</string>
     <string name="store_account">帳號</string>
