@@ -1,15 +1,14 @@
 package com.local.local.screen.admin.verification
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
-import com.local.local.body.LoginRegisterBody
+import com.local.local.body.StoreLoginRegisterBody
 import com.local.local.util.FirebaseUtil
 
 class VerificationAdapter(
-    private val storeList: ArrayList<LoginRegisterBody>
+    private val storeList: ArrayList<StoreLoginRegisterBody>
 ) : RecyclerView.Adapter<VerificationViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VerificationViewHolder {
         return VerificationViewHolder(

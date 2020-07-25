@@ -1,19 +1,25 @@
 package com.local.local.screen.user.ui.firends.addfriend
 
+import android.annotation.SuppressLint
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.FrameLayout
+import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.google.firebase.ml.vision.FirebaseVision
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import com.google.android.gms.vision.CameraSource
+import com.google.android.gms.vision.Detector
+import com.google.android.gms.vision.barcode.Barcode
+import com.google.android.gms.vision.barcode.BarcodeDetector
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode
-import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector
 import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions
-import com.google.firebase.ml.vision.common.FirebaseVisionImage
-import com.google.firebase.ml.vision.common.FirebaseVisionImageMetadata
 import com.local.local.R
-import com.otaliastudios.cameraview.CameraView
+import com.local.local.util.PermissionRationalActivity
 import org.koin.android.ext.android.inject
+import java.io.IOException
 
 class CameraFragment : Fragment() {
     private val viewModel: AddFriendViewModel by inject()
@@ -28,33 +34,62 @@ class CameraFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val context = context ?: return super.onViewCreated(view, savedInstanceState)
         val activity = activity ?: return super.onViewCreated(view, savedInstanceState)
+        val surfaceView = view.findViewById<SurfaceView>(R.id.scanQrCode_surfaceView)
+        val detector = BarcodeDetector.Builder(context).setBarcodeFormats(Barcode.QR_CODE).build()
+        val cameraSource = CameraSource.Builder(context, detector).setAutoFocusEnabled(true).build()
         val options = FirebaseVisionBarcodeDetectorOptions.Builder()
             .setBarcodeFormats(FirebaseVisionBarcode.FORMAT_QR_CODE)
             .build()
+        val container = view.findViewById<FrameLayout>(R.id.scanQrCode_container)
+        surfaceView.holder.addCallback(object : SurfaceHolder.Callback {
+            override fun surfaceChanged(
+                holder: SurfaceHolder?,
+                format: Int,
+                width: Int,
+                height: Int
+            ) {
 
-        val detector: FirebaseVisionBarcodeDetector? = FirebaseVision.getInstance().getVisionBarcodeDetector(options)
-        view.findViewById<CameraView>(R.id.cameraView).apply {
-            setLifecycleOwner(this@CameraFragment)
-            addFrameProcessor { frame ->
-                val data = frame.getData<ByteArray>()
-                val metadata = FirebaseVisionImageMetadata.Builder()
-                    .setFormat(FirebaseVisionImageMetadata.IMAGE_FORMAT_NV21)
-                    .setHeight(frame.size.height)
-                    .setWidth(frame.size.width)
-                    .build()
-                val image = FirebaseVisionImage.fromByteArray(data, metadata)
-                detector?.detectInImage(image)?.addOnSuccessListener { list ->
-                    processResult(list)
-                    activity.supportFragmentManager.beginTransaction().remove(this@CameraFragment).commit()
+            }
+
+            override fun surfaceDestroyed(holder: SurfaceHolder?) {
+                cameraSource.stop()
+            }
+
+            @SuppressLint("MissingPermission")
+            override fun surfaceCreated(holder: SurfaceHolder?) {
+                if (ActivityCompat.checkSelfPermission(
+                        context,
+                        android.Manifest.permission.CAMERA
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    startActivity(Intent(context, PermissionRationalActivity::class.java))
+                } else {
+                    try {
+                        cameraSource.start(holder)
+                    } catch (e: IOException) {
+                        e.printStackTrace()
+                    }
                 }
             }
-        }
-    }
+        })
+        detector.setProcessor(object : Detector.Processor<Barcode> {
+            override fun release() {
+            }
 
-    private fun processResult(barcodes: List<FirebaseVisionBarcode>) {
-        if (barcodes.isNotEmpty()) {
-            val valueType = barcodes[0].rawValue
-            viewModel.qrCodeScanResult.value = valueType
-        }
+            override fun receiveDetections(p0: Detector.Detections<Barcode>?) {
+                p0?.detectedItems?.run {
+                    if (this.size() > 0) {
+                        viewModel.qrCodeScanResult.postValue(this.valueAt(0).rawValue)
+                    }
+                }
+            }
+        })
+        viewModel.qrCodeScanResult.observe(viewLifecycleOwner, Observer { result ->
+            result ?: return@Observer
+            detector.release()
+            cameraSource.stop()
+            container.removeAllViews()
+            findNavController().popBackStack()
+        })
     }
 }

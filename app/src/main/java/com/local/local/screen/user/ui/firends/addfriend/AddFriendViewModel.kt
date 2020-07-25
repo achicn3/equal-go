@@ -2,10 +2,10 @@ package com.local.local.screen.user.ui.firends.addfriend
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.local.local.event.EventBroadcaster
 import com.kdanmobile.cloud.event.EventManager
 import com.local.local.body.UserInfo
 import com.local.local.callback.FirebaseCallback
+import com.local.local.event.EventBroadcaster
 import com.local.local.util.FirebaseUtil
 
 class AddFriendViewModel(
@@ -29,8 +29,10 @@ class AddFriendViewModel(
 
     var searchedUserInfo: UserInfo? = null
     private val firebaseCallback: FirebaseCallback
-
+    val qrCodeScanResult = MutableLiveData<String>()
     init {
+        searchedUserInfo = null
+        qrCodeScanResult.value = ""
         firebaseCallback = object : FirebaseCallback() {
             override fun isPhoneExisted(phoneNumber: String?, response: Boolean?) {
                 super.isPhoneExisted(phoneNumber, response)
@@ -93,6 +95,7 @@ class AddFriendViewModel(
                     Event.OnSearchSuc()
                         .send()
                     searchedUserInfo = userInfo
+                    FirebaseUtil.checkFriendsAlreadyAdd(searchedUserInfo, this)
                 }
             }
 
@@ -131,8 +134,6 @@ class AddFriendViewModel(
             }
         }
     }
-
-    val qrCodeScanResult = MutableLiveData<String>()
 
 
     private fun getUserInfoByPhone(phoneNumber: String?) {

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
+
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
@@ -24,15 +25,19 @@ public class PermissionUtil {
         return read & write;
     }
 
+    public static boolean hasGrantedLocation(Context context) {
+        return hasGrantedCoarseLocation(context) && hasGrantedFineLocation(context);
+    }
+
     public static boolean hasGrantedCamera(Context context) {
         return hasGranted(context, Manifest.permission.CAMERA);
     }
 
-    public static boolean hasGrantedActivity(Context context){
-        return hasGranted(context,Manifest.permission.ACTIVITY_RECOGNITION);
+    public static boolean hasGrantedActivity(Context context) {
+        return hasGranted(context, Manifest.permission.ACTIVITY_RECOGNITION);
     }
 
-    public static boolean hasGrantedFineLocation(Context context){
+    public static boolean hasGrantedFineLocation(Context context) {
         return hasGranted(context,Manifest.permission.ACCESS_FINE_LOCATION);
     }
 

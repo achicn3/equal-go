@@ -2,6 +2,9 @@ package com.local.local.body
 
 import android.location.Location
 
+/**
+ * 使用者的資訊
+ * */
 data class UserInfo(
     var phone: String? = null,
     var name: String? = null,
@@ -14,12 +17,6 @@ data class UserInfo(
     var latitude : Double? = null,
     var longitude : Double? = null
 ){
-    enum class Type(val type:String){
-        ADMIN("Admin"),
-        STORE("Store"),
-        USER("User")
-    }
-
     fun updateLocation(location: Location){
         latitude = location.latitude
         longitude = location.longitude

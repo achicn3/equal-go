@@ -6,8 +6,7 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.kdanmobile.cloud.event.EventManager
-import com.local.local.body.LoginRegisterBody
-import com.local.local.body.StoreInfo
+import com.local.local.body.StoreLoginRegisterBody
 import com.local.local.callback.FirebaseCallback
 import com.local.local.event.EventBroadcaster
 import com.local.local.manager.StoreLoginManager
@@ -51,11 +50,11 @@ class StoreLoginViewModel(private val activity: Activity, private val eventManag
             }
         }
 
-        override fun storeLoginResponse(response: Boolean, body: LoginRegisterBody?) {
-            when(response){
+        override fun storeLoginResponse(response: Boolean, bodyStore: StoreLoginRegisterBody?) {
+            when (response) {
                 true -> {
-                    StoreLoginManager.instance.storeInfo = body?.storeInfo
-                    Log.d("status","storeLogin succ and the info is ${body?.storeInfo} ")
+                    StoreLoginManager.instance.storeInfo = bodyStore?.storeInfo
+                    Log.d("status", "storeLogin succ and the info is ${bodyStore?.storeInfo} ")
                     Event.OnLoginSuc().send()
 
                 }

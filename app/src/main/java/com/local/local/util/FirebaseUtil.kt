@@ -1,5 +1,6 @@
 package com.local.local.util
 
+import android.text.TextUtils
 import android.util.Log
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -80,9 +81,9 @@ class FirebaseUtil {
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        val storeList = arrayListOf<LoginRegisterBody>()
+                        val storeList = arrayListOf<StoreLoginRegisterBody>()
                         for (ch in p0.children) {
-                            val data = ch.getValue(LoginRegisterBody::class.java) ?: continue
+                            val data = ch.getValue(StoreLoginRegisterBody::class.java) ?: continue
                             storeList.add(data)
                         }
                         firebaseCallback.adminRetrieveVerificationStore(storeList)
@@ -91,16 +92,16 @@ class FirebaseUtil {
                 })
         }
 
-        fun adminConfirmStoreInfo(store: LoginRegisterBody) {
+        fun adminConfirmStoreInfo(store: StoreLoginRegisterBody) {
             val key = store.storeInfo?.key ?: return
             db.child(STORE_REGISTER_SEND_TO_ADMIN).child(key).apply {
-                addListenerForSingleValueEvent(object : ValueEventListener{
+                addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onCancelled(p0: DatabaseError) {
                         p0.toException().printStackTrace()
                     }
 
                     override fun onDataChange(p0: DataSnapshot) {
-                        val data = p0.getValue(LoginRegisterBody::class.java)
+                        val data = p0.getValue(StoreLoginRegisterBody::class.java)
                         db.child(STORE_NODE).child(key).setValue(store.storeInfo)
                         db.child(STORE_USER_NODE).child(key).setValue(data)
                         removeValue()
@@ -142,7 +143,7 @@ class FirebaseUtil {
                 override fun onDataChange(p0: DataSnapshot) {
                     var isWaiting = false
                     for(data in p0.children){
-                        val value = data.getValue(LoginRegisterBody::class.java) ?: continue
+                        val value = data.getValue(StoreLoginRegisterBody::class.java) ?: continue
                         if(value.accountID == accountID){
                             isWaiting = true
                             break
@@ -163,15 +164,15 @@ class FirebaseUtil {
 
                 override fun onDataChange(p0: DataSnapshot) {
                     var response = false
-                    var body : LoginRegisterBody? = null
-                    for(ch in p0.children){
-                        body = ch.getValue(LoginRegisterBody::class.java) ?: continue
-                        if(body.accountID == accountID && body.pwd == pwd){
+                    var bodyStore: StoreLoginRegisterBody? = null
+                    for(ch in p0.children) {
+                        bodyStore = ch.getValue(StoreLoginRegisterBody::class.java) ?: continue
+                        if (bodyStore.accountID == accountID && bodyStore.pwd == pwd) {
                             response = true
                             break
                         }
                     }
-                    firebaseCallback.storeLoginResponse(response,body)
+                    firebaseCallback.storeLoginResponse(response, bodyStore)
                 }
 
             })
@@ -187,7 +188,7 @@ class FirebaseUtil {
                 override fun onDataChange(p0: DataSnapshot) {
                     var existed = false
                     for(children in p0.children){
-                        val data = children.getValue(LoginRegisterBody::class.java) ?: continue
+                        val data = children.getValue(StoreLoginRegisterBody::class.java) ?: continue
                         if(data.accountID == accountID){
                             existed = true
                             break
@@ -203,7 +204,7 @@ class FirebaseUtil {
         }
 
         fun storeSendRegisterInfoToAdmin(accountID: String,pwd: String,storeInfo: StoreInfo,firebaseCallback: FirebaseCallback){
-            val account = LoginRegisterBody(accountID, pwd,storeInfo)
+            val account = StoreLoginRegisterBody(accountID, pwd, storeInfo)
             db.child(STORE_REGISTER_SEND_TO_ADMIN).child(storeInfo.key).setValue(account){ p0,_ ->
                 firebaseCallback.storeSendRegisterInfoResponse(p0 == null)
             }
@@ -449,9 +450,9 @@ class FirebaseUtil {
                 }
 
                 override fun onDataChange(p0: DataSnapshot) {
-                    val friendList = mutableListOf<AddFriendsBody>()
+                    val friendList = mutableListOf<FriendsBody>()
                     for(data in p0.children){
-                        val friendInfo = data.getValue(AddFriendsBody::class.java) ?: continue
+                        val friendInfo = data.getValue(FriendsBody::class.java) ?: continue
                         friendList.add(friendInfo)
                     }
                     firebaseCallback.retrieveFriendList(friendList.toList())
@@ -462,6 +463,7 @@ class FirebaseUtil {
 
         fun getUserInfoByKey(userKey: String?, callback: FirebaseCallback) {
             val query = db.child(USER_NODE).orderByChild("userKey").equalTo(userKey).ref
+            if (TextUtils.isEmpty(userKey)) return
             query.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onCancelled(p0: DatabaseError) {
                     p0.toException().printStackTrace()
@@ -496,7 +498,7 @@ class FirebaseUtil {
                         override fun onDataChange(p0: DataSnapshot) {
                             var existed : Boolean? = false
                             for(data in p0.children){
-                                existed = data.getValue(AddFriendsBody::class.java)?.run {
+                                existed = data.getValue(FriendsBody::class.java)?.run {
                                     friendPhone == userInfo?.phone
                                 }
                                 if(existed != null && existed)break
@@ -513,7 +515,7 @@ class FirebaseUtil {
         fun addFriends(userInfo: UserInfo?, callback: FirebaseCallback) {
             val userKey = UserLoginManager.instance.userData?.userKey
             userKey?.let {
-                val friendsBody = AddFriendsBody(userInfo?.userKey!!,userInfo.phone!!)
+                val friendsBody = FriendsBody(userInfo?.userKey!!, userInfo.phone!!)
                 db.child(FRIENDS_NODE).child(it).push().setValue(friendsBody) { p0, _ ->
                     if (p0 != null) {
                         callback.addFriendResponse(false)

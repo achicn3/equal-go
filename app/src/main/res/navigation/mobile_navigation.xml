@@ -51,7 +51,11 @@
         android:id="@+id/scanQrCodeFragment"
         android:name="com.local.local.screen.user.ui.firends.addfriend.CameraFragment"
         android:label="掃描好友QR Code"
-        tools:layout="@layout/fragment_scan_qrcode"/>
+        tools:layout="@layout/fragment_scan_qrcode">
+        <action
+            android:id="@+id/action_scanQrCodeFragment_to_addFriendFragment"
+            app:destination="@id/addFriendFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/friendListFragment"

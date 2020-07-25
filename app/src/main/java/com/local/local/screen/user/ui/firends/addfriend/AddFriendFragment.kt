@@ -1,6 +1,5 @@
 package com.local.local.screen.user.ui.firends.addfriend
 
-import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -22,7 +21,6 @@ import com.local.local.R
 import com.local.local.extensions.Extensions.loadCircleImage
 import com.local.local.manager.UserLoginManager
 import com.local.local.screen.dialog.BaseDialogFragment
-import com.local.local.util.PermissionUtil
 import kotlinx.android.synthetic.main.fragment_add_friends.*
 import org.koin.android.ext.android.inject
 
@@ -85,6 +83,7 @@ class AddFriendFragment : BaseDialogFragment() {
         }
 
         btnScan.setOnClickListener {
+            viewModel.qrCodeScanResult.value = null
             findNavController().navigate(R.id.action_addFriendFragment_to_scanQrCodeFragment)
 
         }
@@ -92,6 +91,11 @@ class AddFriendFragment : BaseDialogFragment() {
         btnAddFriend.setOnClickListener {
             viewModel.onClickAdd()
         }
+
+        viewModel.qrCodeScanResult.observe(this, Observer { result ->
+            result ?: return@Observer
+            viewModel.searchByQRCode(result)
+        })
 
         viewModel.eventLiveData.observe(this, Observer { event ->
             event ?: return@Observer

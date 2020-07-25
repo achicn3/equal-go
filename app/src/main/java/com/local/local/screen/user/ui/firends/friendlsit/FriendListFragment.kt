@@ -1,7 +1,6 @@
 package com.local.local.screen.user.ui.firends.friendlsit
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
-import com.local.local.body.AddFriendsBody
+import com.local.local.body.FriendsBody
 import com.local.local.body.UserInfo
 import com.local.local.screen.dialog.BaseDialogFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -39,7 +38,7 @@ class FriendListFragment : BaseDialogFragment() {
         }
 
         viewModel.retrieveFriendList()
-        val friendKeyList = arrayListOf<AddFriendsBody>()
+        val friendKeyList = arrayListOf<FriendsBody>()
         viewModel.friendKeyList.observe(viewLifecycleOwner, Observer {
             it ?: return@Observer
             friendKeyList.clear()

@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.local.local.R
-import com.local.local.body.LoginRegisterBody
+import com.local.local.body.StoreLoginRegisterBody
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class VerificationFragment : Fragment() {
@@ -25,7 +25,7 @@ class VerificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val context = context ?: return super.onViewCreated(view, savedInstanceState)
         val rvList = view.findViewById<RecyclerView>(R.id.rv_admin_common)
-        val storeList = arrayListOf<LoginRegisterBody>()
+        val storeList = arrayListOf<StoreLoginRegisterBody>()
         val rvAdapter = VerificationAdapter(storeList)
         rvList.apply {
             adapter = rvAdapter
