@@ -254,12 +254,14 @@ class ProfileInfoFragment : BaseDialogFragment() {
             defaultList.addAll(it)
             rvAdapter.notifyDataSetChanged()
         })
+
         etName.listenTextAndClearError(viewGroupName)
         view.findViewById<Button>(R.id.btn_profileInfo_save).setOnClickListener {
             if(TextUtils.isEmpty(etName.text)){
                 viewGroupName.error = "請輸入名字!!"
                 return@setOnClickListener
             }
+
             val name = etName.text.toString()
             viewModel.onClickSave(userClickIconPosition,name)
             Toast.makeText(context,"儲存成功!",Toast.LENGTH_SHORT).show()

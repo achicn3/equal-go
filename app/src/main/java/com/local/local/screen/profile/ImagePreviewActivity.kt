@@ -9,6 +9,8 @@ import com.bumptech.glide.Glide
 import com.local.local.R
 import kotlinx.android.synthetic.main.activity_picture_preview.*
 
+
+@Deprecated("Not used")
 class ImagePreviewActivity : AppCompatActivity() {
     companion object {
         const val PICTURE_PREVIEW_KEY = "picturePreviewKey"

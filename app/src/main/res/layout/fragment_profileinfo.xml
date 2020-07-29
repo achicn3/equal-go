@@ -107,6 +107,9 @@
         app:boxStrokeColor="@color/colorGreen"
         app:errorEnabled="true"
         app:boxStrokeWidth="2dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="10"
+        app:counterOverflowTextAppearance="@string/error_counter_name_overflow"
         app:hintTextColor="@color/colorGreen"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="345dp">

@@ -1,5 +1,7 @@
 package com.local.local.screen.user.ui.points.transaction.record
 
+import android.app.DatePickerDialog
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -41,14 +43,27 @@ class TransactionRecord : Fragment(){
                 context,
                 records
             )
-        val tvDate = view.findViewById<TextView>(R.id.tv_record_date)
+        val tvDate = view.findViewById<TextView>(R.id.tv_record_date).apply {
+            setOnClickListener {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    DatePickerDialog(context).apply {
+                        setOnDateSetListener { _, year, month, dayOfMonth ->
+                            viewModel.setDate(year, month, dayOfMonth)
+                        }
+                    }.show()
+                }
+            }
+        }
+
         val rvRecords = view.findViewById<RecyclerView>(R.id.rv_record_items).apply {
             adapter = rvAdapter
             layoutManager = LinearLayoutManager(context)
         }
+
         view.findViewById<ImageView>(R.id.iv_record_left).setOnClickListener {
             viewModel.decrementDay()
         }
+
         view.findViewById<ImageView>(R.id.iv_record_right).setOnClickListener {
             viewModel.incrementDay()
         }

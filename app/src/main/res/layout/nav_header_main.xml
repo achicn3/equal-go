@@ -28,7 +28,7 @@
         android:textColor="@color/colorDarkBlue"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        tools:text="名字"
+        tools:text="0123456789"
         android:textSize="24sp"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 

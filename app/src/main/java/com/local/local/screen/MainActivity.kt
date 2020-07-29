@@ -90,6 +90,7 @@ class MainActivity : AppCompatActivity() {
         val ivDrawerAvatar = drawerAccountView.findViewById<ImageView>(R.id.iv_drawer_avatar)
         val tvDrawerName = drawerAccountView.findViewById<TextView>(R.id.tv_drawer_name)
         val tvDrawerPhone = drawerAccountView.findViewById<TextView>(R.id.tv_drawer_cellphone)
+        val tvDrawerPoints = navView.findViewById<TextView>(R.id.tv_drawer_points)
         val loginListener = object : UserLoginManager.LoginListener{
             override fun onLogStateChange() {
 
@@ -99,6 +100,8 @@ class MainActivity : AppCompatActivity() {
                 ivDrawerAvatar.loadCircleImage(this@MainActivity,UserLoginManager.instance.userData?.avatarUrl)
                 tvDrawerName.text = UserLoginManager.instance.userData?.name
                 tvDrawerPhone.text = toLocalPhone(UserLoginManager.instance.userData?.phone)
+                tvDrawerPoints.text = getString(R.string.accumulate_points,UserLoginManager.instance.userData?.points)
+
             }
         }
 

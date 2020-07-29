@@ -96,4 +96,6 @@
     <string name="need_points">所需點數</string>
     <string name="delete">刪除</string>
     <string name="scan_qr_code">掃描QR Code</string>
+    <string name="accumulate_points">累計點數\n%d 點</string>
+    <string name="error_counter_name_overflow">請不要超過十個字</string>
 </resources>

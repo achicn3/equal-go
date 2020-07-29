@@ -36,6 +36,17 @@
             android:foreground="@drawable/style_logout_button"
             android:background="?selectableItemBackground"
             android:text="@string/logout" />
+
+        <TextView
+            android:id="@+id/tv_drawer_points"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorDarkBlue"
+            android:layout_marginTop="105dp"
+            android:layout_marginRight="12dp"
+            android:layout_gravity="right"
+            android:gravity="center"
+            tools:text="累積點數\n80 點" />
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
