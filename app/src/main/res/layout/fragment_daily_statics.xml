@@ -53,50 +53,50 @@
                     app:srcCompat="@drawable/ic_arrow" />
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="16dp"
-                android:gravity="center">
+<!--            <RelativeLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:gravity="center">-->
 
-                <ProgressBar
-                    android:id="@+id/pb_main_points"
-                    style="?android:attr/progressBarStyleHorizontal"
-                    android:layout_width="200dp"
-                    android:layout_height="200dp"
-                    android:background="@drawable/style_circle_progressbar"
-                    android:indeterminate="false"
-                    android:max="100"
-                    android:progressDrawable="@drawable/style_progress_drawable"
-                    tools:layout_editor_absoluteX="160dp"
-                    tools:layout_editor_absoluteY="136dp" />
+<!--                <ProgressBar-->
+<!--                    android:id="@+id/pb_main_points"-->
+<!--                    style="?android:attr/progressBarStyleHorizontal"-->
+<!--                    android:layout_width="200dp"-->
+<!--                    android:layout_height="200dp"-->
+<!--                    android:background="@drawable/style_circle_progressbar"-->
+<!--                    android:indeterminate="false"-->
+<!--                    android:max="100"-->
+<!--                    android:progressDrawable="@drawable/style_progress_drawable"-->
+<!--                    tools:layout_editor_absoluteX="160dp"-->
+<!--                    tools:layout_editor_absoluteY="136dp" />-->
 
-                <TextView
-                    android:id="@+id/tv_main_pointsInPb"
-                    android:layout_width="62dp"
-                    android:layout_height="29dp"
-                    android:layout_alignStart="@+id/pb_main_points"
-                    android:layout_alignLeft="@+id/pb_main_points"
-                    android:layout_alignTop="@+id/pb_main_points"
-                    android:layout_alignEnd="@+id/pb_main_points"
-                    android:layout_alignRight="@+id/pb_main_points"
-                    android:layout_alignBottom="@+id/pb_main_points"
-                    android:layout_marginLeft="23dp"
-                    android:layout_marginTop="38dp"
-                    android:layout_marginRight="25dp"
-                    android:layout_marginBottom="41dp"
-                    android:fontFamily="sans-serif-medium"
-                    android:gravity="center"
-                    android:textColor="#00a89b"
-                    android:textSize="24sp"
-                    android:textStyle="normal"
-                    tools:ignore="RtlHardcoded"
-                    tools:layout_editor_absoluteX="216dp"
-                    tools:layout_editor_absoluteY="176dp"
-                    tools:targetApi="jelly_bean"
-                    tools:text="今日已累計\n60點" />
-            </RelativeLayout>
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_main_pointsInPb"-->
+<!--                    android:layout_width="62dp"-->
+<!--                    android:layout_height="29dp"-->
+<!--                    android:layout_alignStart="@+id/pb_main_points"-->
+<!--                    android:layout_alignLeft="@+id/pb_main_points"-->
+<!--                    android:layout_alignTop="@+id/pb_main_points"-->
+<!--                    android:layout_alignEnd="@+id/pb_main_points"-->
+<!--                    android:layout_alignRight="@+id/pb_main_points"-->
+<!--                    android:layout_alignBottom="@+id/pb_main_points"-->
+<!--                    android:layout_marginLeft="23dp"-->
+<!--                    android:layout_marginTop="38dp"-->
+<!--                    android:layout_marginRight="25dp"-->
+<!--                    android:layout_marginBottom="41dp"-->
+<!--                    android:fontFamily="sans-serif-medium"-->
+<!--                    android:gravity="center"-->
+<!--                    android:textColor="#00a89b"-->
+<!--                    android:textSize="24sp"-->
+<!--                    android:textStyle="normal"-->
+<!--                    tools:ignore="RtlHardcoded"-->
+<!--                    tools:layout_editor_absoluteX="216dp"-->
+<!--                    tools:layout_editor_absoluteY="176dp"-->
+<!--                    tools:targetApi="jelly_bean"-->
+<!--                    tools:text="今日已累計\n60點" />-->
+<!--            </RelativeLayout>-->
 
             <TextView
                 android:id="@+id/textView2"

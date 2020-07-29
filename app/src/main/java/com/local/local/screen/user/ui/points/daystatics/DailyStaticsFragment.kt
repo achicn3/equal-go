@@ -51,12 +51,12 @@ class DailyStaticsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val context = context ?: return super.onViewCreated(view, savedInstanceState)
-        val pbPoints = view.findViewById<ProgressBar>(R.id.pb_main_points).apply {
+        /*val pbPoints = view.findViewById<ProgressBar>(R.id.pb_main_points).apply {
             animateProgress(100)
-        }
-        val tvPointsInPb = view.findViewById<TextView>(R.id.tv_main_pointsInPb).apply {
+        }*/
+        /*val tvPointsInPb = view.findViewById<TextView>(R.id.tv_main_pointsInPb).apply {
             text = getString(R.string.accumulation_points, 30)
-        }
+        }*/
         val listener = object : UserLoginManager.LoginListener{
             override fun onLogStateChange() {
 
@@ -90,9 +90,9 @@ class DailyStaticsFragment : Fragment() {
 
         viewModel.recordInfo.observe(viewLifecycleOwner, Observer { recordInfo ->
             recordInfo ?: return@Observer
-            tvPointsInPb.text = getString(R.string.accumulation_points, recordInfo.points)
+            //tvPointsInPb.text = getString(R.string.accumulation_points, recordInfo.points)
             tvPoints.text = recordInfo.points.toString()
-            pbPoints.animateProgress(recordInfo.points)
+            //pbPoints.animateProgress(recordInfo.points)
             val df = DecimalFormat("0.0#").format(recordInfo.distance)
             val distanceTxt = if(df.length >= 8) df.substring(0,5) else df
             tvDistance.text = distanceTxt
