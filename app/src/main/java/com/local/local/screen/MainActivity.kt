@@ -96,22 +96,14 @@ class MainActivity : AppCompatActivity() {
             }
 
             override fun onUserInfoChange() {
-                Log.d("status","user info change should be called.")
                 ivDrawerAvatar.loadCircleImage(this@MainActivity,UserLoginManager.instance.userData?.avatarUrl)
                 tvDrawerName.text = UserLoginManager.instance.userData?.name
                 tvDrawerPhone.text = toLocalPhone(UserLoginManager.instance.userData?.phone)
-                Log.d("status","user info avatar is ${UserLoginManager.instance.userData?.avatarUrl},name : ${UserLoginManager.instance.userData?.name}, phone: ${toLocalPhone(UserLoginManager.instance.userData?.phone)}")
             }
         }
 
         UserLoginManager.instance.addListener(loginListener)
         LocationUtil.startLocationUpdates(this,this)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main, menu)
-        return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
